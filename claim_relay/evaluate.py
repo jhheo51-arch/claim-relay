@@ -77,7 +77,8 @@ def evaluate(extractor="cues", repeat=3, dataset="testset"):
     rows, ext_hit, ext_total = [], 0, 0
     for case in load_set(dataset):
         gold = case["expect"].get("elements")
-        runs = [run_case(case, extractor, gold=gold, ledger=False)[0] for _ in range(repeat)]
+        runs = [run_case(case, extractor, gold=gold, ledger=False, gate=False)[0]
+                for _ in range(repeat)]
         first = runs[0]
         drift = any(json.dumps(r, ensure_ascii=False, sort_keys=True)
                     != json.dumps(first, ensure_ascii=False, sort_keys=True) for r in runs[1:])

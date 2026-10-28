@@ -153,7 +153,7 @@ class ApiExtractorTest(unittest.TestCase):
         c = case("C003")
         gold = c["expect"]["elements"]
         fake = FakeClient([gold["고객"], gold["상대"]])
-        result, _ = run_case(c, "api", ledger=False, client=fake)
+        result, _ = run_case(c, "api", ledger=False, client=fake, gate=False)
         self.assertEqual(result["route"], c["expect"]["route"])
         self.assertEqual(result["chart"], c["expect"]["chart"])
         self.assertNotIn("temperature", fake.calls[0])
@@ -173,6 +173,36 @@ class ApiExtractorTest(unittest.TestCase):
         result, _ = run_case(c, "api", ledger=False, client=fake)
         self.assertEqual(result["status"], "멈춤")
         self.assertIn("거절", result["stop"]["reason"])
+
+
+class GradeGateTest(unittest.TestCase):
+    def test_low_grade_blocks_auto(self):
+        from unittest import mock
+        from claim_relay import pipeline
+        low = {"set": "natural/cues", "version": None,
+               "stages": {"intake": "고급", "documents": "고급", "fault": "초급", "route": "고급"}}
+        with mock.patch.object(pipeline, "stage_grades", return_value=low):
+            result, steps = run_case(case("C001"), ledger=False)
+        self.assertEqual(result["route"], "사람 심사")
+        self.assertEqual(result["rules"], ["G01"])
+        self.assertIn("AG-03", result["notice"]["staff"]["rules"][0])
+        self.assertIn("grades", next(s for s in steps if s["agent"] == "route")["read"])
+
+    def test_good_grade_keeps_auto(self):
+        result, _ = run_case(case("C001"), ledger=False)
+        self.assertEqual(result["route"], "자동 처리 후보")
+        self.assertNotIn("G01", result["rules"])
+
+    def test_unevaluated_extractor_blocked(self):
+        c = case("C003")
+        gold = c["expect"]["elements"]
+        result, _ = run_case(c, "api", ledger=False, client=FakeClient([gold["고객"], gold["상대"]]))
+        self.assertEqual(result["route"], "사람 심사")
+        self.assertEqual(result["rules"], ["G01"])
+
+    def test_steps_timed(self):
+        _, steps = run_case(case("C001"), ledger=False)
+        self.assertTrue(all(s["ms"] >= 0 for s in steps))
 
 
 class NoticeCheckTest(unittest.TestCase):

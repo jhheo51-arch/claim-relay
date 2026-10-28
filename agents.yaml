@@ -22,7 +22,7 @@ agents:
     badge: AG-04
     name: 경로 에이전트
     scope: 규칙표로 심사 경로 판정
-    read: [intake, docs, elements, fault]
+    read: [intake, docs, elements, fault, grades]
     write: [route]
   schedule:
     badge: AG-05

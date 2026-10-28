@@ -1,0 +1,45 @@
+{
+ "version": "2026-10-28",
+ "sets": {
+  "testset/cues": {
+   "intake": "고급",
+   "documents": "고급",
+   "fault": "고급",
+   "route": "고급",
+   "schedule": "고급",
+   "notice": "고급"
+  },
+  "natural/cues": {
+   "intake": "고급",
+   "documents": "고급",
+   "fault": "초급",
+   "route": "초급",
+   "schedule": "고급",
+   "notice": "고급"
+  },
+  "natural/skill": {
+   "intake": "고급",
+   "documents": "고급",
+   "fault": "고급",
+   "route": "고급",
+   "schedule": "고급",
+   "notice": "고급"
+  },
+  "blind/cues": {
+   "intake": "고급",
+   "documents": "고급",
+   "fault": "초급",
+   "route": "초급",
+   "schedule": "고급",
+   "notice": "고급"
+  },
+  "blind/skill": {
+   "intake": "고급",
+   "documents": "고급",
+   "fault": "중급",
+   "route": "중급",
+   "schedule": "고급",
+   "notice": "고급"
+  }
+ }
+}

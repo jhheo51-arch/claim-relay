@@ -19,6 +19,15 @@ def conditions(it, docs, elements, fault):
     }
 
 
+def gate(grades):
+    """등급 게이트. 경로를 정하는 데 쓰인 단계 중 기준 등급이거나 아직 평가하지 않은 단계를 돌려준다."""
+    spec = load("rules/grades.yaml")["gate"]
+    if grades is None:  # 평가 중에는 끈다
+        return spec, []
+    stages = grades["stages"] or {}
+    return spec, [a for a in spec["stages"] if stages.get(a, spec["below"]) == spec["below"]]
+
+
 def run(desk):
     it, docs = desk.get("intake"), desk.get("docs")
     elements, fault = desk.get("elements"), desk.get("fault")
@@ -26,8 +35,11 @@ def run(desk):
     hits = [r for r in load("rules/claim-rules.yaml")["rules"] if flags[r["when"]]]
     strength = settings()["route_strength"]
     route = max((r["route"] for r in hits), key=strength.get, default=DEFAULT)
-    desk.put("route", {
-        "route": route,
-        "rules": [{"id": r["id"], "route": r["route"], "customer": r["customer"], "staff": r["staff"]}
-                  for r in hits],
-    })
+    rules = [{"id": r["id"], "route": r["route"], "customer": r["customer"], "staff": r["staff"]} for r in hits]
+    spec, low = gate(desk.get("grades"))
+    if route == DEFAULT and low:
+        badges = load("agents.yaml")["agents"]
+        route = spec["route"]
+        rules.append({"id": spec["id"], "route": route, "customer": spec["customer"],
+                      "staff": f"{spec['staff']}({', '.join(badges[a]['badge'] for a in low)})"})
+    desk.put("route", {"route": route, "rules": rules})

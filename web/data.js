@@ -334,7 +334,8 @@ window.DATA = {
     "intake",
     "docs",
     "elements",
-    "fault"
+    "fault",
+    "grades"
    ],
    "write": [
     "route"
@@ -416,6 +417,64 @@ window.DATA = {
    }
   ],
   "repeat_limit": 2
+ },
+ "gate": {
+  "id": "G01",
+  "stages": [
+   "intake",
+   "documents",
+   "fault",
+   "route"
+  ],
+  "below": "초급",
+  "route": "사람 심사",
+  "customer": "사고 내용을 담당자가 한 번 더 확인합니다",
+  "staff": "성적표 등급이 초급이거나 평가하지 않은 단계가 결과를 냄"
+ },
+ "grades": {
+  "version": "2026-10-28",
+  "sets": {
+   "testset/cues": {
+    "intake": "고급",
+    "documents": "고급",
+    "fault": "고급",
+    "route": "고급",
+    "schedule": "고급",
+    "notice": "고급"
+   },
+   "natural/cues": {
+    "intake": "고급",
+    "documents": "고급",
+    "fault": "초급",
+    "route": "초급",
+    "schedule": "고급",
+    "notice": "고급"
+   },
+   "natural/skill": {
+    "intake": "고급",
+    "documents": "고급",
+    "fault": "고급",
+    "route": "고급",
+    "schedule": "고급",
+    "notice": "고급"
+   },
+   "blind/cues": {
+    "intake": "고급",
+    "documents": "고급",
+    "fault": "초급",
+    "route": "초급",
+    "schedule": "고급",
+    "notice": "고급"
+   },
+   "blind/skill": {
+    "intake": "고급",
+    "documents": "고급",
+    "fault": "중급",
+    "route": "중급",
+    "schedule": "고급",
+    "notice": "고급"
+   }
+  }
  },
  "cases": [
   {
@@ -607,7 +666,8 @@ window.DATA = {
      ],
      "wrote": [
       "intake"
-     ]
+     ],
+     "ms": 0.43
     },
     {
      "agent": "documents",
@@ -617,7 +677,8 @@ window.DATA = {
      ],
      "wrote": [
       "docs"
-     ]
+     ],
+     "ms": 1.62
     },
     {
      "agent": "fault",
@@ -628,7 +689,8 @@ window.DATA = {
      "wrote": [
       "elements",
       "fault"
-     ]
+     ],
+     "ms": 7.56
     },
     {
      "agent": "route",
@@ -637,11 +699,13 @@ window.DATA = {
       "intake",
       "docs",
       "elements",
-      "fault"
+      "fault",
+      "grades"
      ],
      "wrote": [
       "route"
-     ]
+     ],
+     "ms": 4.04
     },
     {
      "agent": "schedule",
@@ -652,7 +716,8 @@ window.DATA = {
      ],
      "wrote": [
       "schedule"
-     ]
+     ],
+     "ms": 0.02
     },
     {
      "agent": "notice",
@@ -666,7 +731,8 @@ window.DATA = {
      ],
      "wrote": [
       "notice"
-     ]
+     ],
+     "ms": 0.16
     }
    ]
   },
@@ -859,7 +925,8 @@ window.DATA = {
      ],
      "wrote": [
       "intake"
-     ]
+     ],
+     "ms": 0.04
     },
     {
      "agent": "documents",
@@ -869,7 +936,8 @@ window.DATA = {
      ],
      "wrote": [
       "docs"
-     ]
+     ],
+     "ms": 0.02
     },
     {
      "agent": "fault",
@@ -880,7 +948,8 @@ window.DATA = {
      "wrote": [
       "elements",
       "fault"
-     ]
+     ],
+     "ms": 0.12
     },
     {
      "agent": "route",
@@ -889,11 +958,13 @@ window.DATA = {
       "intake",
       "docs",
       "elements",
-      "fault"
+      "fault",
+      "grades"
      ],
      "wrote": [
       "route"
-     ]
+     ],
+     "ms": 0.06
     },
     {
      "agent": "schedule",
@@ -904,7 +975,8 @@ window.DATA = {
      ],
      "wrote": [
       "schedule"
-     ]
+     ],
+     "ms": 0.01
     },
     {
      "agent": "notice",
@@ -918,7 +990,8 @@ window.DATA = {
      ],
      "wrote": [
       "notice"
-     ]
+     ],
+     "ms": 0.05
     }
    ]
   },
@@ -1111,7 +1184,8 @@ window.DATA = {
      ],
      "wrote": [
       "intake"
-     ]
+     ],
+     "ms": 0.03
     },
     {
      "agent": "documents",
@@ -1121,7 +1195,8 @@ window.DATA = {
      ],
      "wrote": [
       "docs"
-     ]
+     ],
+     "ms": 0.01
     },
     {
      "agent": "fault",
@@ -1132,7 +1207,8 @@ window.DATA = {
      "wrote": [
       "elements",
       "fault"
-     ]
+     ],
+     "ms": 0.11
     },
     {
      "agent": "route",
@@ -1141,11 +1217,13 @@ window.DATA = {
       "intake",
       "docs",
       "elements",
-      "fault"
+      "fault",
+      "grades"
      ],
      "wrote": [
       "route"
-     ]
+     ],
+     "ms": 0.05
     },
     {
      "agent": "schedule",
@@ -1156,7 +1234,8 @@ window.DATA = {
      ],
      "wrote": [
       "schedule"
-     ]
+     ],
+     "ms": 0.01
     },
     {
      "agent": "notice",
@@ -1170,7 +1249,8 @@ window.DATA = {
      ],
      "wrote": [
       "notice"
-     ]
+     ],
+     "ms": 0.04
     }
    ]
   },
@@ -1363,7 +1443,8 @@ window.DATA = {
      ],
      "wrote": [
       "intake"
-     ]
+     ],
+     "ms": 0.03
     },
     {
      "agent": "documents",
@@ -1373,7 +1454,8 @@ window.DATA = {
      ],
      "wrote": [
       "docs"
-     ]
+     ],
+     "ms": 0.01
     },
     {
      "agent": "fault",
@@ -1384,7 +1466,8 @@ window.DATA = {
      "wrote": [
       "elements",
       "fault"
-     ]
+     ],
+     "ms": 0.11
     },
     {
      "agent": "route",
@@ -1393,11 +1476,13 @@ window.DATA = {
       "intake",
       "docs",
       "elements",
-      "fault"
+      "fault",
+      "grades"
      ],
      "wrote": [
       "route"
-     ]
+     ],
+     "ms": 0.05
     },
     {
      "agent": "schedule",
@@ -1408,7 +1493,8 @@ window.DATA = {
      ],
      "wrote": [
       "schedule"
-     ]
+     ],
+     "ms": 0.01
     },
     {
      "agent": "notice",
@@ -1422,7 +1508,8 @@ window.DATA = {
      ],
      "wrote": [
       "notice"
-     ]
+     ],
+     "ms": 0.04
     }
    ]
   },
@@ -1599,7 +1686,8 @@ window.DATA = {
      ],
      "wrote": [
       "intake"
-     ]
+     ],
+     "ms": 0.03
     },
     {
      "agent": "documents",
@@ -1609,7 +1697,8 @@ window.DATA = {
      ],
      "wrote": [
       "docs"
-     ]
+     ],
+     "ms": 0.01
     },
     {
      "agent": "fault",
@@ -1620,7 +1709,8 @@ window.DATA = {
      "wrote": [
       "elements",
       "fault"
-     ]
+     ],
+     "ms": 0.11
     },
     {
      "agent": "route",
@@ -1629,11 +1719,13 @@ window.DATA = {
       "intake",
       "docs",
       "elements",
-      "fault"
+      "fault",
+      "grades"
      ],
      "wrote": [
       "route"
-     ]
+     ],
+     "ms": 0.05
     },
     {
      "agent": "schedule",
@@ -1644,7 +1736,8 @@ window.DATA = {
      ],
      "wrote": [
       "schedule"
-     ]
+     ],
+     "ms": 0.01
     },
     {
      "agent": "notice",
@@ -1658,7 +1751,8 @@ window.DATA = {
      ],
      "wrote": [
       "notice"
-     ]
+     ],
+     "ms": 0.04
     }
    ]
   },
@@ -1835,7 +1929,8 @@ window.DATA = {
      ],
      "wrote": [
       "intake"
-     ]
+     ],
+     "ms": 0.03
     },
     {
      "agent": "documents",
@@ -1845,7 +1940,8 @@ window.DATA = {
      ],
      "wrote": [
       "docs"
-     ]
+     ],
+     "ms": 0.01
     },
     {
      "agent": "fault",
@@ -1856,7 +1952,8 @@ window.DATA = {
      "wrote": [
       "elements",
       "fault"
-     ]
+     ],
+     "ms": 0.11
     },
     {
      "agent": "route",
@@ -1865,11 +1962,13 @@ window.DATA = {
       "intake",
       "docs",
       "elements",
-      "fault"
+      "fault",
+      "grades"
      ],
      "wrote": [
       "route"
-     ]
+     ],
+     "ms": 0.05
     },
     {
      "agent": "schedule",
@@ -1880,7 +1979,8 @@ window.DATA = {
      ],
      "wrote": [
       "schedule"
-     ]
+     ],
+     "ms": 0.01
     },
     {
      "agent": "notice",
@@ -1894,7 +1994,8 @@ window.DATA = {
      ],
      "wrote": [
       "notice"
-     ]
+     ],
+     "ms": 0.04
     }
    ]
   },
@@ -2071,7 +2172,8 @@ window.DATA = {
      ],
      "wrote": [
       "intake"
-     ]
+     ],
+     "ms": 0.03
     },
     {
      "agent": "documents",
@@ -2081,7 +2183,8 @@ window.DATA = {
      ],
      "wrote": [
       "docs"
-     ]
+     ],
+     "ms": 0.01
     },
     {
      "agent": "fault",
@@ -2092,7 +2195,8 @@ window.DATA = {
      "wrote": [
       "elements",
       "fault"
-     ]
+     ],
+     "ms": 0.1
     },
     {
      "agent": "route",
@@ -2101,11 +2205,13 @@ window.DATA = {
       "intake",
       "docs",
       "elements",
-      "fault"
+      "fault",
+      "grades"
      ],
      "wrote": [
       "route"
-     ]
+     ],
+     "ms": 0.05
     },
     {
      "agent": "schedule",
@@ -2116,7 +2222,8 @@ window.DATA = {
      ],
      "wrote": [
       "schedule"
-     ]
+     ],
+     "ms": 0.01
     },
     {
      "agent": "notice",
@@ -2130,7 +2237,8 @@ window.DATA = {
      ],
      "wrote": [
       "notice"
-     ]
+     ],
+     "ms": 0.04
     }
    ]
   },
@@ -2307,7 +2415,8 @@ window.DATA = {
      ],
      "wrote": [
       "intake"
-     ]
+     ],
+     "ms": 0.03
     },
     {
      "agent": "documents",
@@ -2317,7 +2426,8 @@ window.DATA = {
      ],
      "wrote": [
       "docs"
-     ]
+     ],
+     "ms": 0.01
     },
     {
      "agent": "fault",
@@ -2328,7 +2438,8 @@ window.DATA = {
      "wrote": [
       "elements",
       "fault"
-     ]
+     ],
+     "ms": 0.1
     },
     {
      "agent": "route",
@@ -2337,11 +2448,13 @@ window.DATA = {
       "intake",
       "docs",
       "elements",
-      "fault"
+      "fault",
+      "grades"
      ],
      "wrote": [
       "route"
-     ]
+     ],
+     "ms": 0.05
     },
     {
      "agent": "schedule",
@@ -2352,7 +2465,8 @@ window.DATA = {
      ],
      "wrote": [
       "schedule"
-     ]
+     ],
+     "ms": 0.01
     },
     {
      "agent": "notice",
@@ -2366,7 +2480,8 @@ window.DATA = {
      ],
      "wrote": [
       "notice"
-     ]
+     ],
+     "ms": 0.04
     }
    ]
   },
@@ -2559,7 +2674,8 @@ window.DATA = {
      ],
      "wrote": [
       "intake"
-     ]
+     ],
+     "ms": 0.03
     },
     {
      "agent": "documents",
@@ -2569,7 +2685,8 @@ window.DATA = {
      ],
      "wrote": [
       "docs"
-     ]
+     ],
+     "ms": 0.01
     },
     {
      "agent": "fault",
@@ -2580,7 +2697,8 @@ window.DATA = {
      "wrote": [
       "elements",
       "fault"
-     ]
+     ],
+     "ms": 0.11
     },
     {
      "agent": "route",
@@ -2589,11 +2707,13 @@ window.DATA = {
       "intake",
       "docs",
       "elements",
-      "fault"
+      "fault",
+      "grades"
      ],
      "wrote": [
       "route"
-     ]
+     ],
+     "ms": 0.05
     },
     {
      "agent": "schedule",
@@ -2604,7 +2724,8 @@ window.DATA = {
      ],
      "wrote": [
       "schedule"
-     ]
+     ],
+     "ms": 0.01
     },
     {
      "agent": "notice",
@@ -2618,7 +2739,8 @@ window.DATA = {
      ],
      "wrote": [
       "notice"
-     ]
+     ],
+     "ms": 0.04
     }
    ]
   },
@@ -2811,7 +2933,8 @@ window.DATA = {
      ],
      "wrote": [
       "intake"
-     ]
+     ],
+     "ms": 0.03
     },
     {
      "agent": "documents",
@@ -2821,7 +2944,8 @@ window.DATA = {
      ],
      "wrote": [
       "docs"
-     ]
+     ],
+     "ms": 0.01
     },
     {
      "agent": "fault",
@@ -2832,7 +2956,8 @@ window.DATA = {
      "wrote": [
       "elements",
       "fault"
-     ]
+     ],
+     "ms": 0.11
     },
     {
      "agent": "route",
@@ -2841,11 +2966,13 @@ window.DATA = {
       "intake",
       "docs",
       "elements",
-      "fault"
+      "fault",
+      "grades"
      ],
      "wrote": [
       "route"
-     ]
+     ],
+     "ms": 0.05
     },
     {
      "agent": "schedule",
@@ -2856,7 +2983,8 @@ window.DATA = {
      ],
      "wrote": [
       "schedule"
-     ]
+     ],
+     "ms": 0.06
     },
     {
      "agent": "notice",
@@ -2870,7 +2998,8 @@ window.DATA = {
      ],
      "wrote": [
       "notice"
-     ]
+     ],
+     "ms": 0.06
     }
    ]
   },
@@ -3047,7 +3176,8 @@ window.DATA = {
      ],
      "wrote": [
       "intake"
-     ]
+     ],
+     "ms": 0.03
     },
     {
      "agent": "documents",
@@ -3057,7 +3187,8 @@ window.DATA = {
      ],
      "wrote": [
       "docs"
-     ]
+     ],
+     "ms": 0.01
     },
     {
      "agent": "fault",
@@ -3068,7 +3199,8 @@ window.DATA = {
      "wrote": [
       "elements",
       "fault"
-     ]
+     ],
+     "ms": 0.16
     },
     {
      "agent": "route",
@@ -3077,11 +3209,13 @@ window.DATA = {
       "intake",
       "docs",
       "elements",
-      "fault"
+      "fault",
+      "grades"
      ],
      "wrote": [
       "route"
-     ]
+     ],
+     "ms": 0.05
     },
     {
      "agent": "schedule",
@@ -3092,7 +3226,8 @@ window.DATA = {
      ],
      "wrote": [
       "schedule"
-     ]
+     ],
+     "ms": 0.01
     },
     {
      "agent": "notice",
@@ -3106,7 +3241,8 @@ window.DATA = {
      ],
      "wrote": [
       "notice"
-     ]
+     ],
+     "ms": 0.05
     }
    ]
   },
@@ -3283,7 +3419,8 @@ window.DATA = {
      ],
      "wrote": [
       "intake"
-     ]
+     ],
+     "ms": 0.03
     },
     {
      "agent": "documents",
@@ -3293,7 +3430,8 @@ window.DATA = {
      ],
      "wrote": [
       "docs"
-     ]
+     ],
+     "ms": 0.01
     },
     {
      "agent": "fault",
@@ -3304,7 +3442,8 @@ window.DATA = {
      "wrote": [
       "elements",
       "fault"
-     ]
+     ],
+     "ms": 0.11
     },
     {
      "agent": "route",
@@ -3313,11 +3452,13 @@ window.DATA = {
       "intake",
       "docs",
       "elements",
-      "fault"
+      "fault",
+      "grades"
      ],
      "wrote": [
       "route"
-     ]
+     ],
+     "ms": 0.05
     },
     {
      "agent": "schedule",
@@ -3328,7 +3469,8 @@ window.DATA = {
      ],
      "wrote": [
       "schedule"
-     ]
+     ],
+     "ms": 0.01
     },
     {
      "agent": "notice",
@@ -3342,7 +3484,8 @@ window.DATA = {
      ],
      "wrote": [
       "notice"
-     ]
+     ],
+     "ms": 0.05
     }
    ]
   },
@@ -3519,7 +3662,8 @@ window.DATA = {
      ],
      "wrote": [
       "intake"
-     ]
+     ],
+     "ms": 0.03
     },
     {
      "agent": "documents",
@@ -3529,7 +3673,8 @@ window.DATA = {
      ],
      "wrote": [
       "docs"
-     ]
+     ],
+     "ms": 0.01
     },
     {
      "agent": "fault",
@@ -3540,7 +3685,8 @@ window.DATA = {
      "wrote": [
       "elements",
       "fault"
-     ]
+     ],
+     "ms": 0.11
     },
     {
      "agent": "route",
@@ -3549,11 +3695,13 @@ window.DATA = {
       "intake",
       "docs",
       "elements",
-      "fault"
+      "fault",
+      "grades"
      ],
      "wrote": [
       "route"
-     ]
+     ],
+     "ms": 0.06
     },
     {
      "agent": "schedule",
@@ -3564,7 +3712,8 @@ window.DATA = {
      ],
      "wrote": [
       "schedule"
-     ]
+     ],
+     "ms": 0.01
     },
     {
      "agent": "notice",
@@ -3578,7 +3727,8 @@ window.DATA = {
      ],
      "wrote": [
       "notice"
-     ]
+     ],
+     "ms": 0.04
     }
    ]
   },
@@ -3755,7 +3905,8 @@ window.DATA = {
      ],
      "wrote": [
       "intake"
-     ]
+     ],
+     "ms": 0.03
     },
     {
      "agent": "documents",
@@ -3765,7 +3916,8 @@ window.DATA = {
      ],
      "wrote": [
       "docs"
-     ]
+     ],
+     "ms": 0.01
     },
     {
      "agent": "fault",
@@ -3776,7 +3928,8 @@ window.DATA = {
      "wrote": [
       "elements",
       "fault"
-     ]
+     ],
+     "ms": 0.11
     },
     {
      "agent": "route",
@@ -3785,11 +3938,13 @@ window.DATA = {
       "intake",
       "docs",
       "elements",
-      "fault"
+      "fault",
+      "grades"
      ],
      "wrote": [
       "route"
-     ]
+     ],
+     "ms": 0.05
     },
     {
      "agent": "schedule",
@@ -3800,7 +3955,8 @@ window.DATA = {
      ],
      "wrote": [
       "schedule"
-     ]
+     ],
+     "ms": 0.01
     },
     {
      "agent": "notice",
@@ -3814,7 +3970,8 @@ window.DATA = {
      ],
      "wrote": [
       "notice"
-     ]
+     ],
+     "ms": 0.04
     }
    ]
   },
@@ -3991,7 +4148,8 @@ window.DATA = {
      ],
      "wrote": [
       "intake"
-     ]
+     ],
+     "ms": 0.03
     },
     {
      "agent": "documents",
@@ -4001,7 +4159,8 @@ window.DATA = {
      ],
      "wrote": [
       "docs"
-     ]
+     ],
+     "ms": 0.01
     },
     {
      "agent": "fault",
@@ -4012,7 +4171,8 @@ window.DATA = {
      "wrote": [
       "elements",
       "fault"
-     ]
+     ],
+     "ms": 0.11
     },
     {
      "agent": "route",
@@ -4021,11 +4181,13 @@ window.DATA = {
       "intake",
       "docs",
       "elements",
-      "fault"
+      "fault",
+      "grades"
      ],
      "wrote": [
       "route"
-     ]
+     ],
+     "ms": 0.05
     },
     {
      "agent": "schedule",
@@ -4036,7 +4198,8 @@ window.DATA = {
      ],
      "wrote": [
       "schedule"
-     ]
+     ],
+     "ms": 0.01
     },
     {
      "agent": "notice",
@@ -4050,7 +4213,8 @@ window.DATA = {
      ],
      "wrote": [
       "notice"
-     ]
+     ],
+     "ms": 0.04
     }
    ]
   },
@@ -4227,7 +4391,8 @@ window.DATA = {
      ],
      "wrote": [
       "intake"
-     ]
+     ],
+     "ms": 0.08
     },
     {
      "agent": "documents",
@@ -4237,7 +4402,8 @@ window.DATA = {
      ],
      "wrote": [
       "docs"
-     ]
+     ],
+     "ms": 0.02
     },
     {
      "agent": "fault",
@@ -4248,7 +4414,8 @@ window.DATA = {
      "wrote": [
       "elements",
       "fault"
-     ]
+     ],
+     "ms": 0.11
     },
     {
      "agent": "route",
@@ -4257,11 +4424,13 @@ window.DATA = {
       "intake",
       "docs",
       "elements",
-      "fault"
+      "fault",
+      "grades"
      ],
      "wrote": [
       "route"
-     ]
+     ],
+     "ms": 0.05
     },
     {
      "agent": "schedule",
@@ -4272,7 +4441,8 @@ window.DATA = {
      ],
      "wrote": [
       "schedule"
-     ]
+     ],
+     "ms": 0.01
     },
     {
      "agent": "notice",
@@ -4286,7 +4456,8 @@ window.DATA = {
      ],
      "wrote": [
       "notice"
-     ]
+     ],
+     "ms": 0.05
     }
    ]
   },
@@ -4496,7 +4667,8 @@ window.DATA = {
      ],
      "wrote": [
       "intake"
-     ]
+     ],
+     "ms": 0.03
     },
     {
      "agent": "documents",
@@ -4506,7 +4678,8 @@ window.DATA = {
      ],
      "wrote": [
       "docs"
-     ]
+     ],
+     "ms": 0.09
     },
     {
      "agent": "fault",
@@ -4517,7 +4690,8 @@ window.DATA = {
      "wrote": [
       "elements",
       "fault"
-     ]
+     ],
+     "ms": 0.12
     },
     {
      "agent": "route",
@@ -4526,11 +4700,13 @@ window.DATA = {
       "intake",
       "docs",
       "elements",
-      "fault"
+      "fault",
+      "grades"
      ],
      "wrote": [
       "route"
-     ]
+     ],
+     "ms": 0.06
     },
     {
      "agent": "schedule",
@@ -4541,7 +4717,8 @@ window.DATA = {
      ],
      "wrote": [
       "schedule"
-     ]
+     ],
+     "ms": 0.02
     },
     {
      "agent": "notice",
@@ -4555,7 +4732,8 @@ window.DATA = {
      ],
      "wrote": [
       "notice"
-     ]
+     ],
+     "ms": 0.06
     }
    ]
   },
@@ -4765,7 +4943,8 @@ window.DATA = {
      ],
      "wrote": [
       "intake"
-     ]
+     ],
+     "ms": 0.03
     },
     {
      "agent": "documents",
@@ -4775,7 +4954,8 @@ window.DATA = {
      ],
      "wrote": [
       "docs"
-     ]
+     ],
+     "ms": 0.02
     },
     {
      "agent": "fault",
@@ -4786,7 +4966,8 @@ window.DATA = {
      "wrote": [
       "elements",
       "fault"
-     ]
+     ],
+     "ms": 0.12
     },
     {
      "agent": "route",
@@ -4795,11 +4976,13 @@ window.DATA = {
       "intake",
       "docs",
       "elements",
-      "fault"
+      "fault",
+      "grades"
      ],
      "wrote": [
       "route"
-     ]
+     ],
+     "ms": 0.05
     },
     {
      "agent": "schedule",
@@ -4810,7 +4993,8 @@ window.DATA = {
      ],
      "wrote": [
       "schedule"
-     ]
+     ],
+     "ms": 0.02
     },
     {
      "agent": "notice",
@@ -4824,7 +5008,8 @@ window.DATA = {
      ],
      "wrote": [
       "notice"
-     ]
+     ],
+     "ms": 0.06
     }
    ]
   },
@@ -5034,7 +5219,8 @@ window.DATA = {
      ],
      "wrote": [
       "intake"
-     ]
+     ],
+     "ms": 0.03
     },
     {
      "agent": "documents",
@@ -5044,7 +5230,8 @@ window.DATA = {
      ],
      "wrote": [
       "docs"
-     ]
+     ],
+     "ms": 0.02
     },
     {
      "agent": "fault",
@@ -5055,7 +5242,8 @@ window.DATA = {
      "wrote": [
       "elements",
       "fault"
-     ]
+     ],
+     "ms": 0.11
     },
     {
      "agent": "route",
@@ -5064,11 +5252,13 @@ window.DATA = {
       "intake",
       "docs",
       "elements",
-      "fault"
+      "fault",
+      "grades"
      ],
      "wrote": [
       "route"
-     ]
+     ],
+     "ms": 0.05
     },
     {
      "agent": "schedule",
@@ -5079,7 +5269,8 @@ window.DATA = {
      ],
      "wrote": [
       "schedule"
-     ]
+     ],
+     "ms": 0.02
     },
     {
      "agent": "notice",
@@ -5093,7 +5284,8 @@ window.DATA = {
      ],
      "wrote": [
       "notice"
-     ]
+     ],
+     "ms": 0.07
     }
    ]
   },
@@ -5289,7 +5481,8 @@ window.DATA = {
      ],
      "wrote": [
       "intake"
-     ]
+     ],
+     "ms": 0.03
     },
     {
      "agent": "documents",
@@ -5299,7 +5492,8 @@ window.DATA = {
      ],
      "wrote": [
       "docs"
-     ]
+     ],
+     "ms": 0.01
     },
     {
      "agent": "fault",
@@ -5310,7 +5504,8 @@ window.DATA = {
      "wrote": [
       "elements",
       "fault"
-     ]
+     ],
+     "ms": 2.04
     },
     {
      "agent": "route",
@@ -5319,11 +5514,13 @@ window.DATA = {
       "intake",
       "docs",
       "elements",
-      "fault"
+      "fault",
+      "grades"
      ],
      "wrote": [
       "route"
-     ]
+     ],
+     "ms": 0.07
     },
     {
      "agent": "schedule",
@@ -5334,7 +5531,8 @@ window.DATA = {
      ],
      "wrote": [
       "schedule"
-     ]
+     ],
+     "ms": 0.01
     },
     {
      "agent": "notice",
@@ -5348,7 +5546,8 @@ window.DATA = {
      ],
      "wrote": [
       "notice"
-     ]
+     ],
+     "ms": 0.06
     }
    ]
   },
@@ -5562,7 +5761,8 @@ window.DATA = {
      ],
      "wrote": [
       "intake"
-     ]
+     ],
+     "ms": 0.03
     },
     {
      "agent": "documents",
@@ -5572,7 +5772,8 @@ window.DATA = {
      ],
      "wrote": [
       "docs"
-     ]
+     ],
+     "ms": 0.02
     },
     {
      "agent": "fault",
@@ -5583,7 +5784,8 @@ window.DATA = {
      "wrote": [
       "elements",
       "fault"
-     ]
+     ],
+     "ms": 0.12
     },
     {
      "agent": "route",
@@ -5592,11 +5794,13 @@ window.DATA = {
       "intake",
       "docs",
       "elements",
-      "fault"
+      "fault",
+      "grades"
      ],
      "wrote": [
       "route"
-     ]
+     ],
+     "ms": 0.05
     },
     {
      "agent": "schedule",
@@ -5607,7 +5811,8 @@ window.DATA = {
      ],
      "wrote": [
       "schedule"
-     ]
+     ],
+     "ms": 0.02
     },
     {
      "agent": "notice",
@@ -5621,7 +5826,8 @@ window.DATA = {
      ],
      "wrote": [
       "notice"
-     ]
+     ],
+     "ms": 0.06
     }
    ]
   },
@@ -5806,7 +6012,8 @@ window.DATA = {
      ],
      "wrote": [
       "intake"
-     ]
+     ],
+     "ms": 0.03
     },
     {
      "agent": "documents",
@@ -5816,7 +6023,8 @@ window.DATA = {
      ],
      "wrote": [
       "docs"
-     ]
+     ],
+     "ms": 0.01
     },
     {
      "agent": "fault",
@@ -5827,7 +6035,8 @@ window.DATA = {
      "wrote": [
       "elements",
       "fault"
-     ]
+     ],
+     "ms": 0.11
     },
     {
      "agent": "route",
@@ -5836,11 +6045,13 @@ window.DATA = {
       "intake",
       "docs",
       "elements",
-      "fault"
+      "fault",
+      "grades"
      ],
      "wrote": [
       "route"
-     ]
+     ],
+     "ms": 0.05
     },
     {
      "agent": "schedule",
@@ -5851,7 +6062,8 @@ window.DATA = {
      ],
      "wrote": [
       "schedule"
-     ]
+     ],
+     "ms": 0.01
     },
     {
      "agent": "notice",
@@ -5865,7 +6077,8 @@ window.DATA = {
      ],
      "wrote": [
       "notice"
-     ]
+     ],
+     "ms": 0.05
     }
    ]
   },
@@ -6094,7 +6307,8 @@ window.DATA = {
      ],
      "wrote": [
       "intake"
-     ]
+     ],
+     "ms": 0.02
     },
     {
      "agent": "documents",
@@ -6104,7 +6318,8 @@ window.DATA = {
      ],
      "wrote": [
       "docs"
-     ]
+     ],
+     "ms": 0.01
     },
     {
      "agent": "fault",
@@ -6115,7 +6330,8 @@ window.DATA = {
      "wrote": [
       "elements",
       "fault"
-     ]
+     ],
+     "ms": 0.1
     },
     {
      "agent": "route",
@@ -6124,11 +6340,13 @@ window.DATA = {
       "intake",
       "docs",
       "elements",
-      "fault"
+      "fault",
+      "grades"
      ],
      "wrote": [
       "route"
-     ]
+     ],
+     "ms": 0.06
     },
     {
      "agent": "schedule",
@@ -6139,7 +6357,8 @@ window.DATA = {
      ],
      "wrote": [
       "schedule"
-     ]
+     ],
+     "ms": 0.01
     },
     {
      "agent": "notice",
@@ -6153,7 +6372,8 @@ window.DATA = {
      ],
      "wrote": [
       "notice"
-     ]
+     ],
+     "ms": 0.04
     }
    ]
   },
@@ -6382,7 +6602,8 @@ window.DATA = {
      ],
      "wrote": [
       "intake"
-     ]
+     ],
+     "ms": 0.03
     },
     {
      "agent": "documents",
@@ -6392,7 +6613,8 @@ window.DATA = {
      ],
      "wrote": [
       "docs"
-     ]
+     ],
+     "ms": 0.01
     },
     {
      "agent": "fault",
@@ -6403,7 +6625,8 @@ window.DATA = {
      "wrote": [
       "elements",
       "fault"
-     ]
+     ],
+     "ms": 0.11
     },
     {
      "agent": "route",
@@ -6412,11 +6635,13 @@ window.DATA = {
       "intake",
       "docs",
       "elements",
-      "fault"
+      "fault",
+      "grades"
      ],
      "wrote": [
       "route"
-     ]
+     ],
+     "ms": 0.05
     },
     {
      "agent": "schedule",
@@ -6427,7 +6652,8 @@ window.DATA = {
      ],
      "wrote": [
       "schedule"
-     ]
+     ],
+     "ms": 0.01
     },
     {
      "agent": "notice",
@@ -6441,7 +6667,8 @@ window.DATA = {
      ],
      "wrote": [
       "notice"
-     ]
+     ],
+     "ms": 0.04
     }
    ]
   },
@@ -6660,7 +6887,8 @@ window.DATA = {
      ],
      "wrote": [
       "intake"
-     ]
+     ],
+     "ms": 0.03
     },
     {
      "agent": "documents",
@@ -6670,7 +6898,8 @@ window.DATA = {
      ],
      "wrote": [
       "docs"
-     ]
+     ],
+     "ms": 0.01
     },
     {
      "agent": "fault",
@@ -6681,7 +6910,8 @@ window.DATA = {
      "wrote": [
       "elements",
       "fault"
-     ]
+     ],
+     "ms": 0.1
     },
     {
      "agent": "route",
@@ -6690,11 +6920,13 @@ window.DATA = {
       "intake",
       "docs",
       "elements",
-      "fault"
+      "fault",
+      "grades"
      ],
      "wrote": [
       "route"
-     ]
+     ],
+     "ms": 0.06
     },
     {
      "agent": "schedule",
@@ -6705,7 +6937,8 @@ window.DATA = {
      ],
      "wrote": [
       "schedule"
-     ]
+     ],
+     "ms": 0.01
     },
     {
      "agent": "notice",
@@ -6719,7 +6952,8 @@ window.DATA = {
      ],
      "wrote": [
       "notice"
-     ]
+     ],
+     "ms": 0.04
     }
    ]
   },
@@ -6900,7 +7134,8 @@ window.DATA = {
      ],
      "wrote": [
       "intake"
-     ]
+     ],
+     "ms": 0.03
     },
     {
      "agent": "documents",
@@ -6910,7 +7145,8 @@ window.DATA = {
      ],
      "wrote": [
       "docs"
-     ]
+     ],
+     "ms": 0.01
     },
     {
      "agent": "fault",
@@ -6921,7 +7157,8 @@ window.DATA = {
      "wrote": [
       "elements",
       "fault"
-     ]
+     ],
+     "ms": 0.1
     },
     {
      "agent": "route",
@@ -6930,11 +7167,13 @@ window.DATA = {
       "intake",
       "docs",
       "elements",
-      "fault"
+      "fault",
+      "grades"
      ],
      "wrote": [
       "route"
-     ]
+     ],
+     "ms": 0.05
     },
     {
      "agent": "schedule",
@@ -6945,7 +7184,8 @@ window.DATA = {
      ],
      "wrote": [
       "schedule"
-     ]
+     ],
+     "ms": 0.01
     },
     {
      "agent": "notice",
@@ -6959,7 +7199,8 @@ window.DATA = {
      ],
      "wrote": [
       "notice"
-     ]
+     ],
+     "ms": 0.04
     }
    ]
   },
@@ -7152,7 +7393,8 @@ window.DATA = {
      ],
      "wrote": [
       "intake"
-     ]
+     ],
+     "ms": 0.03
     },
     {
      "agent": "documents",
@@ -7162,7 +7404,8 @@ window.DATA = {
      ],
      "wrote": [
       "docs"
-     ]
+     ],
+     "ms": 0.01
     },
     {
      "agent": "fault",
@@ -7173,7 +7416,8 @@ window.DATA = {
      "wrote": [
       "elements",
       "fault"
-     ]
+     ],
+     "ms": 0.1
     },
     {
      "agent": "route",
@@ -7182,11 +7426,13 @@ window.DATA = {
       "intake",
       "docs",
       "elements",
-      "fault"
+      "fault",
+      "grades"
      ],
      "wrote": [
       "route"
-     ]
+     ],
+     "ms": 0.05
     },
     {
      "agent": "schedule",
@@ -7197,7 +7443,8 @@ window.DATA = {
      ],
      "wrote": [
       "schedule"
-     ]
+     ],
+     "ms": 0.01
     },
     {
      "agent": "notice",
@@ -7211,7 +7458,8 @@ window.DATA = {
      ],
      "wrote": [
       "notice"
-     ]
+     ],
+     "ms": 0.04
     }
    ]
   },
@@ -7375,7 +7623,8 @@ window.DATA = {
      ],
      "wrote": [
       "intake"
-     ]
+     ],
+     "ms": 0.03
     },
     {
      "agent": "documents",
@@ -7385,7 +7634,8 @@ window.DATA = {
      ],
      "wrote": [
       "docs"
-     ]
+     ],
+     "ms": 0.01
     },
     {
      "agent": "fault",
@@ -7396,7 +7646,8 @@ window.DATA = {
      "wrote": [
       "elements",
       "fault"
-     ]
+     ],
+     "ms": 0.12
     },
     {
      "agent": "route",
@@ -7405,11 +7656,13 @@ window.DATA = {
       "intake",
       "docs",
       "elements",
-      "fault"
+      "fault",
+      "grades"
      ],
      "wrote": [
       "route"
-     ]
+     ],
+     "ms": 0.05
     },
     {
      "agent": "schedule",
@@ -7420,7 +7673,8 @@ window.DATA = {
      ],
      "wrote": [
       "schedule"
-     ]
+     ],
+     "ms": 0.01
     },
     {
      "agent": "notice",
@@ -7434,7 +7688,8 @@ window.DATA = {
      ],
      "wrote": [
       "notice"
-     ]
+     ],
+     "ms": 0.04
     }
    ]
   },
@@ -7590,7 +7845,8 @@ window.DATA = {
      ],
      "wrote": [
       "intake"
-     ]
+     ],
+     "ms": 0.03
     },
     {
      "agent": "documents",
@@ -7600,7 +7856,8 @@ window.DATA = {
      ],
      "wrote": [
       "docs"
-     ]
+     ],
+     "ms": 0.01
     },
     {
      "agent": "fault",
@@ -7611,7 +7868,8 @@ window.DATA = {
      "wrote": [
       "elements",
       "fault"
-     ]
+     ],
+     "ms": 0.1
     },
     {
      "agent": "route",
@@ -7620,11 +7878,13 @@ window.DATA = {
       "intake",
       "docs",
       "elements",
-      "fault"
+      "fault",
+      "grades"
      ],
      "wrote": [
       "route"
-     ]
+     ],
+     "ms": 0.05
     },
     {
      "agent": "schedule",
@@ -7635,7 +7895,8 @@ window.DATA = {
      ],
      "wrote": [
       "schedule"
-     ]
+     ],
+     "ms": 0.01
     },
     {
      "agent": "notice",
@@ -7649,7 +7910,8 @@ window.DATA = {
      ],
      "wrote": [
       "notice"
-     ]
+     ],
+     "ms": 0.04
     }
    ]
   },
@@ -7815,7 +8077,8 @@ window.DATA = {
      ],
      "wrote": [
       "intake"
-     ]
+     ],
+     "ms": 0.03
     },
     {
      "agent": "documents",
@@ -7825,7 +8088,8 @@ window.DATA = {
      ],
      "wrote": [
       "docs"
-     ]
+     ],
+     "ms": 0.01
     },
     {
      "agent": "fault",
@@ -7836,7 +8100,8 @@ window.DATA = {
      "wrote": [
       "elements",
       "fault"
-     ]
+     ],
+     "ms": 0.1
     },
     {
      "agent": "route",
@@ -7845,11 +8110,13 @@ window.DATA = {
       "intake",
       "docs",
       "elements",
-      "fault"
+      "fault",
+      "grades"
      ],
      "wrote": [
       "route"
-     ]
+     ],
+     "ms": 0.04
     },
     {
      "agent": "schedule",
@@ -7860,7 +8127,8 @@ window.DATA = {
      ],
      "wrote": [
       "schedule"
-     ]
+     ],
+     "ms": 0.01
     },
     {
      "agent": "notice",
@@ -7874,7 +8142,8 @@ window.DATA = {
      ],
      "wrote": [
       "notice"
-     ]
+     ],
+     "ms": 0.04
     }
    ]
   },
@@ -8094,7 +8363,8 @@ window.DATA = {
      ],
      "wrote": [
       "intake"
-     ]
+     ],
+     "ms": 0.03
     },
     {
      "agent": "documents",
@@ -8104,7 +8374,8 @@ window.DATA = {
      ],
      "wrote": [
       "docs"
-     ]
+     ],
+     "ms": 0.01
     },
     {
      "agent": "fault",
@@ -8115,7 +8386,8 @@ window.DATA = {
      "wrote": [
       "elements",
       "fault"
-     ]
+     ],
+     "ms": 0.11
     },
     {
      "agent": "route",
@@ -8124,11 +8396,13 @@ window.DATA = {
       "intake",
       "docs",
       "elements",
-      "fault"
+      "fault",
+      "grades"
      ],
      "wrote": [
       "route"
-     ]
+     ],
+     "ms": 0.06
     },
     {
      "agent": "schedule",
@@ -8139,7 +8413,8 @@ window.DATA = {
      ],
      "wrote": [
       "schedule"
-     ]
+     ],
+     "ms": 0.01
     },
     {
      "agent": "notice",
@@ -8153,7 +8428,8 @@ window.DATA = {
      ],
      "wrote": [
       "notice"
-     ]
+     ],
+     "ms": 0.05
     }
    ]
   },
@@ -8373,7 +8649,8 @@ window.DATA = {
      ],
      "wrote": [
       "intake"
-     ]
+     ],
+     "ms": 0.03
     },
     {
      "agent": "documents",
@@ -8383,7 +8660,8 @@ window.DATA = {
      ],
      "wrote": [
       "docs"
-     ]
+     ],
+     "ms": 0.01
     },
     {
      "agent": "fault",
@@ -8394,7 +8672,8 @@ window.DATA = {
      "wrote": [
       "elements",
       "fault"
-     ]
+     ],
+     "ms": 0.11
     },
     {
      "agent": "route",
@@ -8403,11 +8682,13 @@ window.DATA = {
       "intake",
       "docs",
       "elements",
-      "fault"
+      "fault",
+      "grades"
      ],
      "wrote": [
       "route"
-     ]
+     ],
+     "ms": 0.06
     },
     {
      "agent": "schedule",
@@ -8418,7 +8699,8 @@ window.DATA = {
      ],
      "wrote": [
       "schedule"
-     ]
+     ],
+     "ms": 0.01
     },
     {
      "agent": "notice",
@@ -8432,7 +8714,8 @@ window.DATA = {
      ],
      "wrote": [
       "notice"
-     ]
+     ],
+     "ms": 0.05
     }
    ]
   },
@@ -8652,7 +8935,8 @@ window.DATA = {
      ],
      "wrote": [
       "intake"
-     ]
+     ],
+     "ms": 0.03
     },
     {
      "agent": "documents",
@@ -8662,7 +8946,8 @@ window.DATA = {
      ],
      "wrote": [
       "docs"
-     ]
+     ],
+     "ms": 0.01
     },
     {
      "agent": "fault",
@@ -8673,7 +8958,8 @@ window.DATA = {
      "wrote": [
       "elements",
       "fault"
-     ]
+     ],
+     "ms": 0.12
     },
     {
      "agent": "route",
@@ -8682,11 +8968,13 @@ window.DATA = {
       "intake",
       "docs",
       "elements",
-      "fault"
+      "fault",
+      "grades"
      ],
      "wrote": [
       "route"
-     ]
+     ],
+     "ms": 0.06
     },
     {
      "agent": "schedule",
@@ -8697,7 +8985,8 @@ window.DATA = {
      ],
      "wrote": [
       "schedule"
-     ]
+     ],
+     "ms": 0.01
     },
     {
      "agent": "notice",
@@ -8711,7 +9000,8 @@ window.DATA = {
      ],
      "wrote": [
       "notice"
-     ]
+     ],
+     "ms": 0.05
     }
    ]
   },
@@ -8910,7 +9200,8 @@ window.DATA = {
      ],
      "wrote": [
       "intake"
-     ]
+     ],
+     "ms": 0.03
     },
     {
      "agent": "documents",
@@ -8920,7 +9211,8 @@ window.DATA = {
      ],
      "wrote": [
       "docs"
-     ]
+     ],
+     "ms": 0.01
     },
     {
      "agent": "fault",
@@ -8931,7 +9223,8 @@ window.DATA = {
      "wrote": [
       "elements",
       "fault"
-     ]
+     ],
+     "ms": 0.1
     },
     {
      "agent": "route",
@@ -8940,11 +9233,13 @@ window.DATA = {
       "intake",
       "docs",
       "elements",
-      "fault"
+      "fault",
+      "grades"
      ],
      "wrote": [
       "route"
-     ]
+     ],
+     "ms": 0.05
     },
     {
      "agent": "schedule",
@@ -8955,7 +9250,8 @@ window.DATA = {
      ],
      "wrote": [
       "schedule"
-     ]
+     ],
+     "ms": 0.01
     },
     {
      "agent": "notice",
@@ -8969,7 +9265,8 @@ window.DATA = {
      ],
      "wrote": [
       "notice"
-     ]
+     ],
+     "ms": 0.04
     }
    ]
   },
@@ -9152,7 +9449,8 @@ window.DATA = {
      ],
      "wrote": [
       "intake"
-     ]
+     ],
+     "ms": 0.03
     },
     {
      "agent": "documents",
@@ -9162,7 +9460,8 @@ window.DATA = {
      ],
      "wrote": [
       "docs"
-     ]
+     ],
+     "ms": 0.01
     },
     {
      "agent": "fault",
@@ -9173,7 +9472,8 @@ window.DATA = {
      "wrote": [
       "elements",
       "fault"
-     ]
+     ],
+     "ms": 0.11
     },
     {
      "agent": "route",
@@ -9182,11 +9482,13 @@ window.DATA = {
       "intake",
       "docs",
       "elements",
-      "fault"
+      "fault",
+      "grades"
      ],
      "wrote": [
       "route"
-     ]
+     ],
+     "ms": 0.05
     },
     {
      "agent": "schedule",
@@ -9197,7 +9499,8 @@ window.DATA = {
      ],
      "wrote": [
       "schedule"
-     ]
+     ],
+     "ms": 0.01
     },
     {
      "agent": "notice",
@@ -9211,7 +9514,8 @@ window.DATA = {
      ],
      "wrote": [
       "notice"
-     ]
+     ],
+     "ms": 0.05
     }
    ]
   },
@@ -9403,7 +9707,8 @@ window.DATA = {
      ],
      "wrote": [
       "intake"
-     ]
+     ],
+     "ms": 0.03
     },
     {
      "agent": "documents",
@@ -9413,7 +9718,8 @@ window.DATA = {
      ],
      "wrote": [
       "docs"
-     ]
+     ],
+     "ms": 0.02
     },
     {
      "agent": "fault",
@@ -9424,7 +9730,8 @@ window.DATA = {
      "wrote": [
       "elements",
       "fault"
-     ]
+     ],
+     "ms": 0.1
     },
     {
      "agent": "route",
@@ -9433,11 +9740,13 @@ window.DATA = {
       "intake",
       "docs",
       "elements",
-      "fault"
+      "fault",
+      "grades"
      ],
      "wrote": [
       "route"
-     ]
+     ],
+     "ms": 0.05
     },
     {
      "agent": "schedule",
@@ -9448,7 +9757,8 @@ window.DATA = {
      ],
      "wrote": [
       "schedule"
-     ]
+     ],
+     "ms": 0.01
     },
     {
      "agent": "notice",
@@ -9462,7 +9772,8 @@ window.DATA = {
      ],
      "wrote": [
       "notice"
-     ]
+     ],
+     "ms": 0.05
     }
    ]
   },
@@ -9654,7 +9965,8 @@ window.DATA = {
      ],
      "wrote": [
       "intake"
-     ]
+     ],
+     "ms": 0.04
     },
     {
      "agent": "documents",
@@ -9664,7 +9976,8 @@ window.DATA = {
      ],
      "wrote": [
       "docs"
-     ]
+     ],
+     "ms": 0.02
     },
     {
      "agent": "fault",
@@ -9675,7 +9988,8 @@ window.DATA = {
      "wrote": [
       "elements",
       "fault"
-     ]
+     ],
+     "ms": 0.11
     },
     {
      "agent": "route",
@@ -9684,11 +9998,13 @@ window.DATA = {
       "intake",
       "docs",
       "elements",
-      "fault"
+      "fault",
+      "grades"
      ],
      "wrote": [
       "route"
-     ]
+     ],
+     "ms": 0.05
     },
     {
      "agent": "schedule",
@@ -9699,7 +10015,8 @@ window.DATA = {
      ],
      "wrote": [
       "schedule"
-     ]
+     ],
+     "ms": 0.01
     },
     {
      "agent": "notice",
@@ -9713,7 +10030,8 @@ window.DATA = {
      ],
      "wrote": [
       "notice"
-     ]
+     ],
+     "ms": 0.05
     }
    ]
   },
@@ -9896,7 +10214,8 @@ window.DATA = {
      ],
      "wrote": [
       "intake"
-     ]
+     ],
+     "ms": 0.03
     },
     {
      "agent": "documents",
@@ -9906,7 +10225,8 @@ window.DATA = {
      ],
      "wrote": [
       "docs"
-     ]
+     ],
+     "ms": 0.01
     },
     {
      "agent": "fault",
@@ -9917,7 +10237,8 @@ window.DATA = {
      "wrote": [
       "elements",
       "fault"
-     ]
+     ],
+     "ms": 0.11
     },
     {
      "agent": "route",
@@ -9926,11 +10247,13 @@ window.DATA = {
       "intake",
       "docs",
       "elements",
-      "fault"
+      "fault",
+      "grades"
      ],
      "wrote": [
       "route"
-     ]
+     ],
+     "ms": 0.05
     },
     {
      "agent": "schedule",
@@ -9941,7 +10264,8 @@ window.DATA = {
      ],
      "wrote": [
       "schedule"
-     ]
+     ],
+     "ms": 0.01
     },
     {
      "agent": "notice",
@@ -9955,7 +10279,8 @@ window.DATA = {
      ],
      "wrote": [
       "notice"
-     ]
+     ],
+     "ms": 0.05
     }
    ]
   },
@@ -10019,7 +10344,8 @@ window.DATA = {
      "read": [
       "raw"
      ],
-     "wrote": []
+     "wrote": [],
+     "ms": 0.03
     }
    ]
   },
@@ -10083,7 +10409,8 @@ window.DATA = {
      "read": [
       "raw"
      ],
-     "wrote": []
+     "wrote": [],
+     "ms": 0.02
     }
    ]
   },
@@ -10266,7 +10593,8 @@ window.DATA = {
      ],
      "wrote": [
       "intake"
-     ]
+     ],
+     "ms": 0.02
     },
     {
      "agent": "documents",
@@ -10276,7 +10604,8 @@ window.DATA = {
      ],
      "wrote": [
       "docs"
-     ]
+     ],
+     "ms": 0.01
     },
     {
      "agent": "fault",
@@ -10287,7 +10616,8 @@ window.DATA = {
      "wrote": [
       "elements",
       "fault"
-     ]
+     ],
+     "ms": 0.11
     },
     {
      "agent": "route",
@@ -10296,11 +10626,13 @@ window.DATA = {
       "intake",
       "docs",
       "elements",
-      "fault"
+      "fault",
+      "grades"
      ],
      "wrote": [
       "route"
-     ]
+     ],
+     "ms": 0.05
     },
     {
      "agent": "schedule",
@@ -10311,7 +10643,8 @@ window.DATA = {
      ],
      "wrote": [
       "schedule"
-     ]
+     ],
+     "ms": 0.01
     },
     {
      "agent": "notice",
@@ -10325,7 +10658,8 @@ window.DATA = {
      ],
      "wrote": [
       "notice"
-     ]
+     ],
+     "ms": 0.05
     }
    ]
   },
@@ -10515,7 +10849,8 @@ window.DATA = {
      ],
      "wrote": [
       "intake"
-     ]
+     ],
+     "ms": 0.03
     },
     {
      "agent": "documents",
@@ -10525,7 +10860,8 @@ window.DATA = {
      ],
      "wrote": [
       "docs"
-     ]
+     ],
+     "ms": 0.02
     },
     {
      "agent": "fault",
@@ -10536,7 +10872,8 @@ window.DATA = {
      "wrote": [
       "elements",
       "fault"
-     ]
+     ],
+     "ms": 0.11
     },
     {
      "agent": "route",
@@ -10545,11 +10882,13 @@ window.DATA = {
       "intake",
       "docs",
       "elements",
-      "fault"
+      "fault",
+      "grades"
      ],
      "wrote": [
       "route"
-     ]
+     ],
+     "ms": 0.05
     },
     {
      "agent": "schedule",
@@ -10560,7 +10899,8 @@ window.DATA = {
      ],
      "wrote": [
       "schedule"
-     ]
+     ],
+     "ms": 0.01
     },
     {
      "agent": "notice",
@@ -10574,7 +10914,8 @@ window.DATA = {
      ],
      "wrote": [
       "notice"
-     ]
+     ],
+     "ms": 0.05
     }
    ]
   },
@@ -10784,7 +11125,8 @@ window.DATA = {
      ],
      "wrote": [
       "intake"
-     ]
+     ],
+     "ms": 0.03
     },
     {
      "agent": "documents",
@@ -10794,7 +11136,8 @@ window.DATA = {
      ],
      "wrote": [
       "docs"
-     ]
+     ],
+     "ms": 0.02
     },
     {
      "agent": "fault",
@@ -10805,7 +11148,8 @@ window.DATA = {
      "wrote": [
       "elements",
       "fault"
-     ]
+     ],
+     "ms": 0.12
     },
     {
      "agent": "route",
@@ -10814,11 +11158,13 @@ window.DATA = {
       "intake",
       "docs",
       "elements",
-      "fault"
+      "fault",
+      "grades"
      ],
      "wrote": [
       "route"
-     ]
+     ],
+     "ms": 0.06
     },
     {
      "agent": "schedule",
@@ -10829,7 +11175,8 @@ window.DATA = {
      ],
      "wrote": [
       "schedule"
-     ]
+     ],
+     "ms": 0.01
     },
     {
      "agent": "notice",
@@ -10843,7 +11190,8 @@ window.DATA = {
      ],
      "wrote": [
       "notice"
-     ]
+     ],
+     "ms": 0.05
     }
    ]
   },
@@ -11026,7 +11374,8 @@ window.DATA = {
      ],
      "wrote": [
       "intake"
-     ]
+     ],
+     "ms": 0.02
     },
     {
      "agent": "documents",
@@ -11036,7 +11385,8 @@ window.DATA = {
      ],
      "wrote": [
       "docs"
-     ]
+     ],
+     "ms": 0.01
     },
     {
      "agent": "fault",
@@ -11047,7 +11397,8 @@ window.DATA = {
      "wrote": [
       "elements",
       "fault"
-     ]
+     ],
+     "ms": 0.1
     },
     {
      "agent": "route",
@@ -11056,11 +11407,13 @@ window.DATA = {
       "intake",
       "docs",
       "elements",
-      "fault"
+      "fault",
+      "grades"
      ],
      "wrote": [
       "route"
-     ]
+     ],
+     "ms": 0.05
     },
     {
      "agent": "schedule",
@@ -11071,7 +11424,8 @@ window.DATA = {
      ],
      "wrote": [
       "schedule"
-     ]
+     ],
+     "ms": 0.01
     },
     {
      "agent": "notice",
@@ -11085,7 +11439,8 @@ window.DATA = {
      ],
      "wrote": [
       "notice"
-     ]
+     ],
+     "ms": 0.05
     }
    ]
   },
@@ -11270,7 +11625,8 @@ window.DATA = {
      ],
      "wrote": [
       "intake"
-     ]
+     ],
+     "ms": 0.03
     },
     {
      "agent": "documents",
@@ -11280,7 +11636,8 @@ window.DATA = {
      ],
      "wrote": [
       "docs"
-     ]
+     ],
+     "ms": 0.01
     },
     {
      "agent": "fault",
@@ -11291,7 +11648,8 @@ window.DATA = {
      "wrote": [
       "elements",
       "fault"
-     ]
+     ],
+     "ms": 0.1
     },
     {
      "agent": "route",
@@ -11300,11 +11658,13 @@ window.DATA = {
       "intake",
       "docs",
       "elements",
-      "fault"
+      "fault",
+      "grades"
      ],
      "wrote": [
       "route"
-     ]
+     ],
+     "ms": 0.05
     },
     {
      "agent": "schedule",
@@ -11315,7 +11675,8 @@ window.DATA = {
      ],
      "wrote": [
       "schedule"
-     ]
+     ],
+     "ms": 0.01
     },
     {
      "agent": "notice",
@@ -11329,7 +11690,8 @@ window.DATA = {
      ],
      "wrote": [
       "notice"
-     ]
+     ],
+     "ms": 0.05
     }
    ]
   },
@@ -11549,7 +11911,8 @@ window.DATA = {
      ],
      "wrote": [
       "intake"
-     ]
+     ],
+     "ms": 0.02
     },
     {
      "agent": "documents",
@@ -11559,7 +11922,8 @@ window.DATA = {
      ],
      "wrote": [
       "docs"
-     ]
+     ],
+     "ms": 0.01
     },
     {
      "agent": "fault",
@@ -11570,7 +11934,8 @@ window.DATA = {
      "wrote": [
       "elements",
       "fault"
-     ]
+     ],
+     "ms": 0.11
     },
     {
      "agent": "route",
@@ -11579,11 +11944,13 @@ window.DATA = {
       "intake",
       "docs",
       "elements",
-      "fault"
+      "fault",
+      "grades"
      ],
      "wrote": [
       "route"
-     ]
+     ],
+     "ms": 0.06
     },
     {
      "agent": "schedule",
@@ -11594,7 +11961,8 @@ window.DATA = {
      ],
      "wrote": [
       "schedule"
-     ]
+     ],
+     "ms": 0.01
     },
     {
      "agent": "notice",
@@ -11608,7 +11976,8 @@ window.DATA = {
      ],
      "wrote": [
       "notice"
-     ]
+     ],
+     "ms": 0.05
     }
    ]
   },
@@ -11641,8 +12010,10 @@ window.DATA = {
     "id": "S001",
     "status": "완료",
     "stop": null,
-    "route": "자동 처리 후보",
-    "rules": [],
+    "route": "사람 심사",
+    "rules": [
+     "G01"
+    ],
     "chart": "차43-2",
     "base": {
      "고객": 30,
@@ -11742,10 +12113,12 @@ window.DATA = {
     "missing_docs": [],
     "schedule": null,
     "notice": {
-     "customer": "[S001] 사고 접수 안내\n접수하신 사고는 빠른 처리 대상 후보로 분류되었습니다. 담당자가 확인한 뒤 결과를 안내드립니다.\n예상 과실: 고객님 30%, 상대 70% (과실비율정보포털 도표 차43-2 기본값 기준, 확인 후 안내)",
+     "customer": "[S001] 사고 접수 안내\n접수하신 사고는 담당자가 직접 살펴본 뒤 안내드립니다.\n- 사고 내용을 담당자가 한 번 더 확인합니다\n예상 과실: 고객님 30%, 상대 70% (과실비율정보포털 도표 차43-2 기본값 기준, 확인 후 안내)",
      "staff": {
-      "route": "자동 처리 후보",
-      "rules": [],
+      "route": "사람 심사",
+      "rules": [
+       "G01 성적표 등급이 초급이거나 평가하지 않은 단계가 결과를 냄(AG-01, AG-02, AG-03, AG-04)"
+      ],
       "chart": {
        "id": "차43-2",
        "title": "후행 직진 대 선행 진로변경",
@@ -11794,7 +12167,8 @@ window.DATA = {
      ],
      "wrote": [
       "intake"
-     ]
+     ],
+     "ms": 0.04
     },
     {
      "agent": "documents",
@@ -11804,7 +12178,8 @@ window.DATA = {
      ],
      "wrote": [
       "docs"
-     ]
+     ],
+     "ms": 0.02
     },
     {
      "agent": "fault",
@@ -11815,7 +12190,8 @@ window.DATA = {
      "wrote": [
       "elements",
       "fault"
-     ]
+     ],
+     "ms": 0.37
     },
     {
      "agent": "route",
@@ -11824,11 +12200,13 @@ window.DATA = {
       "intake",
       "docs",
       "elements",
-      "fault"
+      "fault",
+      "grades"
      ],
      "wrote": [
       "route"
-     ]
+     ],
+     "ms": 0.06
     },
     {
      "agent": "schedule",
@@ -11839,7 +12217,8 @@ window.DATA = {
      ],
      "wrote": [
       "schedule"
-     ]
+     ],
+     "ms": 0.01
     },
     {
      "agent": "notice",
@@ -11853,7 +12232,8 @@ window.DATA = {
      ],
      "wrote": [
       "notice"
-     ]
+     ],
+     "ms": 0.05
     }
    ],
    "extractor": "skill",
@@ -12140,7 +12520,8 @@ window.DATA = {
      ],
      "wrote": [
       "intake"
-     ]
+     ],
+     "ms": 0.04
     },
     {
      "agent": "documents",
@@ -12150,7 +12531,8 @@ window.DATA = {
      ],
      "wrote": [
       "docs"
-     ]
+     ],
+     "ms": 0.02
     },
     {
      "agent": "fault",
@@ -12161,7 +12543,8 @@ window.DATA = {
      "wrote": [
       "elements",
       "fault"
-     ]
+     ],
+     "ms": 0.33
     },
     {
      "agent": "route",
@@ -12170,11 +12553,13 @@ window.DATA = {
       "intake",
       "docs",
       "elements",
-      "fault"
+      "fault",
+      "grades"
      ],
      "wrote": [
       "route"
-     ]
+     ],
+     "ms": 0.06
     },
     {
      "agent": "schedule",
@@ -12185,7 +12570,8 @@ window.DATA = {
      ],
      "wrote": [
       "schedule"
-     ]
+     ],
+     "ms": 0.01
     },
     {
      "agent": "notice",
@@ -12199,7 +12585,8 @@ window.DATA = {
      ],
      "wrote": [
       "notice"
-     ]
+     ],
+     "ms": 0.05
     }
    ],
    "extractor": "skill",
@@ -12503,7 +12890,8 @@ window.DATA = {
      ],
      "wrote": [
       "intake"
-     ]
+     ],
+     "ms": 0.04
     },
     {
      "agent": "documents",
@@ -12513,7 +12901,8 @@ window.DATA = {
      ],
      "wrote": [
       "docs"
-     ]
+     ],
+     "ms": 0.02
     },
     {
      "agent": "fault",
@@ -12524,7 +12913,8 @@ window.DATA = {
      "wrote": [
       "elements",
       "fault"
-     ]
+     ],
+     "ms": 0.35
     },
     {
      "agent": "route",
@@ -12533,11 +12923,13 @@ window.DATA = {
       "intake",
       "docs",
       "elements",
-      "fault"
+      "fault",
+      "grades"
      ],
      "wrote": [
       "route"
-     ]
+     ],
+     "ms": 0.06
     },
     {
      "agent": "schedule",
@@ -12548,7 +12940,8 @@ window.DATA = {
      ],
      "wrote": [
       "schedule"
-     ]
+     ],
+     "ms": 0.02
     },
     {
      "agent": "notice",
@@ -12562,7 +12955,8 @@ window.DATA = {
      ],
      "wrote": [
       "notice"
-     ]
+     ],
+     "ms": 0.06
     }
    ],
    "extractor": "skill",
@@ -12834,7 +13228,8 @@ window.DATA = {
      ],
      "wrote": [
       "intake"
-     ]
+     ],
+     "ms": 0.03
     },
     {
      "agent": "documents",
@@ -12844,7 +13239,8 @@ window.DATA = {
      ],
      "wrote": [
       "docs"
-     ]
+     ],
+     "ms": 0.01
     },
     {
      "agent": "fault",
@@ -12855,7 +13251,8 @@ window.DATA = {
      "wrote": [
       "elements",
       "fault"
-     ]
+     ],
+     "ms": 0.33
     },
     {
      "agent": "route",
@@ -12864,11 +13261,13 @@ window.DATA = {
       "intake",
       "docs",
       "elements",
-      "fault"
+      "fault",
+      "grades"
      ],
      "wrote": [
       "route"
-     ]
+     ],
+     "ms": 0.05
     },
     {
      "agent": "schedule",
@@ -12879,7 +13278,8 @@ window.DATA = {
      ],
      "wrote": [
       "schedule"
-     ]
+     ],
+     "ms": 0.01
     },
     {
      "agent": "notice",
@@ -12893,7 +13293,8 @@ window.DATA = {
      ],
      "wrote": [
       "notice"
-     ]
+     ],
+     "ms": 0.05
     }
    ],
    "extractor": "skill",
@@ -13180,7 +13581,8 @@ window.DATA = {
      ],
      "wrote": [
       "intake"
-     ]
+     ],
+     "ms": 0.03
     },
     {
      "agent": "documents",
@@ -13190,7 +13592,8 @@ window.DATA = {
      ],
      "wrote": [
       "docs"
-     ]
+     ],
+     "ms": 0.01
     },
     {
      "agent": "fault",
@@ -13201,7 +13604,8 @@ window.DATA = {
      "wrote": [
       "elements",
       "fault"
-     ]
+     ],
+     "ms": 0.33
     },
     {
      "agent": "route",
@@ -13210,11 +13614,13 @@ window.DATA = {
       "intake",
       "docs",
       "elements",
-      "fault"
+      "fault",
+      "grades"
      ],
      "wrote": [
       "route"
-     ]
+     ],
+     "ms": 0.05
     },
     {
      "agent": "schedule",
@@ -13225,7 +13631,8 @@ window.DATA = {
      ],
      "wrote": [
       "schedule"
-     ]
+     ],
+     "ms": 0.01
     },
     {
      "agent": "notice",
@@ -13239,7 +13646,8 @@ window.DATA = {
      ],
      "wrote": [
       "notice"
-     ]
+     ],
+     "ms": 0.05
     }
    ],
    "extractor": "skill",
@@ -13534,7 +13942,8 @@ window.DATA = {
      ],
      "wrote": [
       "intake"
-     ]
+     ],
+     "ms": 0.03
     },
     {
      "agent": "documents",
@@ -13544,7 +13953,8 @@ window.DATA = {
      ],
      "wrote": [
       "docs"
-     ]
+     ],
+     "ms": 0.01
     },
     {
      "agent": "fault",
@@ -13555,7 +13965,8 @@ window.DATA = {
      "wrote": [
       "elements",
       "fault"
-     ]
+     ],
+     "ms": 0.35
     },
     {
      "agent": "route",
@@ -13564,11 +13975,13 @@ window.DATA = {
       "intake",
       "docs",
       "elements",
-      "fault"
+      "fault",
+      "grades"
      ],
      "wrote": [
       "route"
-     ]
+     ],
+     "ms": 0.06
     },
     {
      "agent": "schedule",
@@ -13579,7 +13992,8 @@ window.DATA = {
      ],
      "wrote": [
       "schedule"
-     ]
+     ],
+     "ms": 0.01
     },
     {
      "agent": "notice",
@@ -13593,7 +14007,8 @@ window.DATA = {
      ],
      "wrote": [
       "notice"
-     ]
+     ],
+     "ms": 0.05
     }
    ],
    "extractor": "skill",
@@ -13860,7 +14275,8 @@ window.DATA = {
      ],
      "wrote": [
       "intake"
-     ]
+     ],
+     "ms": 0.03
     },
     {
      "agent": "documents",
@@ -13870,7 +14286,8 @@ window.DATA = {
      ],
      "wrote": [
       "docs"
-     ]
+     ],
+     "ms": 0.01
     },
     {
      "agent": "fault",
@@ -13881,7 +14298,8 @@ window.DATA = {
      "wrote": [
       "elements",
       "fault"
-     ]
+     ],
+     "ms": 0.35
     },
     {
      "agent": "route",
@@ -13890,11 +14308,13 @@ window.DATA = {
       "intake",
       "docs",
       "elements",
-      "fault"
+      "fault",
+      "grades"
      ],
      "wrote": [
       "route"
-     ]
+     ],
+     "ms": 0.05
     },
     {
      "agent": "schedule",
@@ -13905,7 +14325,8 @@ window.DATA = {
      ],
      "wrote": [
       "schedule"
-     ]
+     ],
+     "ms": 0.01
     },
     {
      "agent": "notice",
@@ -13919,7 +14340,8 @@ window.DATA = {
      ],
      "wrote": [
       "notice"
-     ]
+     ],
+     "ms": 0.05
     }
    ],
    "extractor": "skill",
@@ -14203,7 +14625,8 @@ window.DATA = {
      ],
      "wrote": [
       "intake"
-     ]
+     ],
+     "ms": 0.04
     },
     {
      "agent": "documents",
@@ -14213,7 +14636,8 @@ window.DATA = {
      ],
      "wrote": [
       "docs"
-     ]
+     ],
+     "ms": 0.02
     },
     {
      "agent": "fault",
@@ -14224,7 +14648,8 @@ window.DATA = {
      "wrote": [
       "elements",
       "fault"
-     ]
+     ],
+     "ms": 0.34
     },
     {
      "agent": "route",
@@ -14233,11 +14658,13 @@ window.DATA = {
       "intake",
       "docs",
       "elements",
-      "fault"
+      "fault",
+      "grades"
      ],
      "wrote": [
       "route"
-     ]
+     ],
+     "ms": 0.19
     },
     {
      "agent": "schedule",
@@ -14248,7 +14675,8 @@ window.DATA = {
      ],
      "wrote": [
       "schedule"
-     ]
+     ],
+     "ms": 0.02
     },
     {
      "agent": "notice",
@@ -14262,7 +14690,8 @@ window.DATA = {
      ],
      "wrote": [
       "notice"
-     ]
+     ],
+     "ms": 0.06
     }
    ],
    "extractor": "skill",
@@ -14556,7 +14985,8 @@ window.DATA = {
      ],
      "wrote": [
       "intake"
-     ]
+     ],
+     "ms": 0.03
     },
     {
      "agent": "documents",
@@ -14566,7 +14996,8 @@ window.DATA = {
      ],
      "wrote": [
       "docs"
-     ]
+     ],
+     "ms": 0.02
     },
     {
      "agent": "fault",
@@ -14577,7 +15008,8 @@ window.DATA = {
      "wrote": [
       "elements",
       "fault"
-     ]
+     ],
+     "ms": 0.34
     },
     {
      "agent": "route",
@@ -14586,11 +15018,13 @@ window.DATA = {
       "intake",
       "docs",
       "elements",
-      "fault"
+      "fault",
+      "grades"
      ],
      "wrote": [
       "route"
-     ]
+     ],
+     "ms": 0.06
     },
     {
      "agent": "schedule",
@@ -14601,7 +15035,8 @@ window.DATA = {
      ],
      "wrote": [
       "schedule"
-     ]
+     ],
+     "ms": 0.01
     },
     {
      "agent": "notice",
@@ -14615,7 +15050,8 @@ window.DATA = {
      ],
      "wrote": [
       "notice"
-     ]
+     ],
+     "ms": 0.04
     }
    ],
    "extractor": "skill",
@@ -14929,7 +15365,8 @@ window.DATA = {
      ],
      "wrote": [
       "intake"
-     ]
+     ],
+     "ms": 0.03
     },
     {
      "agent": "documents",
@@ -14939,7 +15376,8 @@ window.DATA = {
      ],
      "wrote": [
       "docs"
-     ]
+     ],
+     "ms": 0.01
     },
     {
      "agent": "fault",
@@ -14950,7 +15388,8 @@ window.DATA = {
      "wrote": [
       "elements",
       "fault"
-     ]
+     ],
+     "ms": 0.33
     },
     {
      "agent": "route",
@@ -14959,11 +15398,13 @@ window.DATA = {
       "intake",
       "docs",
       "elements",
-      "fault"
+      "fault",
+      "grades"
      ],
      "wrote": [
       "route"
-     ]
+     ],
+     "ms": 0.06
     },
     {
      "agent": "schedule",
@@ -14974,7 +15415,8 @@ window.DATA = {
      ],
      "wrote": [
       "schedule"
-     ]
+     ],
+     "ms": 0.01
     },
     {
      "agent": "notice",
@@ -14988,7 +15430,8 @@ window.DATA = {
      ],
      "wrote": [
       "notice"
-     ]
+     ],
+     "ms": 0.05
     }
    ],
    "extractor": "skill",
@@ -15246,7 +15689,8 @@ window.DATA = {
      ],
      "wrote": [
       "intake"
-     ]
+     ],
+     "ms": 0.03
     },
     {
      "agent": "documents",
@@ -15256,7 +15700,8 @@ window.DATA = {
      ],
      "wrote": [
       "docs"
-     ]
+     ],
+     "ms": 0.01
     },
     {
      "agent": "fault",
@@ -15267,7 +15712,8 @@ window.DATA = {
      "wrote": [
       "elements",
       "fault"
-     ]
+     ],
+     "ms": 0.32
     },
     {
      "agent": "route",
@@ -15276,11 +15722,13 @@ window.DATA = {
       "intake",
       "docs",
       "elements",
-      "fault"
+      "fault",
+      "grades"
      ],
      "wrote": [
       "route"
-     ]
+     ],
+     "ms": 0.05
     },
     {
      "agent": "schedule",
@@ -15291,7 +15739,8 @@ window.DATA = {
      ],
      "wrote": [
       "schedule"
-     ]
+     ],
+     "ms": 0.02
     },
     {
      "agent": "notice",
@@ -15305,7 +15754,8 @@ window.DATA = {
      ],
      "wrote": [
       "notice"
-     ]
+     ],
+     "ms": 0.04
     }
    ],
    "extractor": "skill",
@@ -15588,7 +16038,8 @@ window.DATA = {
      ],
      "wrote": [
       "intake"
-     ]
+     ],
+     "ms": 0.03
     },
     {
      "agent": "documents",
@@ -15598,7 +16049,8 @@ window.DATA = {
      ],
      "wrote": [
       "docs"
-     ]
+     ],
+     "ms": 0.01
     },
     {
      "agent": "fault",
@@ -15609,7 +16061,8 @@ window.DATA = {
      "wrote": [
       "elements",
       "fault"
-     ]
+     ],
+     "ms": 0.33
     },
     {
      "agent": "route",
@@ -15618,11 +16071,13 @@ window.DATA = {
       "intake",
       "docs",
       "elements",
-      "fault"
+      "fault",
+      "grades"
      ],
      "wrote": [
       "route"
-     ]
+     ],
+     "ms": 0.06
     },
     {
      "agent": "schedule",
@@ -15633,7 +16088,8 @@ window.DATA = {
      ],
      "wrote": [
       "schedule"
-     ]
+     ],
+     "ms": 0.01
     },
     {
      "agent": "notice",
@@ -15647,7 +16103,8 @@ window.DATA = {
      ],
      "wrote": [
       "notice"
-     ]
+     ],
+     "ms": 0.04
     }
    ],
    "extractor": "skill",
@@ -15909,7 +16366,8 @@ window.DATA = {
      ],
      "wrote": [
       "intake"
-     ]
+     ],
+     "ms": 0.03
     },
     {
      "agent": "documents",
@@ -15919,7 +16377,8 @@ window.DATA = {
      ],
      "wrote": [
       "docs"
-     ]
+     ],
+     "ms": 0.01
     },
     {
      "agent": "fault",
@@ -15930,7 +16389,8 @@ window.DATA = {
      "wrote": [
       "elements",
       "fault"
-     ]
+     ],
+     "ms": 0.33
     },
     {
      "agent": "route",
@@ -15939,11 +16399,13 @@ window.DATA = {
       "intake",
       "docs",
       "elements",
-      "fault"
+      "fault",
+      "grades"
      ],
      "wrote": [
       "route"
-     ]
+     ],
+     "ms": 0.1
     },
     {
      "agent": "schedule",
@@ -15954,7 +16416,8 @@ window.DATA = {
      ],
      "wrote": [
       "schedule"
-     ]
+     ],
+     "ms": 0.02
     },
     {
      "agent": "notice",
@@ -15968,7 +16431,8 @@ window.DATA = {
      ],
      "wrote": [
       "notice"
-     ]
+     ],
+     "ms": 0.04
     }
    ],
    "extractor": "skill",
@@ -16247,7 +16711,8 @@ window.DATA = {
      ],
      "wrote": [
       "intake"
-     ]
+     ],
+     "ms": 0.04
     },
     {
      "agent": "documents",
@@ -16257,7 +16722,8 @@ window.DATA = {
      ],
      "wrote": [
       "docs"
-     ]
+     ],
+     "ms": 0.02
     },
     {
      "agent": "fault",
@@ -16268,7 +16734,8 @@ window.DATA = {
      "wrote": [
       "elements",
       "fault"
-     ]
+     ],
+     "ms": 0.38
     },
     {
      "agent": "route",
@@ -16277,11 +16744,13 @@ window.DATA = {
       "intake",
       "docs",
       "elements",
-      "fault"
+      "fault",
+      "grades"
      ],
      "wrote": [
       "route"
-     ]
+     ],
+     "ms": 0.06
     },
     {
      "agent": "schedule",
@@ -16292,7 +16761,8 @@ window.DATA = {
      ],
      "wrote": [
       "schedule"
-     ]
+     ],
+     "ms": 0.01
     },
     {
      "agent": "notice",
@@ -16306,7 +16776,8 @@ window.DATA = {
      ],
      "wrote": [
       "notice"
-     ]
+     ],
+     "ms": 0.05
     }
    ],
    "extractor": "skill",
@@ -16568,7 +17039,8 @@ window.DATA = {
      ],
      "wrote": [
       "intake"
-     ]
+     ],
+     "ms": 0.03
     },
     {
      "agent": "documents",
@@ -16578,7 +17050,8 @@ window.DATA = {
      ],
      "wrote": [
       "docs"
-     ]
+     ],
+     "ms": 0.02
     },
     {
      "agent": "fault",
@@ -16589,7 +17062,8 @@ window.DATA = {
      "wrote": [
       "elements",
       "fault"
-     ]
+     ],
+     "ms": 0.39
     },
     {
      "agent": "route",
@@ -16598,11 +17072,13 @@ window.DATA = {
       "intake",
       "docs",
       "elements",
-      "fault"
+      "fault",
+      "grades"
      ],
      "wrote": [
       "route"
-     ]
+     ],
+     "ms": 0.06
     },
     {
      "agent": "schedule",
@@ -16613,7 +17089,8 @@ window.DATA = {
      ],
      "wrote": [
       "schedule"
-     ]
+     ],
+     "ms": 0.01
     },
     {
      "agent": "notice",
@@ -16627,7 +17104,8 @@ window.DATA = {
      ],
      "wrote": [
       "notice"
-     ]
+     ],
+     "ms": 0.04
     }
    ],
    "extractor": "skill",
@@ -16890,7 +17368,8 @@ window.DATA = {
      ],
      "wrote": [
       "intake"
-     ]
+     ],
+     "ms": 0.04
     },
     {
      "agent": "documents",
@@ -16900,7 +17379,8 @@ window.DATA = {
      ],
      "wrote": [
       "docs"
-     ]
+     ],
+     "ms": 0.02
     },
     {
      "agent": "fault",
@@ -16911,7 +17391,8 @@ window.DATA = {
      "wrote": [
       "elements",
       "fault"
-     ]
+     ],
+     "ms": 0.36
     },
     {
      "agent": "route",
@@ -16920,11 +17401,13 @@ window.DATA = {
       "intake",
       "docs",
       "elements",
-      "fault"
+      "fault",
+      "grades"
      ],
      "wrote": [
       "route"
-     ]
+     ],
+     "ms": 0.05
     },
     {
      "agent": "schedule",
@@ -16935,7 +17418,8 @@ window.DATA = {
      ],
      "wrote": [
       "schedule"
-     ]
+     ],
+     "ms": 0.01
     },
     {
      "agent": "notice",
@@ -16949,7 +17433,8 @@ window.DATA = {
      ],
      "wrote": [
       "notice"
-     ]
+     ],
+     "ms": 0.05
     }
    ],
    "extractor": "skill",
@@ -17212,7 +17697,8 @@ window.DATA = {
      ],
      "wrote": [
       "intake"
-     ]
+     ],
+     "ms": 0.03
     },
     {
      "agent": "documents",
@@ -17222,7 +17708,8 @@ window.DATA = {
      ],
      "wrote": [
       "docs"
-     ]
+     ],
+     "ms": 0.01
     },
     {
      "agent": "fault",
@@ -17233,7 +17720,8 @@ window.DATA = {
      "wrote": [
       "elements",
       "fault"
-     ]
+     ],
+     "ms": 0.34
     },
     {
      "agent": "route",
@@ -17242,11 +17730,13 @@ window.DATA = {
       "intake",
       "docs",
       "elements",
-      "fault"
+      "fault",
+      "grades"
      ],
      "wrote": [
       "route"
-     ]
+     ],
+     "ms": 0.05
     },
     {
      "agent": "schedule",
@@ -17257,7 +17747,8 @@ window.DATA = {
      ],
      "wrote": [
       "schedule"
-     ]
+     ],
+     "ms": 0.01
     },
     {
      "agent": "notice",
@@ -17271,7 +17762,8 @@ window.DATA = {
      ],
      "wrote": [
       "notice"
-     ]
+     ],
+     "ms": 0.05
     }
    ],
    "extractor": "skill",
@@ -17550,7 +18042,8 @@ window.DATA = {
      ],
      "wrote": [
       "intake"
-     ]
+     ],
+     "ms": 0.03
     },
     {
      "agent": "documents",
@@ -17560,7 +18053,8 @@ window.DATA = {
      ],
      "wrote": [
       "docs"
-     ]
+     ],
+     "ms": 0.01
     },
     {
      "agent": "fault",
@@ -17571,7 +18065,8 @@ window.DATA = {
      "wrote": [
       "elements",
       "fault"
-     ]
+     ],
+     "ms": 0.35
     },
     {
      "agent": "route",
@@ -17580,11 +18075,13 @@ window.DATA = {
       "intake",
       "docs",
       "elements",
-      "fault"
+      "fault",
+      "grades"
      ],
      "wrote": [
       "route"
-     ]
+     ],
+     "ms": 0.06
     },
     {
      "agent": "schedule",
@@ -17595,7 +18092,8 @@ window.DATA = {
      ],
      "wrote": [
       "schedule"
-     ]
+     ],
+     "ms": 0.01
     },
     {
      "agent": "notice",
@@ -17609,7 +18107,8 @@ window.DATA = {
      ],
      "wrote": [
       "notice"
-     ]
+     ],
+     "ms": 0.05
     }
    ],
    "extractor": "skill",
@@ -17888,7 +18387,8 @@ window.DATA = {
      ],
      "wrote": [
       "intake"
-     ]
+     ],
+     "ms": 0.03
     },
     {
      "agent": "documents",
@@ -17898,7 +18398,8 @@ window.DATA = {
      ],
      "wrote": [
       "docs"
-     ]
+     ],
+     "ms": 0.02
     },
     {
      "agent": "fault",
@@ -17909,7 +18410,8 @@ window.DATA = {
      "wrote": [
       "elements",
       "fault"
-     ]
+     ],
+     "ms": 0.36
     },
     {
      "agent": "route",
@@ -17918,11 +18420,13 @@ window.DATA = {
       "intake",
       "docs",
       "elements",
-      "fault"
+      "fault",
+      "grades"
      ],
      "wrote": [
       "route"
-     ]
+     ],
+     "ms": 0.06
     },
     {
      "agent": "schedule",
@@ -17933,7 +18437,8 @@ window.DATA = {
      ],
      "wrote": [
       "schedule"
-     ]
+     ],
+     "ms": 0.01
     },
     {
      "agent": "notice",
@@ -17947,7 +18452,8 @@ window.DATA = {
      ],
      "wrote": [
       "notice"
-     ]
+     ],
+     "ms": 0.05
     }
    ],
    "extractor": "skill",
@@ -18210,7 +18716,8 @@ window.DATA = {
      ],
      "wrote": [
       "intake"
-     ]
+     ],
+     "ms": 0.03
     },
     {
      "agent": "documents",
@@ -18220,7 +18727,8 @@ window.DATA = {
      ],
      "wrote": [
       "docs"
-     ]
+     ],
+     "ms": 0.01
     },
     {
      "agent": "fault",
@@ -18231,7 +18739,8 @@ window.DATA = {
      "wrote": [
       "elements",
       "fault"
-     ]
+     ],
+     "ms": 0.35
     },
     {
      "agent": "route",
@@ -18240,11 +18749,13 @@ window.DATA = {
       "intake",
       "docs",
       "elements",
-      "fault"
+      "fault",
+      "grades"
      ],
      "wrote": [
       "route"
-     ]
+     ],
+     "ms": 0.05
     },
     {
      "agent": "schedule",
@@ -18255,7 +18766,8 @@ window.DATA = {
      ],
      "wrote": [
       "schedule"
-     ]
+     ],
+     "ms": 0.01
     },
     {
      "agent": "notice",
@@ -18269,7 +18781,8 @@ window.DATA = {
      ],
      "wrote": [
       "notice"
-     ]
+     ],
+     "ms": 0.05
     }
    ],
    "extractor": "skill",
@@ -18532,7 +19045,8 @@ window.DATA = {
      ],
      "wrote": [
       "intake"
-     ]
+     ],
+     "ms": 0.03
     },
     {
      "agent": "documents",
@@ -18542,7 +19056,8 @@ window.DATA = {
      ],
      "wrote": [
       "docs"
-     ]
+     ],
+     "ms": 0.01
     },
     {
      "agent": "fault",
@@ -18553,7 +19068,8 @@ window.DATA = {
      "wrote": [
       "elements",
       "fault"
-     ]
+     ],
+     "ms": 0.35
     },
     {
      "agent": "route",
@@ -18562,11 +19078,13 @@ window.DATA = {
       "intake",
       "docs",
       "elements",
-      "fault"
+      "fault",
+      "grades"
      ],
      "wrote": [
       "route"
-     ]
+     ],
+     "ms": 0.05
     },
     {
      "agent": "schedule",
@@ -18577,7 +19095,8 @@ window.DATA = {
      ],
      "wrote": [
       "schedule"
-     ]
+     ],
+     "ms": 0.01
     },
     {
      "agent": "notice",
@@ -18591,7 +19110,8 @@ window.DATA = {
      ],
      "wrote": [
       "notice"
-     ]
+     ],
+     "ms": 0.05
     }
    ],
    "extractor": "skill",
@@ -18854,7 +19374,8 @@ window.DATA = {
      ],
      "wrote": [
       "intake"
-     ]
+     ],
+     "ms": 0.03
     },
     {
      "agent": "documents",
@@ -18864,7 +19385,8 @@ window.DATA = {
      ],
      "wrote": [
       "docs"
-     ]
+     ],
+     "ms": 0.01
     },
     {
      "agent": "fault",
@@ -18875,7 +19397,8 @@ window.DATA = {
      "wrote": [
       "elements",
       "fault"
-     ]
+     ],
+     "ms": 0.35
     },
     {
      "agent": "route",
@@ -18884,11 +19407,13 @@ window.DATA = {
       "intake",
       "docs",
       "elements",
-      "fault"
+      "fault",
+      "grades"
      ],
      "wrote": [
       "route"
-     ]
+     ],
+     "ms": 0.05
     },
     {
      "agent": "schedule",
@@ -18899,7 +19424,8 @@ window.DATA = {
      ],
      "wrote": [
       "schedule"
-     ]
+     ],
+     "ms": 0.01
     },
     {
      "agent": "notice",
@@ -18913,7 +19439,8 @@ window.DATA = {
      ],
      "wrote": [
       "notice"
-     ]
+     ],
+     "ms": 0.05
     }
    ],
    "extractor": "skill",
@@ -19176,7 +19703,8 @@ window.DATA = {
      ],
      "wrote": [
       "intake"
-     ]
+     ],
+     "ms": 0.03
     },
     {
      "agent": "documents",
@@ -19186,7 +19714,8 @@ window.DATA = {
      ],
      "wrote": [
       "docs"
-     ]
+     ],
+     "ms": 0.01
     },
     {
      "agent": "fault",
@@ -19197,7 +19726,8 @@ window.DATA = {
      "wrote": [
       "elements",
       "fault"
-     ]
+     ],
+     "ms": 0.34
     },
     {
      "agent": "route",
@@ -19206,11 +19736,13 @@ window.DATA = {
       "intake",
       "docs",
       "elements",
-      "fault"
+      "fault",
+      "grades"
      ],
      "wrote": [
       "route"
-     ]
+     ],
+     "ms": 0.05
     },
     {
      "agent": "schedule",
@@ -19221,7 +19753,8 @@ window.DATA = {
      ],
      "wrote": [
       "schedule"
-     ]
+     ],
+     "ms": 0.01
     },
     {
      "agent": "notice",
@@ -19235,7 +19768,8 @@ window.DATA = {
      ],
      "wrote": [
       "notice"
-     ]
+     ],
+     "ms": 0.05
     }
    ],
    "extractor": "skill",
@@ -19498,7 +20032,8 @@ window.DATA = {
      ],
      "wrote": [
       "intake"
-     ]
+     ],
+     "ms": 0.03
     },
     {
      "agent": "documents",
@@ -19508,7 +20043,8 @@ window.DATA = {
      ],
      "wrote": [
       "docs"
-     ]
+     ],
+     "ms": 0.01
     },
     {
      "agent": "fault",
@@ -19519,7 +20055,8 @@ window.DATA = {
      "wrote": [
       "elements",
       "fault"
-     ]
+     ],
+     "ms": 0.32
     },
     {
      "agent": "route",
@@ -19528,11 +20065,13 @@ window.DATA = {
       "intake",
       "docs",
       "elements",
-      "fault"
+      "fault",
+      "grades"
      ],
      "wrote": [
       "route"
-     ]
+     ],
+     "ms": 0.06
     },
     {
      "agent": "schedule",
@@ -19543,7 +20082,8 @@ window.DATA = {
      ],
      "wrote": [
       "schedule"
-     ]
+     ],
+     "ms": 0.01
     },
     {
      "agent": "notice",
@@ -19557,7 +20097,8 @@ window.DATA = {
      ],
      "wrote": [
       "notice"
-     ]
+     ],
+     "ms": 0.05
     }
    ],
    "extractor": "skill",
@@ -19850,7 +20391,8 @@ window.DATA = {
      ],
      "wrote": [
       "intake"
-     ]
+     ],
+     "ms": 0.03
     },
     {
      "agent": "documents",
@@ -19860,7 +20402,8 @@ window.DATA = {
      ],
      "wrote": [
       "docs"
-     ]
+     ],
+     "ms": 0.01
     },
     {
      "agent": "fault",
@@ -19871,7 +20414,8 @@ window.DATA = {
      "wrote": [
       "elements",
       "fault"
-     ]
+     ],
+     "ms": 0.37
     },
     {
      "agent": "route",
@@ -19880,11 +20424,13 @@ window.DATA = {
       "intake",
       "docs",
       "elements",
-      "fault"
+      "fault",
+      "grades"
      ],
      "wrote": [
       "route"
-     ]
+     ],
+     "ms": 0.06
     },
     {
      "agent": "schedule",
@@ -19895,7 +20441,8 @@ window.DATA = {
      ],
      "wrote": [
       "schedule"
-     ]
+     ],
+     "ms": 0.01
     },
     {
      "agent": "notice",
@@ -19909,7 +20456,8 @@ window.DATA = {
      ],
      "wrote": [
       "notice"
-     ]
+     ],
+     "ms": 0.04
     }
    ],
    "extractor": "skill",
@@ -20228,7 +20776,8 @@ window.DATA = {
      ],
      "wrote": [
       "intake"
-     ]
+     ],
+     "ms": 0.03
     },
     {
      "agent": "documents",
@@ -20238,7 +20787,8 @@ window.DATA = {
      ],
      "wrote": [
       "docs"
-     ]
+     ],
+     "ms": 0.01
     },
     {
      "agent": "fault",
@@ -20249,7 +20799,8 @@ window.DATA = {
      "wrote": [
       "elements",
       "fault"
-     ]
+     ],
+     "ms": 0.33
     },
     {
      "agent": "route",
@@ -20258,11 +20809,13 @@ window.DATA = {
       "intake",
       "docs",
       "elements",
-      "fault"
+      "fault",
+      "grades"
      ],
      "wrote": [
       "route"
-     ]
+     ],
+     "ms": 0.06
     },
     {
      "agent": "schedule",
@@ -20273,7 +20826,8 @@ window.DATA = {
      ],
      "wrote": [
       "schedule"
-     ]
+     ],
+     "ms": 0.01
     },
     {
      "agent": "notice",
@@ -20287,7 +20841,8 @@ window.DATA = {
      ],
      "wrote": [
       "notice"
-     ]
+     ],
+     "ms": 0.04
     }
    ],
    "extractor": "skill",
@@ -20593,7 +21148,8 @@ window.DATA = {
      ],
      "wrote": [
       "intake"
-     ]
+     ],
+     "ms": 0.03
     },
     {
      "agent": "documents",
@@ -20603,7 +21159,8 @@ window.DATA = {
      ],
      "wrote": [
       "docs"
-     ]
+     ],
+     "ms": 0.01
     },
     {
      "agent": "fault",
@@ -20614,7 +21171,8 @@ window.DATA = {
      "wrote": [
       "elements",
       "fault"
-     ]
+     ],
+     "ms": 0.37
     },
     {
      "agent": "route",
@@ -20623,11 +21181,13 @@ window.DATA = {
       "intake",
       "docs",
       "elements",
-      "fault"
+      "fault",
+      "grades"
      ],
      "wrote": [
       "route"
-     ]
+     ],
+     "ms": 0.06
     },
     {
      "agent": "schedule",
@@ -20638,7 +21198,8 @@ window.DATA = {
      ],
      "wrote": [
       "schedule"
-     ]
+     ],
+     "ms": 0.01
     },
     {
      "agent": "notice",
@@ -20652,7 +21213,8 @@ window.DATA = {
      ],
      "wrote": [
       "notice"
-     ]
+     ],
+     "ms": 0.05
     }
    ],
    "extractor": "skill",
@@ -20930,7 +21492,8 @@ window.DATA = {
      ],
      "wrote": [
       "intake"
-     ]
+     ],
+     "ms": 0.03
     },
     {
      "agent": "documents",
@@ -20940,7 +21503,8 @@ window.DATA = {
      ],
      "wrote": [
       "docs"
-     ]
+     ],
+     "ms": 0.01
     },
     {
      "agent": "fault",
@@ -20951,7 +21515,8 @@ window.DATA = {
      "wrote": [
       "elements",
       "fault"
-     ]
+     ],
+     "ms": 0.34
     },
     {
      "agent": "route",
@@ -20960,11 +21525,13 @@ window.DATA = {
       "intake",
       "docs",
       "elements",
-      "fault"
+      "fault",
+      "grades"
      ],
      "wrote": [
       "route"
-     ]
+     ],
+     "ms": 0.05
     },
     {
      "agent": "schedule",
@@ -20975,7 +21542,8 @@ window.DATA = {
      ],
      "wrote": [
       "schedule"
-     ]
+     ],
+     "ms": 0.01
     },
     {
      "agent": "notice",
@@ -20989,7 +21557,8 @@ window.DATA = {
      ],
      "wrote": [
       "notice"
-     ]
+     ],
+     "ms": 0.04
     }
    ],
    "extractor": "skill",
@@ -21280,7 +21849,8 @@ window.DATA = {
      ],
      "wrote": [
       "intake"
-     ]
+     ],
+     "ms": 0.03
     },
     {
      "agent": "documents",
@@ -21290,7 +21860,8 @@ window.DATA = {
      ],
      "wrote": [
       "docs"
-     ]
+     ],
+     "ms": 0.01
     },
     {
      "agent": "fault",
@@ -21301,7 +21872,8 @@ window.DATA = {
      "wrote": [
       "elements",
       "fault"
-     ]
+     ],
+     "ms": 0.38
     },
     {
      "agent": "route",
@@ -21310,11 +21882,13 @@ window.DATA = {
       "intake",
       "docs",
       "elements",
-      "fault"
+      "fault",
+      "grades"
      ],
      "wrote": [
       "route"
-     ]
+     ],
+     "ms": 0.08
     },
     {
      "agent": "schedule",
@@ -21325,7 +21899,8 @@ window.DATA = {
      ],
      "wrote": [
       "schedule"
-     ]
+     ],
+     "ms": 0.01
     },
     {
      "agent": "notice",
@@ -21339,7 +21914,8 @@ window.DATA = {
      ],
      "wrote": [
       "notice"
-     ]
+     ],
+     "ms": 0.06
     }
    ],
    "extractor": "skill",
@@ -21589,7 +22165,8 @@ window.DATA = {
      ],
      "wrote": [
       "intake"
-     ]
+     ],
+     "ms": 0.03
     },
     {
      "agent": "documents",
@@ -21599,7 +22176,8 @@ window.DATA = {
      ],
      "wrote": [
       "docs"
-     ]
+     ],
+     "ms": 0.01
     },
     {
      "agent": "fault",
@@ -21610,7 +22188,8 @@ window.DATA = {
      "wrote": [
       "elements",
       "fault"
-     ]
+     ],
+     "ms": 0.32
     },
     {
      "agent": "route",
@@ -21619,11 +22198,13 @@ window.DATA = {
       "intake",
       "docs",
       "elements",
-      "fault"
+      "fault",
+      "grades"
      ],
      "wrote": [
       "route"
-     ]
+     ],
+     "ms": 0.05
     },
     {
      "agent": "schedule",
@@ -21634,7 +22215,8 @@ window.DATA = {
      ],
      "wrote": [
       "schedule"
-     ]
+     ],
+     "ms": 0.01
     },
     {
      "agent": "notice",
@@ -21648,7 +22230,8 @@ window.DATA = {
      ],
      "wrote": [
       "notice"
-     ]
+     ],
+     "ms": 0.04
     }
    ],
    "extractor": "skill",
@@ -21936,7 +22519,8 @@ window.DATA = {
      ],
      "wrote": [
       "intake"
-     ]
+     ],
+     "ms": 0.04
     },
     {
      "agent": "documents",
@@ -21946,7 +22530,8 @@ window.DATA = {
      ],
      "wrote": [
       "docs"
-     ]
+     ],
+     "ms": 0.02
     },
     {
      "agent": "fault",
@@ -21957,7 +22542,8 @@ window.DATA = {
      "wrote": [
       "elements",
       "fault"
-     ]
+     ],
+     "ms": 0.35
     },
     {
      "agent": "route",
@@ -21966,11 +22552,13 @@ window.DATA = {
       "intake",
       "docs",
       "elements",
-      "fault"
+      "fault",
+      "grades"
      ],
      "wrote": [
       "route"
-     ]
+     ],
+     "ms": 0.05
     },
     {
      "agent": "schedule",
@@ -21981,7 +22569,8 @@ window.DATA = {
      ],
      "wrote": [
       "schedule"
-     ]
+     ],
+     "ms": 0.02
     },
     {
      "agent": "notice",
@@ -21995,7 +22584,8 @@ window.DATA = {
      ],
      "wrote": [
       "notice"
-     ]
+     ],
+     "ms": 0.06
     }
    ],
    "extractor": "skill",

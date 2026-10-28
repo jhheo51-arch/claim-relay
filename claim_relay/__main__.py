@@ -6,7 +6,7 @@ from datetime import date
 
 from .config import ROOT, load
 from .evaluate import compare, evaluate, load_natural, load_testset, report
-from .pipeline import run_case
+from .pipeline import GRADES, run_case
 from . import followup, review
 from .scorecard import report as scorecard_report, scorecard
 
@@ -61,7 +61,14 @@ def cmd_compare(args):
 
 def cmd_scorecard(args):
     runs = [("testset", "cues"), ("natural", "cues"), ("natural", "skill"), ("blind", "cues"), ("blind", "skill")]
-    text = scorecard_report([scorecard(evaluate(x, args.repeat, d)) for d, x in runs])
+    cards = [scorecard(evaluate(x, args.repeat, d)) for d, x in runs]
+    text = scorecard_report(cards)
+    # 경로 에이전트의 등급 게이트가 읽는 최근 등급
+    GRADES.parent.mkdir(exist_ok=True)
+    GRADES.write_text(json.dumps({
+        "version": date.today().isoformat(),
+        "sets": {f"{sc['dataset']}/{sc['extractor']}": {c["agent"]: c["grade"] for c in sc["cards"]} for sc in cards},
+    }, ensure_ascii=False, indent=1) + "\n", encoding="utf-8")
     reviews = review.load_all()
     results = {rv["id"]: run_case(find_case(rv["id"]), rv["extractor"], ledger=False)[0] for rv in reviews}
     text += "\n" + review.report(review.compare(reviews, results))
@@ -69,7 +76,7 @@ def cmd_scorecard(args):
     out.parent.mkdir(exist_ok=True)
     out.write_text(text, encoding="utf-8")
     print(text)
-    print(f"보고서: {out.relative_to(ROOT).as_posix()}")
+    print(f"보고서: {out.relative_to(ROOT).as_posix()}, 등급: {GRADES.relative_to(ROOT).as_posix()}")
 
 
 def cmd_review(args):
@@ -125,6 +132,8 @@ def cmd_export(args):
         "rules": load("rules/claim-rules.yaml")["rules"],
         "agents": load("agents.yaml")["agents"],
         "followup": load("rules/followup.yaml"),
+        "gate": load("rules/grades.yaml")["gate"],
+        "grades": json.loads(GRADES.read_text(encoding="utf-8")) if GRADES.exists() else None,
         "cases": cases,
     }
     out = ROOT / "web" / "data.js"

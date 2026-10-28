@@ -350,11 +350,17 @@ function staffCard(c, r) {
   return card("담", "담당자 카드", h);
 }
 
+const ms = v => `${v < 1 ? v.toFixed(2) : v.toFixed(1)}ms`;
+const median = xs => { const a = [...xs].sort((x, y) => x - y), m = a.length >> 1; return a.length % 2 ? a[m] : (a[m - 1] + a[m]) / 2; };
+
 function ledgerCard(c) {
+  const total = c.steps.reduce((t, s) => t + s.ms, 0);
   return card("이", "단계 이력과 사원증", `<table class="t">
-    <tr><th>사원증</th><th>단계</th><th>읽은 칸</th><th>쓴 칸</th></tr>
+    <tr><th>사원증</th><th>단계</th><th>읽은 칸</th><th>쓴 칸</th><th class="num">걸린 시간</th></tr>
     ${c.steps.map(s => `<tr><td>${esc(s.badge)}</td><td>${esc(D.agents[s.agent].name)}</td>
-      <td>${esc(s.read.join(", ") || "-")}</td><td>${esc(s.wrote.join(", ") || "-")}</td></tr>`).join("")}</table>`, c.steps.length);
+      <td>${esc(s.read.join(", ") || "-")}</td><td>${esc(s.wrote.join(", ") || "-")}</td><td class="num">${ms(s.ms)}</td></tr>`).join("")}
+    <tr><th colspan="4">합계</th><td class="num">${ms(total)}</td></tr></table>
+    <p class="muted" style="margin:8px 0 0">AI 호출 없이 규칙과 저장된 추출 결과로 잰 시간입니다. 경로 에이전트가 읽는 grades 칸은 성적표 등급입니다.</p>`, c.steps.length);
 }
 
 function compareCard(c, r) {
@@ -489,12 +495,25 @@ function opsView() {
     <p class="muted" style="margin:8px 0 0">대표 숫자는 블라인드 진술입니다. 가상 사고는 틀에 맞춘 문장이라 일치율이 높게 나옵니다. 모든 진술은 사람이 아닌 AI가 썼습니다.</p>`);
 
   const hit = (k, id) => by[k].filter(c => c.result.rules.includes(id)).length;
-  const ruleRows = D.rules.map(r => `<tr><th>${esc(r.id)}</th><td>${esc(r.staff)}</td><td>${pill(r.route)}</td>
+  const ruleRows = [...D.rules, D.gate].map(r => `<tr><th>${esc(r.id)}</th><td>${esc(r.staff)}</td><td>${pill(r.route)}</td>
     ${SETS.filter(([k]) => by[k].length).map(([k]) => `<td class="num">${hit(k, r.id)}</td>`).join("")}</tr>`).join("");
   const ruleCard = card("규", "사람에게 넘긴 이유(걸린 규칙)", `<div class="scroll"><table class="t">
     <tr><th>규칙</th><th>담당자 설명</th><th>경로</th>${SETS.filter(([k]) => by[k].length).map(([, n]) => `<th class="num">${esc(n.split("(")[0])}</th>`).join("")}</tr>
     ${ruleRows}</table></div>
-    <p class="muted" style="margin:8px 0 0">한 사고에 규칙이 여러 개 걸릴 수 있습니다. 자연어와 블라인드는 스킬 추출기 기준입니다.</p>`);
+    <p class="muted" style="margin:8px 0 0">한 사고에 규칙이 여러 개 걸릴 수 있습니다. 자연어와 블라인드는 스킬 추출기 기준입니다.
+    ${esc(D.gate.id)}는 규칙표가 아니라 성적표 등급 게이트입니다. 아래 등급 표를 봅니다.</p>`);
+
+  const gs = D.grades ? Object.entries(D.grades.sets) : [];
+  const gradeCard = card("급", "등급 게이트", gs.length ? `<div class="scroll"><table class="t">
+    <tr><th>세트/추출기</th>${D.gate.stages.map(a => `<th>${esc(D.agents[a].badge)}</th>`).join("")}<th>자동 처리 후보</th></tr>
+    ${gs.map(([k, g]) => { const low = D.gate.stages.filter(a => g[a] === D.gate.below);
+      return `<tr><th>${esc(k)}</th>${D.gate.stages.map(a => `<td class="${g[a] === D.gate.below ? "warn" : ""}">${esc(g[a])}</td>`).join("")}
+      <td>${low.length ? "막음" : "보냄"}</td></tr>`; }).join("")}</table></div>
+    <p class="muted" style="margin:8px 0 0">경로를 정하는 단계(${D.gate.stages.map(a => esc(D.agents[a].badge)).join(", ")}) 중 하나라도 ${esc(D.gate.below)}이거나 평가하지 않은 조합이면,
+    규칙에 걸린 것이 없어도 경로 에이전트가 ${esc(D.gate.route)}로 돌립니다. 등급은 ${esc(D.grades.version)} 성적표 기준이고, 표에 없는 조합(api 추출기, 자연어 예시)은 평가하지 않은 것으로 봅니다.</p>`
+    : `<p class="muted">성적표 등급이 없습니다. <code>claim-relay scorecard</code>를 먼저 돌립니다.</p>`);
+
+  const times = D.cases.filter(c => c.result.status !== "멈춤").map(c => c.steps.reduce((t, s) => t + s.ms, 0));
 
   const stops = {};
   D.cases.filter(c => c.result.status === "멈춤").forEach(c => {
@@ -516,12 +535,13 @@ function opsView() {
     <tr><th>자동 처리 후보 비율</th><td>위 표의 자동 처리 후보 건수. 가상 사고라 실제 비율을 뜻하지 않습니다</td></tr>
     <tr><th>자동 처리 뒤 다시 열린 비율</th><td><code>followup</code> 기록의 자동 처리 후 이의. 지금은 기록 없음</td></tr>
     <tr><th>담당자 판정과 다른 비율</th><td><code>review</code> 기록과 파이프라인 비교. 지금은 기록 없음</td></tr>
-    <tr><th>접수부터 안내까지 걸린 시간</th><td>재지 않았습니다. 이력(runs/)에는 실행 시각 하나만 남깁니다</td></tr></table>`);
+    <tr><th>접수부터 안내까지 걸린 시간</th><td>단계별 ms를 이력(runs/)에 남깁니다. 끝까지 간 ${times.length}건 중앙값 ${ms(median(times))}, 가장 긴 건 ${ms(Math.max(...times))}.
+      AI 호출 없이 잰 값이라 실제 API를 붙이면 다시 재야 합니다</td></tr></table>`);
 
   document.getElementById("app").innerHTML = `<div class="ops">
     <section class="box lv wide"><div class="lv-head"><div class="lv-title"><span class="icon gray">운</span><div><div class="eyebrow">운영 현황</div><h2>사고 ${D.cases.length}건 처리 결과</h2></div></div>
     <p class="lv-sub">web/data.js에 든 결과를 이 화면에서 바로 셉니다. 숫자는 모두 가상 사고 기준이고, 만든 날은 ${esc(D.generated)}입니다.</p></div></section>
-    <div class="wide">${routeCard}</div><div class="wide">${ruleCard}</div>${fuCard}<div>${stopCard}<div style="height:12px"></div>${kpiCard}</div></div>`;
+    <div class="wide">${routeCard}</div><div class="wide">${ruleCard}</div><div class="wide">${gradeCard}</div>${fuCard}<div>${stopCard}<div style="height:12px"></div>${kpiCard}</div></div>`;
   document.querySelectorAll(".ops [data-go]").forEach(a => a.onclick = e => {
     e.preventDefault();
     document.querySelector('.tab[data-t="cases"]').click();
@@ -532,7 +552,9 @@ function opsView() {
 function route() {
   const id = decodeURIComponent(location.hash.slice(1));
   if (appTab !== "cases") return;
-  show(D.cases.some(c => c.case.id === id) ? id : (selected || D.cases[0].case.id));
+  // 주소에 사고가 없으면 자연어 진술 한 건(N009)을 먼저 보여 준다
+  const first = D.cases.some(c => c.case.id === "N009") ? "N009" : D.cases[0].case.id;
+  show(D.cases.some(c => c.case.id === id) ? id : (selected || first));
 }
 
 document.querySelectorAll(".tab").forEach(b => b.onclick = () => {

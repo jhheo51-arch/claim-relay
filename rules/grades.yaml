@@ -35,4 +35,15 @@ grades:
   - name: 초급
     min_core: 0
     max_leak: null
-    use: 참고용. 이 단계 결과는 쓰지 않고 사람 심사로 넘김
+    use: 참고용. 이 단계가 낸 결과로는 자동 처리 후보로 보내지 않고 사람 심사로 넘김
+
+# 실행 중 등급 게이트(경로 에이전트가 읽음). 경로를 정하는 데 쓰인 단계 중 하나라도 초급이거나
+# 아직 평가하지 않았으면, 규칙에 걸린 것이 없어도 자동 처리 후보로 보내지 않는다.
+# 등급은 scorecard 명령이 reports/grades.json에 남긴 최근 값을 데이터 세트와 추출기별로 읽는다.
+gate:
+  id: G01
+  stages: [intake, documents, fault, route]
+  below: 초급
+  route: 사람 심사
+  customer: 사고 내용을 담당자가 한 번 더 확인합니다
+  staff: 성적표 등급이 초급이거나 평가하지 않은 단계가 결과를 냄
