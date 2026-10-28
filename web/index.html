@@ -6,114 +6,242 @@
 <title>claim-relay 담당자 화면</title>
 <style>
 :root {
-  /* 메인 색 #FFBC00(노랑)과 #60584C(회색)의 농도 차이로만 구분한다 */
-  --brand: #ffbc00; --brand-2: #ffcc00; --gray: #60584c;
-  --bg: #fbf8f1; --panel: #ffffff; --line: #ebe4d3; --text: #2e2a24; --muted: #60584c;
+  /* 메인 색 #FFBC00(노랑)과 #60584C(회색)의 농도 차이로만 구분한다.
+     배치는 CRM 레코드 페이지 꼴(전역 머리글, 탭, 목록 보기, 하이라이트, 단계 표시, 카드)을 따른다 */
+  --brand: #ffbc00; --brand-2: #ffcc00; --brand-soft: #fff6d9; --gray: #60584c;
+  --bg: #f3efe6; --panel: #ffffff; --line: #e2dacb; --line-2: #efe9dd; --text: #2e2a24; --muted: #7a7062;
+  --head: #60584c; --head-text: #ffffff;
   --auto: #6e5200; --auto-bg: #fff6d9; --docs: #574100; --docs-bg: #ffe38a;
   --human: #2e2a24; --human-bg: #ffbc00; --stop: #ffffff; --stop-bg: #60584c;
   --mark: #ffeca3; --warn: #8a5c00; --ok: #6e5200; --link: #6e5200;
+  --path-done: #60584c; --path-done-text: #ffffff; --path-todo: #efe9dd; --path-todo-text: #60584c;
+  --shadow: 0 2px 2px rgba(96, 88, 76, .12);
 }
 @media (prefers-color-scheme: dark) {
   :root {
-    --bg: #1a1814; --panel: #24211c; --line: #3b362e; --text: #f2eee6; --muted: #b9af9f;
+    --bg: #1a1814; --panel: #24211c; --line: #3b362e; --line-2: #2e2a24; --text: #f2eee6; --muted: #b9af9f;
+    --brand-soft: #3a3112; --head: #2e2a24; --head-text: #f2eee6;
     --auto: #ffd966; --auto-bg: #3a3112; --docs: #2e2a24; --docs-bg: #ffe38a;
     --human: #1a1814; --human-bg: #ffbc00; --stop: #ffffff; --stop-bg: #60584c;
     --mark: #5c4a0a; --warn: #ffcc00; --ok: #ffd966; --link: #ffcc00;
+    --path-done: #b9af9f; --path-done-text: #1a1814; --path-todo: #3b362e; --path-todo-text: #b9af9f;
+    --shadow: 0 2px 2px rgba(0, 0, 0, .3);
   }
 }
 * { box-sizing: border-box; }
 body { margin: 0; background: var(--bg); color: var(--text);
-  font: 14px/1.55 "Pretendard", "Apple SD Gothic Neo", "Malgun Gothic", system-ui, sans-serif; }
-header { padding: 16px 20px; border-top: 4px solid var(--brand); border-bottom: 1px solid var(--line); background: var(--panel); }
-header h1 { margin: 0; font-size: 18px; }
-header p { margin: 4px 0 0; color: var(--muted); font-size: 13px; }
-.stats { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 10px; }
-.stat { border: 1px solid var(--line); border-radius: 8px; padding: 6px 10px; font-size: 13px; cursor: pointer; background: var(--panel); color: var(--text); }
-.stat b { font-size: 16px; margin-left: 4px; }
-.stat.on { outline: 2px solid var(--brand); border-color: var(--brand); }
-main { display: grid; grid-template-columns: 300px 1fr; min-height: calc(100vh - 110px); }
-nav { border-right: 1px solid var(--line); overflow-y: auto; max-height: calc(100vh - 110px); }
-nav button { display: block; width: 100%; text-align: left; border: 0; border-bottom: 1px solid var(--line);
-  background: none; color: var(--text); padding: 9px 14px; cursor: pointer; font: inherit; }
-nav button:hover { background: var(--panel); }
-nav button.sel { background: var(--panel); box-shadow: inset 4px 0 var(--brand); }
-nav .id { font-weight: 600; margin-right: 6px; }
-nav .tag { color: var(--muted); font-size: 12px; }
-.pill { display: inline-block; border-radius: 999px; padding: 1px 8px; font-size: 12px; font-weight: 600; }
-.r-auto { color: var(--auto); background: var(--auto-bg); }
+  font: 13px/1.5 "Pretendard", "Apple SD Gothic Neo", "Malgun Gothic", system-ui, sans-serif; }
+a { color: var(--link); }
+button { font: inherit; color: inherit; }
+
+/* 전역 머리글 */
+.global { display: flex; align-items: center; gap: 14px; height: 48px; padding: 0 16px; background: var(--panel); border-bottom: 1px solid var(--line); }
+.logo { display: flex; align-items: center; gap: 8px; font-weight: 700; font-size: 15px; white-space: nowrap; }
+.logo i { width: 26px; height: 26px; border-radius: 6px; background: var(--brand); display: grid; place-items: center; font-style: normal; color: var(--gray); font-size: 13px; }
+.search { flex: 1; max-width: 520px; margin: 0 auto; position: relative; }
+.search input { width: 100%; height: 32px; border: 1px solid var(--line); border-radius: 4px; padding: 0 10px 0 30px; background: var(--bg); color: var(--text); font: inherit; }
+.search input:focus { outline: 2px solid var(--brand); border-color: var(--brand); }
+.search::before { content: "⌕"; position: absolute; left: 10px; top: 5px; color: var(--muted); font-size: 16px; }
+.avatar { width: 30px; height: 30px; border-radius: 50%; background: var(--gray); color: #fff; display: grid; place-items: center; font-size: 12px; font-weight: 600; flex: none; }
+
+/* 앱 탭 줄 */
+.tabs { display: flex; align-items: stretch; height: 40px; padding: 0 16px; background: var(--panel); border-bottom: 3px solid var(--brand); box-shadow: var(--shadow); }
+.app-name { display: flex; align-items: center; padding-right: 18px; margin-right: 6px; border-right: 1px solid var(--line); font-size: 15px; font-weight: 600; white-space: nowrap; }
+.app-name .dots { display: grid; grid-template-columns: repeat(3, 4px); gap: 2px; margin-right: 10px; }
+.app-name .dots span { width: 4px; height: 4px; border-radius: 50%; background: var(--gray); }
+.tab { border: 0; background: none; padding: 0 14px; cursor: pointer; border-bottom: 3px solid transparent; margin-bottom: -3px; white-space: nowrap; }
+.tab.on { border-bottom-color: var(--gray); font-weight: 600; background: var(--brand-soft); }
+.meta { margin-left: auto; padding-left: 16px; line-height: 37px; color: var(--muted); font-size: 12px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+/* 본문 배치 */
+main { display: grid; grid-template-columns: 340px 1fr; gap: 12px; padding: 12px; align-items: start; }
+.box { background: var(--panel); border: 1px solid var(--line); border-radius: 4px; box-shadow: var(--shadow); min-width: 0; }
+
+/* 목록 보기 */
+.lv-head { padding: 12px 14px 8px; border-bottom: 1px solid var(--line); }
+.lv-title { display: flex; align-items: center; gap: 10px; }
+.icon { width: 32px; height: 32px; border-radius: 4px; background: var(--brand); color: var(--gray); display: grid; place-items: center; font-weight: 700; flex: none; }
+.icon.sm { width: 24px; height: 24px; font-size: 12px; }
+.icon.gray { background: var(--gray); color: #fff; }
+.eyebrow { font-size: 12px; color: var(--muted); }
+.lv-title h2 { margin: 0; font-size: 17px; font-weight: 700; }
+.lv-sub { margin: 6px 0 8px; font-size: 12px; color: var(--muted); }
+.filters { display: flex; flex-wrap: wrap; gap: 0; }
+.filter { border: 1px solid var(--line); background: var(--panel); padding: 3px 8px; cursor: pointer; font-size: 12px; margin-left: -1px; }
+.filter:first-child { border-radius: 4px 0 0 4px; margin-left: 0; }
+.filter:last-child { border-radius: 0 4px 4px 0; }
+.filter.on { background: var(--gray); color: #fff; border-color: var(--gray); position: relative; }
+.filter b { margin-left: 4px; }
+.lv-body { max-height: calc(100vh - 230px); overflow-y: auto; }
+.lv table { width: 100%; border-collapse: collapse; }
+.lv th { position: sticky; top: 0; background: var(--line-2); color: var(--muted); font-weight: 600; font-size: 12px; text-align: left; padding: 6px 10px; border-bottom: 1px solid var(--line); white-space: nowrap; }
+.lv td { padding: 7px 10px; border-bottom: 1px solid var(--line-2); vertical-align: top; }
+.lv tr.row { cursor: pointer; }
+.lv tr.row:hover td { background: var(--brand-soft); }
+.lv tr.sel td { background: var(--brand-soft); }
+.lv tr.sel td:first-child { box-shadow: inset 3px 0 var(--brand); }
+.lv .id { font-weight: 600; color: var(--link); text-decoration: underline; text-underline-offset: 2px; }
+.lv .tag { color: var(--muted); font-size: 12px; }
+
+/* 경로 표시 */
+.pill { display: inline-block; border-radius: 4px; padding: 0 6px; font-size: 12px; font-weight: 600; white-space: nowrap; }
+.r-auto { color: var(--auto); background: var(--auto-bg); border: 1px solid var(--brand); }
 .r-human { color: var(--human); background: var(--human-bg); }
 .r-docs { color: var(--docs); background: var(--docs-bg); }
 .r-stop { color: var(--stop); background: var(--stop-bg); }
-section#detail { padding: 18px 22px; overflow-x: hidden; }
-.grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
-.card { background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 12px 14px; margin-bottom: 14px; min-width: 0; }
-.card h3 { margin: 0 0 8px; font-size: 14px; }
-.card h4 { margin: 10px 0 4px; font-size: 13px; color: var(--muted); }
+.warn { color: var(--warn); font-weight: 600; }
+.ok { color: var(--ok); }
+.muted { color: var(--muted); }
+
+/* 레코드 하이라이트 */
+.hl { padding: 14px 16px 12px; }
+.hl-top { display: flex; align-items: center; gap: 12px; }
+.hl-top h1 { margin: 0; font-size: 20px; line-height: 1.2; }
+.hl-actions { margin-left: auto; display: flex; gap: 0; }
+.btn { border: 1px solid var(--line); background: var(--panel); padding: 5px 12px; cursor: pointer; margin-left: -1px; text-decoration: none; color: var(--link); }
+.btn:first-child { border-radius: 4px 0 0 4px; margin-left: 0; }
+.btn:last-child { border-radius: 0 4px 4px 0; }
+.btn:disabled { color: var(--muted); cursor: default; }
+.fields { display: flex; flex-wrap: wrap; gap: 6px 28px; margin-top: 12px; }
+.field .lab { font-size: 12px; color: var(--muted); }
+.field .val { font-size: 13px; }
+
+/* 단계 표시(6단계) */
+.path { display: flex; margin: 12px 0 0; padding: 0; list-style: none; }
+.path li { flex: 1; position: relative; height: 32px; display: grid; place-items: center; margin-right: 14px;
+  background: var(--path-todo); color: var(--path-todo-text); font-size: 12px; font-weight: 600; white-space: nowrap; min-width: 0; }
+.path li span { overflow: hidden; text-overflow: ellipsis; padding: 0 4px 0 14px; max-width: 100%; }
+.path li::before, .path li::after { content: ""; position: absolute; top: 0; border-style: solid; }
+.path li::before { left: -14px; border-width: 16px 0 16px 14px; border-color: var(--path-todo) var(--path-todo) var(--path-todo) transparent; }
+.path li::after { right: -14px; border-width: 16px 0 16px 14px; border-color: transparent transparent transparent var(--path-todo); }
+.path li:first-child { border-radius: 16px 0 0 16px; }
+.path li:first-child::before { display: none; }
+.path li:first-child span { padding-left: 4px; }
+.path li:last-child { margin-right: 0; border-radius: 0 16px 16px 0; }
+.path li:last-child::after { display: none; }
+.path li.done { background: var(--path-done); color: var(--path-done-text); }
+.path li.done::before { border-color: var(--path-done) var(--path-done) var(--path-done) transparent; }
+.path li.done::after { border-left-color: var(--path-done); }
+.path li.halt { background: var(--brand); color: var(--gray); }
+.path li.halt::before { border-color: var(--brand) var(--brand) var(--brand) transparent; }
+.path li.halt::after { border-left-color: var(--brand); }
+.path-note { margin: 8px 0 0; font-size: 12px; color: var(--muted); }
+
+/* 레코드 본문 */
+.rec { display: grid; grid-template-columns: minmax(0, 2fr) minmax(0, 1fr); gap: 12px; margin-top: 12px; align-items: start; }
+.rtabs { display: flex; border-bottom: 1px solid var(--line); padding: 0 12px; }
+.rtab { border: 0; background: none; padding: 10px 12px; cursor: pointer; border-bottom: 3px solid transparent; margin-bottom: -1px; }
+.rtab.on { border-bottom-color: var(--brand); font-weight: 600; }
+.pane { padding: 12px; }
+.card { border: 1px solid var(--line); border-radius: 4px; margin-bottom: 12px; background: var(--panel); min-width: 0; }
+.card:last-child { margin-bottom: 0; }
+.card-h { display: flex; align-items: center; gap: 8px; padding: 9px 12px; border-bottom: 1px solid var(--line-2); }
+.card-h h3 { margin: 0; font-size: 14px; font-weight: 700; }
+.card-h .cnt { color: var(--muted); font-weight: 400; }
+.card-b { padding: 10px 12px; }
+.card-b h4 { margin: 10px 0 4px; font-size: 12px; font-weight: 600; color: var(--muted); }
+.card-b h4:first-child { margin-top: 0; }
+.card-b p { margin: 0 0 6px; }
+.card-b ul { margin: 0 0 6px; padding-left: 18px; }
+.two { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.kv { display: grid; grid-template-columns: 1fr 1fr; gap: 8px 16px; }
+.kv .field { border-bottom: 1px solid var(--line-2); padding-bottom: 4px; }
 ol.lines { margin: 0; padding-left: 22px; }
 ol.lines li { margin: 2px 0; }
 mark { background: var(--mark); color: inherit; border-radius: 3px; padding: 0 2px; }
-table { border-collapse: collapse; width: 100%; font-size: 13px; }
-td, th { border-bottom: 1px solid var(--line); padding: 4px 6px; text-align: left; vertical-align: top; }
-th { color: var(--muted); font-weight: 500; }
+table.t { border-collapse: collapse; width: 100%; }
+table.t td, table.t th { border-bottom: 1px solid var(--line-2); padding: 5px 6px; text-align: left; vertical-align: top; }
+table.t th { color: var(--muted); font-weight: 600; font-size: 12px; }
 pre { white-space: pre-wrap; margin: 0; font: inherit; }
-.muted { color: var(--muted); }
-.warn { color: var(--warn); font-weight: 600; }
-.ok { color: var(--ok); }
-a { color: var(--link); }
+.notice { background: var(--bg); border-radius: 4px; padding: 10px; }
+
+@media (max-width: 1100px) {
+  .rec { grid-template-columns: 1fr; }
+}
 @media (max-width: 820px) {
-  main { grid-template-columns: 1fr; }
-  nav { max-height: 240px; border-right: 0; border-bottom: 1px solid var(--line); }
-  .grid { grid-template-columns: 1fr; }
-  section#detail { padding: 14px 16px; }
+  main { grid-template-columns: 1fr; padding: 8px; }
+  .lv-body { max-height: 260px; }
+  .two, .kv { grid-template-columns: 1fr; }
+  .meta, .avatar { display: none; }
+  .path li span { font-size: 11px; }
+  .hl-actions { display: none; }
 }
 </style>
 </head>
 <body>
-<header>
-  <h1>claim-relay 담당자 화면</h1>
-  <p id="meta"></p>
-  <div class="stats" id="stats"></div>
-</header>
-<main>
-  <nav id="list"></nav>
+<div class="global">
+  <div class="logo"><i>CR</i>claim-relay</div>
+  <label class="search"><input id="q" type="search" placeholder="사고 ID나 구분으로 찾기" aria-label="사고 찾기"></label>
+  <div class="avatar" title="담당자">담당</div>
+</div>
+<div class="tabs">
+  <div class="app-name"><span class="dots"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span>청구 처리</div>
+  <button class="tab on" data-t="cases">사고</button>
+  <button class="tab" data-t="agents">단계 에이전트</button>
+  <div class="meta" id="meta"></div>
+</div>
+<main id="app">
+  <section class="box lv" id="listbox"></section>
   <section id="detail"></section>
 </main>
 <script src="data.js"></script>
 <script>
 const D = window.DATA;
+const ROUTES = ["자동 처리 후보", "사람 심사", "서류 보완", "멈춤"];
 const ROUTE_CLASS = { "자동 처리 후보": "r-auto", "사람 심사": "r-human", "서류 보완": "r-docs", "멈춤": "r-stop" };
 const LABEL = { place: "장소", me_move: "내 진행", me_order: "내 순서", other_move: "상대 진행", other_order: "상대 순서", other_from: "상대가 온 쪽" };
-let filter = null, selected = null;
+const AGENTS = Object.keys(D.agents);
+let filter = null, selected = null, query = "", recTab = "detail", appTab = "cases";
 
 const esc = s => String(s ?? "").replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
 const pill = r => `<span class="pill ${ROUTE_CLASS[r] || ""}">${esc(r)}</span>`;
 const lines = t => t.split("\n").map(s => s.trim()).filter(Boolean);
+const field = (lab, val) => `<div class="field"><div class="lab">${esc(lab)}</div><div class="val">${val}</div></div>`;
+const card = (icon, title, body, cnt) => `<div class="card"><div class="card-h"><span class="icon sm">${icon}</span>
+  <h3>${title}${cnt != null ? ` <span class="cnt">(${cnt})</span>` : ""}</h3></div><div class="card-b">${body}</div></div>`;
+const tagOf = c => c.expect ? c.expect.tag : "자연어 예시";
 
-function header() {
+function meta() {
   const charts = D.charts;
   document.getElementById("meta").innerHTML =
-    `가상 사고 ${D.cases.length}건, 만든 날 ${esc(D.generated)}. 과실 도표 8개는 ` +
-    `<a href="${esc(charts.source)}" target="_blank" rel="noopener">과실비율정보포털</a>에서 ${esc(charts.version)}에 옮김 ` +
-    `(${charts.confirmed ? "대조 완료" : "대조 전"}). 과실은 도표 기본값이며 확정이 아닙니다.`;
-  const count = {};
-  D.cases.forEach(c => count[c.result.route] = (count[c.result.route] || 0) + 1);
-  document.getElementById("stats").innerHTML = ["자동 처리 후보", "사람 심사", "서류 보완", "멈춤"].map(r =>
-    `<button class="stat ${filter === r ? "on" : ""}" data-r="${r}">${pill(r)}<b>${count[r] || 0}</b></button>`).join("");
-  document.querySelectorAll(".stat").forEach(b => b.onclick = () => {
-    filter = filter === b.dataset.r ? null : b.dataset.r; header(); list();
-  });
+    `가상 사고 ${D.cases.length}건, 만든 날 ${esc(D.generated)}. 도표 8개 ` +
+    `<a href="${esc(charts.source)}" target="_blank" rel="noopener">과실비율정보포털</a> ${esc(charts.version)} ` +
+    `(${charts.confirmed ? "대조 완료" : "대조 전"}). 과실은 기본값이며 확정이 아닙니다.`;
 }
 
 function list() {
-  const nav = document.getElementById("list");
-  const rows = D.cases.filter(c => !filter || c.result.route === filter);
-  nav.innerHTML = rows.map(c => {
-    const tag = c.expect ? c.expect.tag : "자연어 예시";
-    const miss = c.expect && c.expect.route !== c.result.route ? ` <span class="warn">기대와 다름</span>` : "";
-    return `<button data-id="${esc(c.case.id)}" class="${selected === c.case.id ? "sel" : ""}">
-      <span class="id">${esc(c.case.id)}</span>${pill(c.result.route)}${miss}<br><span class="tag">${esc(tag)}</span></button>`;
+  const box = document.getElementById("listbox");
+  const count = {};
+  D.cases.forEach(c => count[c.result.route] = (count[c.result.route] || 0) + 1);
+  const q = query.trim().toLowerCase();
+  const rows = D.cases.filter(c => (!filter || c.result.route === filter) &&
+    (!q || c.case.id.toLowerCase().includes(q) || tagOf(c).toLowerCase().includes(q)));
+  box.innerHTML = `<div class="lv-head">
+      <div class="lv-title"><span class="icon">사</span><div><div class="eyebrow">사고</div><h2>${esc(filter || "전체 사고")}</h2></div></div>
+      <p class="lv-sub">${rows.length}개 항목, 처리 경로로 거르기</p>
+      <div class="filters"><button class="filter ${filter ? "" : "on"}" data-r="">전체<b>${D.cases.length}</b></button>${ROUTES.map(r =>
+        `<button class="filter ${filter === r ? "on" : ""}" data-r="${r}">${esc(r)}<b>${count[r] || 0}</b></button>`).join("")}</div>
+    </div>
+    <div class="lv-body"><table><tr><th>사고 ID</th><th>처리 경로</th><th>구분</th></tr>
+    ${rows.map(c => {
+      const miss = c.expect && c.expect.route !== c.result.route ? `<br><span class="warn">기대와 다름</span>` : "";
+      return `<tr class="row ${selected === c.case.id ? "sel" : ""}" data-id="${esc(c.case.id)}">
+        <td><span class="id">${esc(c.case.id)}</span></td><td>${pill(c.result.route)}${miss}</td><td class="tag">${esc(tagOf(c))}</td></tr>`;
+    }).join("") || `<tr><td colspan="3" class="muted">맞는 사고가 없습니다.</td></tr>`}</table></div>`;
+  box.querySelectorAll(".filter").forEach(b => b.onclick = () => { filter = b.dataset.r || null; list(); });
+  box.querySelectorAll("tr.row").forEach(tr => tr.onclick = () => { location.hash = tr.dataset.id; });
+}
+
+function path(c, r) {
+  const ran = Object.fromEntries(c.steps.map(s => [s.agent, s]));
+  const stopAt = r.status === "멈춤" ? r.stop.agent : null;
+  const items = AGENTS.map(a => {
+    const cls = a === stopAt ? "halt" : ran[a] ? "done" : "";
+    return `<li class="${cls}" title="${esc(D.agents[a].badge)} ${esc(D.agents[a].name)}: ${esc(D.agents[a].scope)}"><span>${esc(D.agents[a].name.replace(" 에이전트", ""))}</span></li>`;
   }).join("");
-  nav.querySelectorAll("button").forEach(b => b.onclick = () => show(b.dataset.id));
+  const note = stopAt ? `<span class="warn">${esc(r.stop.badge)} ${esc(D.agents[stopAt].name)}에서 멈춤.</span> ${esc(r.stop.reason)}`
+    : `6단계를 모두 거쳤습니다. 단계 위에 마우스를 올리면 사원증과 맡은 일을 봅니다.`;
+  return `<ol class="path">${items}</ol><p class="path-note">${note}</p>`;
 }
 
 function statementCard(c, side, ev) {
@@ -133,7 +261,7 @@ function statementCard(c, side, ev) {
     });
     return `<li>${h}</li>`;
   }).join("") || `<li class="muted">진술 없음</li>`;
-  return `<div class="card"><h3>${side} 진술</h3><ol class="lines" start="0">${body}</ol></div>`;
+  return card(side === "고객" ? "고" : "상", `${side} 진술`, `<ol class="lines" start="0">${body}</ol>`, ls.length);
 }
 
 function elementsTable(r) {
@@ -146,45 +274,43 @@ function elementsTable(r) {
     return `<tr><th>${LABEL[f]}</th><td>${cell("고객")}</td><td>${cell("상대")}</td></tr>`;
   }).join("");
   const mods = s => r.evidence[s].modifiers.map(m => esc(m.value)).join(", ") || `<span class="muted">없음</span>`;
-  return `<div class="card"><h3>진술 요소와 근거</h3>
-    <table><tr><th></th><th>고객 진술</th><th>상대 진술</th></tr>${rows}
+  return card("근", "진술 요소와 근거", `<table class="t"><tr><th></th><th>고객 진술</th><th>상대 진술</th></tr>${rows}
     <tr><th>수정요소 주장</th><td>${mods("고객")}</td><td>${mods("상대")}</td></tr></table>
-    ${r.unverified.length ? `<p class="warn">근거 없음: ${esc(r.unverified.join(", "))}</p>` : ""}</div>`;
+    ${r.unverified.length ? `<p class="warn" style="margin-top:8px">근거 없음: ${esc(r.unverified.join(", "))}</p>` : ""}`);
 }
 
 function faultCard(r) {
   const s = r.notice && r.notice.staff;
-  let h = `<div class="card"><h3>과실 도표</h3>`;
+  let h = "";
   if (s && s.chart) {
     const c = s.chart;
-    h += `<p><a href="${esc(c.url)}" target="_blank" rel="noopener">${esc(c.id)} ${esc(c.title)}</a><br>
-      고객 ${esc(c.roles["고객"])}차 ${c.base["고객"]}%, 상대 ${esc(c.roles["상대"])}차 ${c.base["상대"]}% <span class="muted">(기본값)</span></p>`;
+    h += `<div class="kv">${field("도표", `<a href="${esc(c.url)}" target="_blank" rel="noopener">${esc(c.id)} ${esc(c.title)}</a>`)}
+      ${field("기본 과실(확정 아님)", `고객 ${esc(c.roles["고객"])}차 ${c.base["고객"]}%, 상대 ${esc(c.roles["상대"])}차 ${c.base["상대"]}%`)}</div>`;
   } else {
     h += `<p class="muted">맞는 도표를 하나로 정하지 못했습니다.</p>`;
   }
   if (s) {
     h += `<h4>쪽별 후보 도표</h4><p>고객: ${esc(s.candidates["고객"].join(", ") || "없음")} / 상대: ${esc(s.candidates["상대"].join(", ") || "없음")}</p>`;
-    if (s.conflicts.length) h += `<h4>엇갈린 항목</h4><table>${s.conflicts.map(x =>
+    if (s.conflicts.length) h += `<h4>엇갈린 항목</h4><table class="t">${s.conflicts.map(x =>
       `<tr><th>${esc(x.item)}</th><td>고객: ${esc(x["고객 진술"])}</td><td>상대: ${esc(x["상대 진술"])}</td></tr>`).join("")}</table>`;
   }
-  return h + `</div>`;
+  return card("과", "과실 도표", h);
 }
 
 function staffCard(c, r) {
-  let h = `<div class="card"><h3>담당자 카드</h3>`;
+  let h = "";
   if (r.status === "멈춤") {
     h += `<p class="warn">멈춤: ${esc(r.stop.badge)} ${esc(r.stop.agent)} 단계. ${esc(r.stop.reason)}</p>`;
   } else {
     const s = r.notice.staff;
-    h += `<p>${pill(r.route)}</p>`;
-    h += s.rules.length ? `<ul>${s.rules.map(x => `<li>${esc(x)}</li>`).join("")}</ul>` : `<p class="muted">걸린 규칙 없음</p>`;
-    h += `<table>
-      <tr><th>담보</th><td>${esc(c.case.coverage.join(", "))}</td></tr>
-      <tr><th>견적</th><td>${s.estimate == null ? "모름" : s.estimate.toLocaleString("ko-KR") + "원"}
-        ${s.estimate_limit ? `<span class="muted">(${esc(c.case.damage)} 상한 ${s.estimate_limit.toLocaleString("ko-KR")}원, 가상 기준)</span>` : ""}</td></tr>
-      <tr><th>상해등급</th><td>${s.injury_grade == null ? "해당 없음" : s.injury_grade + "급"}</td></tr>
-      <tr><th>빠진 서류</th><td>${esc(r.missing_docs.join(", ") || "없음")}</td></tr>
-    </table>`;
+    h += `<h4>걸린 규칙</h4>` + (s.rules.length ? `<ul>${s.rules.map(x => `<li>${esc(x)}</li>`).join("")}</ul>` : `<p class="muted">없음</p>`);
+    h += `<div class="kv">
+      ${field("견적", (s.estimate == null ? "모름" : s.estimate.toLocaleString("ko-KR") + "원") +
+        (s.estimate_limit ? ` <span class="muted">(${esc(c.case.damage)} 상한 ${s.estimate_limit.toLocaleString("ko-KR")}원, 가상 기준)</span>` : ""))}
+      ${field("상해등급", s.injury_grade == null ? "해당 없음" : s.injury_grade + "급")}
+      ${field("빠진 서류", esc(r.missing_docs.join(", ") || "없음"))}
+      ${field("경상 8주 일정(안내일 기준 확인 전)", r.schedule ? `8주 되는 날 ${esc(r.schedule.limit_date)}, 서류 안내일 ${esc(r.schedule.notice_date)}` : "해당 없음")}
+    </div>`;
     if (s.modifier_refs && s.modifier_refs.length) {
       h += `<h4>수정요소 참고값 <span class="muted">(포털 가감요소, ${s.modifiers_confirmed ? "대조 완료" : "대조 전"}. 자동 판단 안 함)</span></h4><ul>`;
       for (const m of s.modifier_refs) {
@@ -193,45 +319,95 @@ function staffCard(c, r) {
       }
       h += `</ul>`;
     }
-    if (r.schedule) h += `<h4>경상 8주 일정 <span class="muted">(안내일 기준 확인 전)</span></h4>
-      <p>8주 되는 날 ${esc(r.schedule.limit_date)}, 서류 안내일 ${esc(r.schedule.notice_date)}</p>`;
   }
   if (c.expect) {
     const ok = c.expect.route === r.route;
     h += `<h4>테스트셋 기대값</h4><p class="${ok ? "ok" : "warn"}">기대 경로 ${esc(c.expect.route)}, 규칙 ${esc(c.expect.rules.join(", ") || "없음")} ${ok ? "(일치)" : "(다름)"}</p>`;
   }
-  return h + `</div>`;
+  return card("담", "담당자 카드", h);
 }
 
 function ledgerCard(c) {
-  return `<div class="card"><h3>단계 이력과 사원증</h3><table>
+  return card("이", "단계 이력과 사원증", `<table class="t">
     <tr><th>사원증</th><th>단계</th><th>읽은 칸</th><th>쓴 칸</th></tr>
     ${c.steps.map(s => `<tr><td>${esc(s.badge)}</td><td>${esc(D.agents[s.agent].name)}</td>
-      <td>${esc(s.read.join(", ") || "-")}</td><td>${esc(s.wrote.join(", ") || "-")}</td></tr>`).join("")}</table></div>`;
+      <td>${esc(s.read.join(", ") || "-")}</td><td>${esc(s.wrote.join(", ") || "-")}</td></tr>`).join("")}</table>`, c.steps.length);
+}
+
+function compareCard(c, r) {
+  if (!c.alt) return "";
+  return card("비", "추출기 비교", `<table class="t">
+      <tr><th>단서 추출기(cues)</th><td>${pill(c.alt.route)}</td><td>${esc(c.alt.chart || "도표 없음")}</td></tr>
+      <tr><th>스킬 추출기(skill)</th><td>${pill(r.route)}</td><td>${esc(r.chart || "도표 없음")}</td></tr>
+      ${c.expect ? `<tr><th>기대값</th><td>${pill(c.expect.route)}</td><td>${esc(c.expect.chart || "도표 없음")}</td></tr>` : ""}</table>
+    <p class="muted" style="margin-top:8px">단서 낱말에 없는 표현이면 단서 추출기는 값을 비워 사람 심사로 넘깁니다. 스킬은 원문 인용을 남기고, 코드가 그 인용을 다시 찾아 확인합니다.</p>`);
+}
+
+function noticeCard(r) {
+  return card("안", "고객 안내문", r.notice ? `<div class="notice"><pre>${esc(r.notice.customer)}</pre></div>
+    <p class="muted" style="margin-top:8px">금지 표현과 출처 없는 숫자 검사를 통과했습니다.</p>` : `<p class="muted">멈춰서 안내문을 만들지 않았습니다.</p>`);
 }
 
 function show(id) {
+  const c = D.cases.find(x => x.case.id === id);
+  if (!c) return;
   selected = id; list();
-  const c = D.cases.find(x => x.case.id === id), r = c.result;
-  let h = `<h2 style="margin:0 0 4px">${esc(id)} ${pill(r.route)}</h2>
-    <p class="muted" style="margin:0 0 14px">${esc(c.case.date)} ${esc(c.case.kind)}, 담보 ${esc(c.case.coverage.join(", "))}, 피해 ${esc(c.case.damage)}
-    ${c.extractor ? `, 추출기 ${esc(c.extractor)}` : ""}</p>`;
-  if (c.alt) {
-    h += `<div class="card"><h3>추출기 비교</h3><p>단서 추출기(cues): ${pill(c.alt.route)} 도표 ${esc(c.alt.chart || "없음")}<br>
-      스킬 추출기(skill): ${pill(r.route)} 도표 ${esc(r.chart || "없음")}
-      ${c.expect ? `<br>기대값: ${pill(c.expect.route)} 도표 ${esc(c.expect.chart || "없음")}` : ""}</p>
-      <p class="muted">단서 낱말에 없는 표현이면 단서 추출기는 값을 비워 사람 심사로 넘깁니다. 스킬은 원문 인용을 남기고, 코드가 그 인용을 다시 찾아 확인합니다.</p></div>`;
-  }
-  h += `<div class="grid">${statementCard(c, "고객", r.evidence)}${statementCard(c, "상대", r.evidence)}</div>`;
-  h += `<div class="grid"><div>${staffCard(c, r)}${faultCard(r)}</div><div>`;
-  h += `<div class="card"><h3>고객 안내문</h3>${r.notice ? `<pre>${esc(r.notice.customer)}</pre>
-    <p class="muted">금지 표현과 출처 없는 숫자 검사를 통과했습니다.</p>` : `<p class="muted">멈춰서 안내문을 만들지 않았습니다.</p>`}</div>`;
-  h += elementsTable(r) + ledgerCard(c) + `</div></div>`;
-  document.getElementById("detail").innerHTML = h;
+  const r = c.result;
+  const i = D.cases.indexOf(c), prev = D.cases[i - 1], next = D.cases[i + 1];
+  let h = `<div class="box hl">
+    <div class="hl-top"><span class="icon">사</span><div><div class="eyebrow">사고</div><h1>${esc(id)}</h1></div>
+      <div class="hl-actions"><button class="btn" ${prev ? `data-go="${esc(prev.case.id)}"` : "disabled"}>이전</button><button class="btn" ${next ? `data-go="${esc(next.case.id)}"` : "disabled"}>다음</button></div></div>
+    <div class="fields">
+      ${field("처리 경로", pill(r.route))}${field("사고일", esc(c.case.date))}${field("사고 종류", esc(c.case.kind))}
+      ${field("담보", esc(c.case.coverage.join(", ")))}${field("피해", esc(c.case.damage))}${field("구분", esc(tagOf(c)))}
+      ${c.extractor ? field("추출기", esc(c.extractor)) : ""}
+    </div>
+    ${path(c, r)}
+  </div>`;
+  const tabs = [["detail", "상세"], ["statements", "진술과 근거"], ["ledger", "이력"]];
+  let pane;
+  if (recTab === "statements") pane = `<div class="two">${statementCard(c, "고객", r.evidence)}${statementCard(c, "상대", r.evidence)}</div>` + elementsTable(r);
+  else if (recTab === "ledger") pane = ledgerCard(c);
+  else pane = staffCard(c, r) + faultCard(r);
+  h += `<div class="rec"><div class="box"><div class="rtabs">${tabs.map(([k, v]) =>
+    `<button class="rtab ${recTab === k ? "on" : ""}" data-k="${k}">${v}</button>`).join("")}</div><div class="pane">${pane}</div></div>
+    <div class="box"><div class="pane">${compareCard(c, r)}${noticeCard(r)}</div></div></div>`;
+  const el = document.getElementById("detail");
+  el.innerHTML = h;
+  el.querySelectorAll(".rtab").forEach(b => b.onclick = () => { recTab = b.dataset.k; show(id); });
+  el.querySelectorAll("[data-go]").forEach(b => b.onclick = () => { location.hash = b.dataset.go; });
 }
 
-const start = D.cases.find(c => c.case.id === decodeURIComponent(location.hash.slice(1)));
-header(); list(); show((start || D.cases[0]).case.id);
+function agentsView() {
+  const used = {};
+  D.cases.forEach(c => c.steps.forEach(s => used[s.agent] = (used[s.agent] || 0) + 1));
+  document.getElementById("app").innerHTML = `<section class="box lv" style="grid-column:1/-1">
+    <div class="lv-head"><div class="lv-title"><span class="icon gray">AG</span><div><div class="eyebrow">단계 에이전트</div><h2>사원증 6개</h2></div></div>
+    <p class="lv-sub">에이전트마다 읽고 쓸 수 있는 칸이 정해져 있고, 범위를 넘으면 실행이 멈춥니다.</p></div>
+    <table><tr><th>사원증</th><th>이름</th><th>맡은 일</th><th>읽는 칸</th><th>쓰는 칸</th><th>거친 사고</th></tr>
+    ${AGENTS.map(a => { const g = D.agents[a]; return `<tr><td><b>${esc(g.badge)}</b></td><td>${esc(g.name)}</td><td>${esc(g.scope)}</td>
+      <td>${esc(g.read.join(", "))}</td><td>${esc(g.write.join(", "))}</td><td>${used[a] || 0}건</td></tr>`; }).join("")}</table></section>`;
+}
+
+function route() {
+  const id = decodeURIComponent(location.hash.slice(1));
+  if (appTab !== "cases") return;
+  show(D.cases.some(c => c.case.id === id) ? id : (selected || D.cases[0].case.id));
+}
+
+document.querySelectorAll(".tab").forEach(b => b.onclick = () => {
+  appTab = b.dataset.t;
+  document.querySelectorAll(".tab").forEach(x => x.classList.toggle("on", x === b));
+  if (appTab === "agents") return agentsView();
+  document.getElementById("app").innerHTML = `<section class="box lv" id="listbox"></section><section id="detail"></section>`;
+  route();
+});
+document.getElementById("q").oninput = e => {
+  query = e.target.value;
+  if (appTab === "cases") list();
+};
+window.addEventListener("hashchange", route);
+meta(); route();
 </script>
 </body>
 </html>
