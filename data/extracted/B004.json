@@ -1,0 +1,64 @@
+{
+  "고객": {
+    "place": {
+      "value": "단일로",
+      "line": 0,
+      "quote": "곧은 길"
+    },
+    "me_move": {
+      "value": "진로변경",
+      "line": 0,
+      "quote": "오른쪽 차로로 옮겨 탔어요"
+    },
+    "me_order": {
+      "value": "선행",
+      "line": 1,
+      "quote": "뒤차보다 앞에 있었는데"
+    },
+    "other_move": null,
+    "other_order": {
+      "value": "후행",
+      "line": 1,
+      "quote": "뒤차보다"
+    },
+    "other_from": {
+      "value": "같은방향",
+      "line": 1,
+      "quote": "같은 방향 오른쪽 차로 뒤차"
+    },
+    "modifiers": []
+  },
+  "상대": {
+    "place": {
+      "value": "단일로",
+      "line": 0,
+      "quote": "곧은 길"
+    },
+    "me_move": {
+      "value": "직진",
+      "line": 0,
+      "quote": "똑바로 가고 있었는데요"
+    },
+    "me_order": {
+      "value": "후행",
+      "line": 1,
+      "quote": "앞쪽 왼쪽 차로에 있던 차가"
+    },
+    "other_move": {
+      "value": "진로변경",
+      "line": 1,
+      "quote": "내 차로로 들어와서"
+    },
+    "other_order": {
+      "value": "선행",
+      "line": 1,
+      "quote": "앞쪽 왼쪽 차로에 있던 차가"
+    },
+    "other_from": {
+      "value": "같은방향",
+      "line": 2,
+      "quote": "같은 방향으로 가던 차"
+    },
+    "modifiers": []
+  }
+}

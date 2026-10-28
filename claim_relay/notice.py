@@ -37,11 +37,21 @@ def build(it, docs, fault, route, schedule):
     if schedule:
         lines.append(
             f"경상 치료 일정: 사고일부터 8주가 되는 날은 {schedule['limit_date']}입니다. "
-            f"그 뒤에도 치료를 이어 가려면 {schedule['notice_date']}까지 진단서를 더 내 주셔야 할 수 있습니다"
-            f"(기준 확인 전)."
+            f"그 뒤에도 치료를 받으려면 {schedule['notice_date']}까지 진단서를 더 내 주셔야 할 수 있습니다. "
+            f"이 기한은 기준 확인 전입니다."
         )
         used += [schedule["limit_date"], schedule["notice_date"]]
     return "\n".join(lines), used
+
+
+def readability(text):
+    """문장 길이와 어려운 말. 막지는 않고 평가 보고서에 참고로 싣는다."""
+    rule = settings()["readability"]
+    sents = [s.strip() for s in re.split(r"(?<=[.!?])\s+|\n", text) if s.strip()]
+    longest = max(sents, key=len)
+    jargon = [w for w in rule["jargon"] if w in text]
+    return {"sentences": len(sents), "longest": len(longest), "jargon": jargon,
+            "ok": len(longest) <= rule["max_sentence_chars"] and not jargon}
 
 
 def check(text, used):
@@ -68,9 +78,11 @@ def run(desk):
         "candidates": fault["candidates"],
         "conflicts": fault["conflicts"],
         "modifiers": fault["modifiers"],
+        "modifier_refs": fault["modifier_refs"],
+        "modifiers_confirmed": fault["modifiers_confirmed"],
         "estimate": docs["estimate"],
         "estimate_limit": docs["estimate_limit"],
         "injury_grade": docs["injury_grade"],
         "charts_confirmed": fault["charts_confirmed"],
     }
-    desk.put("notice", {"customer": text, "staff": staff, "checked": True})
+    desk.put("notice", {"customer": text, "staff": staff, "checked": True, "readability": readability(text)})

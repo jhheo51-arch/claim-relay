@@ -1,4 +1,4 @@
-"""가상 사고 40건 테스트셋을 data/testset/에 만든다.
+"""가상 사고 46건 테스트셋을 data/testset/에 만든다.
 
 기대값(경로, 걸린 규칙, 도표, 고객 기본 과실, 경상 일정)은 사례마다 손으로 적는다.
 규칙 코드로 계산하지 않아야 평가가 의미를 가진다. 날짜는 달력으로 직접 셌다.
@@ -202,7 +202,27 @@ texts, gold = scene_pair("차43-1", "B")
 texts["상대"] = ""
 add("상대 진술 없음", texts, None, expect("멈춤"))
 
-assert len(cases) == 40, len(cases)
+# 41~46: 서류 보완 추가. 앞 40건의 번호를 바꾸지 않으려고 뒤에 붙인다
+texts, gold = scene_pair("차15-1", "A")
+add("자차 견적서 없음", texts, gold, expect("서류 보완", ["R01", "R09"], "차15-1", 30),
+    coverage=("자차",), attachments=[])
+texts, gold = scene_pair("차43-3", "B")
+add("진단서 없음", texts, gold, expect("서류 보완", ["R01"], "차43-3", 50),
+    coverage=("대물", "대인"), attachments=[estimate(1_200_000), BILL])
+texts, gold = scene_pair("차19-1", "B")
+add("상해등급 못 읽음", texts, gold, expect("서류 보완", ["R01"], "차19-1", 80),
+    coverage=("대물", "대인"),
+    attachments=[estimate(1_200_000), {"doc": "진단서", "text": "진단명: 경추 염좌\n등급은 재진 후 기재"}, BILL])
+texts, gold = scene_pair("차13-1", "A")
+add("대물 대인 서류 모두 없음", texts, gold, expect("서류 보완", ["R01"], "차13-1", 60),
+    coverage=("대물", "대인"), attachments=[])
+texts, gold = scene_pair("차43-1", "B")
+add("견적서 대신 사진만", texts, gold, expect("서류 보완", ["R01"], "차43-1", 60),
+    attachments=[{"doc": "사고 사진", "text": "뒤범퍼 사진 3장"}])
+texts, gold = scene_pair("차43-2", "A", cust_extra=["방향지시등 미작동"])
+add("깜빡이 주장과 견적서 없음", texts, gold, expect("서류 보완", ["R01", "R07"], "차43-2", 30), attachments=[])
+
+assert len(cases) == 46, len(cases)
 
 if __name__ == "__main__":
     shutil.rmtree(OUT, ignore_errors=True)

@@ -74,6 +74,107 @@ class PipelineTest(unittest.TestCase):
         self.assertEqual(result["stop"]["agent"], "fault")
 
 
+class FakeClient:
+    """messages.create만 흉내 낸다. 쪽마다 정해 둔 답을 차례로 돌려준다."""
+    def __init__(self, answers, stop_reason="end_turn"):
+        self.answers, self.stop_reason, self.calls = list(answers), stop_reason, []
+        self.messages = self
+
+    def create(self, **kw):
+        self.calls.append(kw)
+        text = json.dumps(self.answers.pop(0), ensure_ascii=False)
+        block = type("Block", (), {"type": "text", "text": text})()
+        return type("Msg", (), {"stop_reason": self.stop_reason, "content": [block]})()
+
+
+class ModifierRefTest(unittest.TestCase):
+    def test_ref_shown_but_route_unchanged(self):
+        from claim_relay.__main__ import find_case
+        result, _ = run_case(find_case("B016"), "skill", ledger=False)
+        refs = result["notice"]["staff"]["modifier_refs"]
+        self.assertEqual(result["route"], "사람 심사")
+        self.assertEqual(refs[0]["against"], "상대")
+        self.assertEqual(refs[0]["add"], [10])
+        self.assertFalse(result["notice"]["staff"]["modifiers_confirmed"])
+        self.assertNotIn("10%", result["notice"]["customer"])
+
+
+class ReviewTest(unittest.TestCase):
+    def test_review_disagreement_counted(self):
+        import tempfile
+        from pathlib import Path
+        from claim_relay import review
+        with tempfile.TemporaryDirectory() as d:
+            review.save("C001", "사람 심사", note="블랙박스와 진술이 다름", folder=Path(d))
+            reviews = review.load_all(Path(d))
+        results = {"C001": run_case(case("C001"), ledger=False)[0]}
+        rows = review.compare(reviews, results)
+        self.assertEqual(results["C001"]["route"], "자동 처리 후보")
+        self.assertEqual(rows[0]["unsafe"], True)
+        self.assertIn("✗", review.report(rows))
+
+    def test_bad_route_rejected(self):
+        from claim_relay import review
+        with self.assertRaises(ValueError):
+            review.save("C001", "지급")
+
+
+class ReadabilityTest(unittest.TestCase):
+    def test_long_sentence_and_jargon_flagged(self):
+        from claim_relay.notice import readability
+        self.assertTrue(readability("접수되었습니다.\n서류를 보내 주세요.")["ok"])
+        r = readability("구상 절차가 진행될 수 있습니다.")
+        self.assertEqual(r["jargon"], ["구상"])
+        self.assertFalse(r["ok"])
+        self.assertFalse(readability("가" * 61 + ".")["ok"])
+
+
+class FollowupTest(unittest.TestCase):
+    def test_fault_objection_after_auto_reopens(self):
+        import tempfile
+        from pathlib import Path
+        from claim_relay import followup
+        with tempfile.TemporaryDirectory() as d:
+            first = followup.check("C001", "언제 처리되나요?", "자동 처리 후보", Path(d))
+            second = followup.check("C001", "과실이 이렇게 나온 건 납득이 안 됩니다", "자동 처리 후보", Path(d))
+            s = followup.summary(Path(d))
+        self.assertEqual(first["signal"]["id"], "진행 문의")
+        self.assertFalse(first["reopen"])
+        self.assertTrue(second["after_auto"])
+        self.assertEqual(s["reopened_after_auto"], ["C001"])
+
+    def test_complaint_wins_over_fault(self):
+        from claim_relay import followup
+        self.assertEqual(followup.signal("과실 때문에 금감원에 민원 넣겠습니다")["id"], "민원")
+
+
+class ApiExtractorTest(unittest.TestCase):
+    def test_api_answer_goes_through_same_checks(self):
+        c = case("C003")
+        gold = c["expect"]["elements"]
+        fake = FakeClient([gold["고객"], gold["상대"]])
+        result, _ = run_case(c, "api", ledger=False, client=fake)
+        self.assertEqual(result["route"], c["expect"]["route"])
+        self.assertEqual(result["chart"], c["expect"]["chart"])
+        self.assertNotIn("temperature", fake.calls[0])
+        self.assertIn("json_schema", json.dumps(fake.calls[0]["output_config"]))
+
+    def test_api_made_up_quote_goes_to_human(self):
+        c = case("C003")
+        gold = json.loads(json.dumps(c["expect"]["elements"]))
+        gold["고객"]["other_move"]["quote"] = "끼어들었"
+        result, _ = run_case(c, "api", ledger=False, client=FakeClient([gold["고객"], gold["상대"]]))
+        self.assertIn("고객 상대 진행", result["unverified"])
+        self.assertEqual(result["route"], "사람 심사")
+
+    def test_api_refusal_stops(self):
+        c = case("C003")
+        fake = FakeClient([{}, {}], stop_reason="refusal")
+        result, _ = run_case(c, "api", ledger=False, client=fake)
+        self.assertEqual(result["status"], "멈춤")
+        self.assertIn("거절", result["stop"]["reason"])
+
+
 class NoticeCheckTest(unittest.TestCase):
     def test_forbidden_phrase(self):
         with self.assertRaises(StopError):

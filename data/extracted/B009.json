@@ -1,0 +1,52 @@
+{
+  "고객": {
+    "place": {
+      "value": "신호없는교차로",
+      "line": 0,
+      "quote": "신호등 없는 교차로"
+    },
+    "me_move": {
+      "value": "직진",
+      "line": 0,
+      "quote": "똑바로 지나가던 중"
+    },
+    "me_order": null,
+    "other_move": {
+      "value": "좌회전",
+      "line": 1,
+      "quote": "왼쪽으로 꺾어서"
+    },
+    "other_order": null,
+    "other_from": {
+      "value": "오른쪽",
+      "line": 1,
+      "quote": "내 오른쪽 길에서"
+    },
+    "modifiers": []
+  },
+  "상대": {
+    "place": {
+      "value": "신호없는교차로",
+      "line": 0,
+      "quote": "신호등 없는 교차로"
+    },
+    "me_move": {
+      "value": "좌회전",
+      "line": 0,
+      "quote": "왼쪽으로 꺾고 있었어요"
+    },
+    "me_order": null,
+    "other_move": {
+      "value": "직진",
+      "line": 1,
+      "quote": "똑바로 오던 차랑"
+    },
+    "other_order": null,
+    "other_from": {
+      "value": "왼쪽",
+      "line": 1,
+      "quote": "내 왼쪽 길에서"
+    },
+    "modifiers": []
+  }
+}

@@ -1,0 +1,52 @@
+{
+  "고객": {
+    "place": {
+      "value": "단일로",
+      "line": 0,
+      "quote": "곧은 길"
+    },
+    "me_move": {
+      "value": "진로변경",
+      "line": 0,
+      "quote": "2차로로 옮기던 중"
+    },
+    "me_order": null,
+    "other_move": {
+      "value": "진로변경",
+      "line": 1,
+      "quote": "똑같이 2차로로 들어와서"
+    },
+    "other_order": null,
+    "other_from": {
+      "value": "같은방향",
+      "line": 1,
+      "quote": "같은 방향 3차로 차"
+    },
+    "modifiers": []
+  },
+  "상대": {
+    "place": {
+      "value": "단일로",
+      "line": 0,
+      "quote": "곧은 길"
+    },
+    "me_move": {
+      "value": "진로변경",
+      "line": 0,
+      "quote": "2차로로 옮기고 있었어요"
+    },
+    "me_order": null,
+    "other_move": {
+      "value": "진로변경",
+      "line": 1,
+      "quote": "동시에 2차로로 들어왔어요"
+    },
+    "other_order": null,
+    "other_from": {
+      "value": "같은방향",
+      "line": 1,
+      "quote": "같은 방향 1차로 차"
+    },
+    "modifiers": []
+  }
+}

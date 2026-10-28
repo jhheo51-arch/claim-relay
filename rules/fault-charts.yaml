@@ -8,6 +8,13 @@ moved_by: Claude, 도표 상세 페이지의 '기본 과실' 칸을 옮김
 confirmed: true
 confirmed_by: 사용자, 2026-10-28 대조표 검토 후 진행 승인
 
+# 수정요소 참고값(modifiers): 도표 상세 페이지 '가감요소' 표에서 진술 수정요소 4가지에 맞는 줄만 옮김.
+# 2026-10-28 Claude가 옮김, 사용자 대조 전. 담당자 카드에 참고로만 보이고 경로와 과실 계산에는 쓰지 않는다.
+# party: 가산 대상 차(A, B, AB는 두 차 각각). add: 가산 상한(%p). 과속은 도표마다 별도 줄이 없어
+# 현저한 과실(10) 또는 중대한 과실(20) 중 무엇으로 볼지 담당자가 정한다.
+modifiers_confirmed: false
+speeding_ref: {item: 현저한 과실 또는 중대한 과실, add: [10, 20]}
+
 # 조건 키: move(내 진행), order(선행/후행), from(상대가 온 쪽). 적지 않은 키는 따지지 않는다
 charts:
   - id: 차41-1
@@ -17,6 +24,8 @@ charts:
     B: {move: [직진, 정지], order: 선행, from: 같은방향}
     base: {A: 100, B: 0}
     url: https://accident.knia.or.kr/myaccident-content?chartNo=차41-1&chartType=1
+    modifiers:
+      급정지: {item: 이유 없는 급 정지, party: B, add: 30}
   - id: 차43-2
     title: 후행 직진 대 선행 진로변경
     place: 단일로
@@ -24,6 +33,9 @@ charts:
     B: {move: 진로변경, order: 선행, from: 같은방향}
     base: {A: 30, B: 70}
     url: https://accident.knia.or.kr/myaccident-content?chartNo=차43-2&chartType=1
+    modifiers:
+      방향지시등 미작동: {item: 진로변경 신호불이행·지연, party: B, add: 10}
+      진로변경 금지장소: {item: 진로변경 금지장소, party: B, add: 20}
   - id: 차43-3
     title: 좌우 동시 차로 변경 사고
     place: 단일로
@@ -31,6 +43,9 @@ charts:
     B: {move: 진로변경, from: 같은방향}
     base: {A: 50, B: 50}
     url: https://accident.knia.or.kr/myaccident-content?chartNo=차43-3&chartType=1
+    modifiers:
+      방향지시등 미작동: {item: 진로변경 신호불이행·지연, party: AB, add: 10}
+      진로변경 금지장소: {item: 진로변경 금지장소, party: AB, add: 20}
   - id: 차43-1
     title: 차로 감소 도로(합류) 사고
     place: 합류지점
@@ -45,6 +60,8 @@ charts:
     B: {move: [좌회전, 우회전], order: 선행, from: 같은방향}
     base: {A: 20, B: 80}
     url: https://accident.knia.or.kr/myaccident-content?chartNo=차19-1&chartType=1
+    modifiers:
+      방향지시등 미작동: {item: 진로변경신호 불이행·지연, party: B, add: 10}
   - id: 차16-1
     title: 왼쪽 직진 대 오른쪽 좌회전
     place: 신호없는교차로
@@ -52,6 +69,8 @@ charts:
     B: {move: 좌회전, from: 왼쪽}
     base: {A: 40, B: 60}
     url: https://accident.knia.or.kr/myaccident-content?chartNo=차16-1&chartType=1
+    modifiers:
+      방향지시등 미작동: {item: 신호불이행·지연, party: B, add: 10}
   - id: 차13-1
     title: 오른쪽 우회전 대 왼쪽 직진
     place: 신호없는교차로
@@ -66,3 +85,5 @@ charts:
     B: {move: 좌회전, from: 맞은편}
     base: {A: 30, B: 70}
     url: https://accident.knia.or.kr/myaccident-content?chartNo=차15-1&chartType=1
+    modifiers:
+      방향지시등 미작동: {item: 신호불이행·지연, party: B, add: 10}

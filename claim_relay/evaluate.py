@@ -2,13 +2,13 @@
 import json
 from datetime import date
 
-from .config import ROOT, SIDES, load
+from .config import ROOT, SIDES, load, settings
 from .extract import FIELDS
 from .pipeline import run_case
 
 TESTSET = ROOT / "data" / "testset"
 NATURAL = ROOT / "data" / "natural"
-SETS = {"testset": "템플릿 테스트셋", "natural": "자연어 진술"}
+SETS = {"testset": "템플릿 테스트셋", "natural": "자연어 진술", "blind": "다른 모델이 쓴 진술(블라인드)"}
 CHECKS = ("route", "rules", "chart", "base", "schedule")
 
 
@@ -20,12 +20,13 @@ def load_testset():
     return cases
 
 
-def load_natural():
+def load_natural(name="natural"):
     """사례 파일과 기대값이 따로 있다(스킬 추출이 기대값을 못 보게). 여기서 합친다."""
-    with open(NATURAL / "expect.json", encoding="utf-8") as f:
+    folder = ROOT / "data" / name
+    with open(folder / "expect.json", encoding="utf-8") as f:
         expect = json.load(f)
     cases = []
-    for path in sorted((NATURAL / "cases").glob("*.json")):
+    for path in sorted((folder / "cases").glob("*.json")):
         with open(path, encoding="utf-8") as f:
             case = json.load(f)
         cases.append({**case, "expect": expect[case["id"]]})
@@ -33,7 +34,7 @@ def load_natural():
 
 
 def load_set(name):
-    return load_natural() if name == "natural" else load_testset()
+    return load_testset() if name == "testset" else load_natural(name)
 
 
 def actual(result):
@@ -106,9 +107,14 @@ def evaluate(extractor="cues", repeat=3, dataset="testset"):
         "extraction": round(100 * ext_hit / ext_total, 1) if ext_total else None,
         "drift": sum(r["drift"] for r in rows),
         "all_pass": sum(not r["diff"] for r in rows),
+        # 안내문 읽기: 판정에는 넣지 않는 참고 지표
+        "notices": sum(bool(r["result"]["notice"]) for r in rows),
+        "readable": sum(bool(r["result"]["notice"]) and r["result"]["notice"]["readability"]["ok"] for r in rows),
     }
+    # 정답 요소가 없는 세트(블라인드)는 추출 일치를 재지 않고 결과만 본다
+    extraction_ok = metrics["extraction"] is None or metrics["extraction"] >= 95
     passed = (metrics["route"] == n and metrics["unsafe_auto"] == 0 and metrics["chart"] == n
-              and (metrics["extraction"] or 0) >= 95 and metrics["drift"] == 0)
+              and extraction_ok and metrics["drift"] == 0)
     return {"extractor": extractor, "repeat": repeat, "dataset": dataset, "metrics": metrics, "rows": rows,
             "unsafe": unsafe, "passed": passed}
 
@@ -129,10 +135,12 @@ def report(ev, today=None):
         f"| 도표 일치 | {n}/{n} | {m['chart']}/{n} |",
         f"| 걸린 규칙 일치 | {n}/{n} | {m['rules']}/{n} |",
         f"| 경상 일정 일치 | {n}/{n} | {m['schedule']}/{n} |",
-        f"| 추출 일치 | 95% 이상 | {m['extraction']}% |",
+        f"| 추출 일치 | 95% 이상 | {'정답 요소 없음' if m['extraction'] is None else str(m['extraction']) + '%'} |",
         f"| 반복 실행 차이 | 0 | {m['drift']} |",
+        f"| 안내문 읽기 기준 충족(참고) | {m['notices']}/{m['notices']} | {m['readable']}/{m['notices']} |",
         "",
-        f"판정: {'통과' if ev['passed'] else '미통과'}",
+        f"판정: {'통과' if ev['passed'] else '미통과'}. 읽기 기준은 한 문장 {settings()['readability']['max_sentence_chars']}자 이하, "
+        "어려운 말(rules/settings.yaml) 없음이며 판정에는 넣지 않습니다.",
         "",
         "| 사례 | 함정 | 기대 경로 | 결과 경로 | 도표 | 다른 항목 |",
         "|---|---|---|---|---|---|",
@@ -152,6 +160,9 @@ def compare(a, b, today=None):
     def auto_kept(ev):
         return sum(r["want"]["route"] == r["got"]["route"] == "자동 처리 후보" for r in ev["rows"])
 
+    def pct(m):
+        return "정답 요소 없음" if m["extraction"] is None else f"{m['extraction']}%"
+
     na, nb = f"`{a['extractor']}`", f"`{b['extractor']}`"
     lines = [
         f"# 추출기 비교: {SETS[a['dataset']]} ({today or date.today().isoformat()})",
@@ -165,7 +176,7 @@ def compare(a, b, today=None):
         f"| 자동 처리 후보로 남긴 건(기대 {auto}건 중) | {auto_kept(a)} | {auto_kept(b)} |",
         f"| 도표 일치 | {ma['chart']}/{n} | {mb['chart']}/{n} |",
         f"| 걸린 규칙 일치 | {ma['rules']}/{n} | {mb['rules']}/{n} |",
-        f"| 추출 일치 | {ma['extraction']}% | {mb['extraction']}% |",
+        f"| 추출 일치 | {pct(ma)} | {pct(mb)} |",
         f"| 반복 실행 차이 | {ma['drift']} | {mb['drift']} |",
         "",
         f"| 사례 | 함정 | 기대 경로, 도표 | {na} 경로, 도표, 규칙 | {nb} 경로, 도표, 규칙 | 추출 일치 {na} / {nb} |",

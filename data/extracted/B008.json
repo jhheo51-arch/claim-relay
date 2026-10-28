@@ -1,0 +1,68 @@
+{
+  "고객": {
+    "place": {
+      "value": "신호없는교차로",
+      "line": 0,
+      "quote": "신호등 없는 교차로"
+    },
+    "me_move": {
+      "value": "좌회전",
+      "line": 0,
+      "quote": "왼쪽 길로 들어가려고 꺾고"
+    },
+    "me_order": {
+      "value": "선행",
+      "line": 2,
+      "quote": "제가 앞에 있었는데"
+    },
+    "other_move": {
+      "value": "직진",
+      "line": 1,
+      "quote": "그대로 직진하다가"
+    },
+    "other_order": {
+      "value": "후행",
+      "line": 1,
+      "quote": "뒤에서 따라오던 차가"
+    },
+    "other_from": {
+      "value": "같은방향",
+      "line": 1,
+      "quote": "같은 방향 뒤에서"
+    },
+    "modifiers": []
+  },
+  "상대": {
+    "place": {
+      "value": "신호없는교차로",
+      "line": 0,
+      "quote": "신호등 없는 교차로"
+    },
+    "me_move": {
+      "value": "직진",
+      "line": 0,
+      "quote": "똑바로 가고 있었어요"
+    },
+    "me_order": {
+      "value": "후행",
+      "line": 2,
+      "quote": "제가 뒤에 있었고"
+    },
+    "other_move": {
+      "value": "좌회전",
+      "line": 1,
+      "quote": "왼쪽으로 꺾었어요"
+    },
+    "other_order": {
+      "value": "선행",
+      "line": 0,
+      "quote": "앞차를 따라"
+    },
+    "other_from": {
+      "value": "같은방향",
+      "line": 0,
+      "quote": "같은 방향 앞차"
+    },
+    "modifiers": []
+  }
+}

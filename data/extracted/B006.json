@@ -1,0 +1,52 @@
+{
+  "고객": {
+    "place": {
+      "value": "합류지점",
+      "line": 0,
+      "quote": "차로 하나가 끝나는 구간"
+    },
+    "me_move": {
+      "value": "합류",
+      "line": 1,
+      "quote": "옆 차로로 끼어 들어가야 했는데요"
+    },
+    "me_order": null,
+    "other_move": {
+      "value": "직진",
+      "line": 2,
+      "quote": "오던 옆 차로 차랑"
+    },
+    "other_order": null,
+    "other_from": {
+      "value": "같은방향",
+      "line": 2,
+      "quote": "같은 방향으로 오던"
+    },
+    "modifiers": []
+  },
+  "상대": {
+    "place": {
+      "value": "합류지점",
+      "line": 0,
+      "quote": "차로 하나가 없어지는 구간"
+    },
+    "me_move": {
+      "value": "직진",
+      "line": 1,
+      "quote": "똑바로 가고 있었는데요"
+    },
+    "me_order": null,
+    "other_move": {
+      "value": "합류",
+      "line": 2,
+      "quote": "제 차로로 들어오다가"
+    },
+    "other_order": null,
+    "other_from": {
+      "value": "같은방향",
+      "line": 2,
+      "quote": "같은 방향 옆 차로가 끝나면서"
+    },
+    "modifiers": []
+  }
+}

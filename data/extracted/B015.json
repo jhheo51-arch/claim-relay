@@ -1,0 +1,68 @@
+{
+  "고객": {
+    "place": {
+      "value": "단일로",
+      "line": 0,
+      "quote": "곧은 길"
+    },
+    "me_move": {
+      "value": "정지",
+      "line": 0,
+      "quote": "앞에 서 있었어요"
+    },
+    "me_order": {
+      "value": "선행",
+      "line": 0,
+      "quote": "앞에 서 있었어요"
+    },
+    "other_move": {
+      "value": "직진",
+      "line": 1,
+      "quote": "뒤차가 와서"
+    },
+    "other_order": {
+      "value": "후행",
+      "line": 1,
+      "quote": "뒤차가"
+    },
+    "other_from": {
+      "value": "같은방향",
+      "line": 1,
+      "quote": "같은 방향 뒤차가"
+    },
+    "modifiers": []
+  },
+  "상대": {
+    "place": {
+      "value": "단일로",
+      "line": 0,
+      "quote": "곧은 길"
+    },
+    "me_move": {
+      "value": "정지",
+      "line": 1,
+      "quote": "서 있었는데"
+    },
+    "me_order": {
+      "value": "선행",
+      "line": 1,
+      "quote": "제가 앞에서 서 있었는데"
+    },
+    "other_move": {
+      "value": "직진",
+      "line": 1,
+      "quote": "뒤차가 와서"
+    },
+    "other_order": {
+      "value": "후행",
+      "line": 1,
+      "quote": "같은 방향 뒤차가"
+    },
+    "other_from": {
+      "value": "같은방향",
+      "line": 1,
+      "quote": "같은 방향 뒤차가"
+    },
+    "modifiers": []
+  }
+}

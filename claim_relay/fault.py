@@ -76,6 +76,26 @@ def pick_chart(cust, other):
     }, candidates
 
 
+def modifier_refs(chart, modifiers, charts_file):
+    """주장된 수정요소마다 도표의 가감요소 참고값을 붙인다. 과실 계산에는 쓰지 않는다."""
+    if not chart:
+        return []
+    table = next(c for c in charts_file["charts"] if c["id"] == chart["id"]).get("modifiers") or {}
+    side_of = {role: side for side, role in chart["roles"].items()}
+    refs = []
+    for m in modifiers:
+        if m == "과속":
+            ref = charts_file["speeding_ref"]
+            refs.append({"claim": m, "item": ref["item"], "against": "주장된 쪽", "add": ref["add"]})
+        elif m in table:
+            ref = table[m]
+            against = "양쪽 각각" if ref["party"] == "AB" else side_of[ref["party"]]
+            refs.append({"claim": m, "item": ref["item"], "against": against, "add": [ref["add"]]})
+        else:
+            refs.append({"claim": m, "item": None, "against": None, "add": []})
+    return refs
+
+
 def run(desk, extractor):
     it = desk.get("intake")
     sides, unverified = {}, []
@@ -95,6 +115,8 @@ def run(desk, extractor):
         "candidates": candidates,
         "conflicts": conflicts,
         "modifiers": modifiers,
+        "modifier_refs": modifier_refs(chart, modifiers, charts_file),
+        "modifiers_confirmed": charts_file["modifiers_confirmed"],
         "charts_confirmed": charts_file["confirmed"],
         "charts_version": str(charts_file["version"]),
     })

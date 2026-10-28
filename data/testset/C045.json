@@ -1,0 +1,85 @@
+{
+  "id": "C045",
+  "date": "2026-10-02",
+  "kind": "차대차",
+  "coverage": [
+    "대물"
+  ],
+  "damage": "경미",
+  "parties": {
+    "고객": {
+      "statement": "차로가 줄어드는 합류 구간이었습니다.\n저는 합류하고 있었습니다.\n상대 차는 같은 방향에서 직진하고 있었습니다."
+    },
+    "상대": {
+      "statement": "차로가 줄어드는 합류 구간이었습니다.\n저는 직진하고 있었습니다.\n상대 차는 같은 방향에서 합류하고 있었습니다."
+    }
+  },
+  "attachments": [
+    {
+      "doc": "사고 사진",
+      "text": "뒤범퍼 사진 3장"
+    }
+  ],
+  "expect": {
+    "tag": "견적서 대신 사진만",
+    "route": "서류 보완",
+    "rules": [
+      "R01"
+    ],
+    "chart": "차43-1",
+    "base": 60,
+    "schedule": null,
+    "elements": {
+      "고객": {
+        "place": {
+          "value": "합류지점",
+          "line": 0,
+          "quote": "합류 구간"
+        },
+        "me_move": {
+          "value": "합류",
+          "line": 1,
+          "quote": "합류하고"
+        },
+        "me_order": null,
+        "other_move": {
+          "value": "직진",
+          "line": 2,
+          "quote": "직진하고"
+        },
+        "other_order": null,
+        "other_from": {
+          "value": "같은방향",
+          "line": 2,
+          "quote": "같은 방향에서"
+        },
+        "modifiers": []
+      },
+      "상대": {
+        "place": {
+          "value": "합류지점",
+          "line": 0,
+          "quote": "합류 구간"
+        },
+        "me_move": {
+          "value": "직진",
+          "line": 1,
+          "quote": "직진하고"
+        },
+        "me_order": null,
+        "other_move": {
+          "value": "합류",
+          "line": 2,
+          "quote": "합류하고"
+        },
+        "other_order": null,
+        "other_from": {
+          "value": "같은방향",
+          "line": 2,
+          "quote": "같은 방향에서"
+        },
+        "modifiers": []
+      }
+    }
+  }
+}

@@ -49,10 +49,10 @@ def summarize(board, status, stop):
     }
 
 
-def run_case(case, extractor="cues", gold=None, ledger=True):
+def run_case(case, extractor="cues", gold=None, ledger=True, client=None):
     raw = {k: v for k, v in case.items() if k != "expect"}
     board = {"raw": raw}
-    extract = make_extractor(extractor, gold)
+    extract = make_extractor(extractor, gold, client)
     steps, status, stop = [], "완료", None
     for agent, fn in STAGES:
         desk = Desk(board, agent)

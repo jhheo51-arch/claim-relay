@@ -185,6 +185,14 @@ function staffCard(c, r) {
       <tr><th>상해등급</th><td>${s.injury_grade == null ? "해당 없음" : s.injury_grade + "급"}</td></tr>
       <tr><th>빠진 서류</th><td>${esc(r.missing_docs.join(", ") || "없음")}</td></tr>
     </table>`;
+    if (s.modifier_refs && s.modifier_refs.length) {
+      h += `<h4>수정요소 참고값 <span class="muted">(포털 가감요소, ${s.modifiers_confirmed ? "대조 완료" : "대조 전"}. 자동 판단 안 함)</span></h4><ul>`;
+      for (const m of s.modifier_refs) {
+        h += m.item ? `<li>${esc(m.claim)}: ${esc(m.item)}, ${esc(m.against)} 최대 +${esc(m.add.join(" 또는 +"))}%p</li>`
+                    : `<li>${esc(m.claim)}: 이 도표에 맞는 가감요소 없음</li>`;
+      }
+      h += `</ul>`;
+    }
     if (r.schedule) h += `<h4>경상 8주 일정 <span class="muted">(안내일 기준 확인 전)</span></h4>
       <p>8주 되는 날 ${esc(r.schedule.limit_date)}, 서류 안내일 ${esc(r.schedule.notice_date)}</p>`;
   }

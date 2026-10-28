@@ -1,0 +1,179 @@
+{
+  "B001": {
+    "tag": "정차 중 뒤에서 받힘(차41-1 고객B)",
+    "route": "자동 처리 후보",
+    "rules": [],
+    "chart": "차41-1",
+    "base": 0,
+    "schedule": null
+  },
+  "B002": {
+    "tag": "앞차를 뒤에서 박음(차41-1 고객A)",
+    "route": "자동 처리 후보",
+    "rules": [],
+    "chart": "차41-1",
+    "base": 100,
+    "schedule": null
+  },
+  "B003": {
+    "tag": "직진 중 앞차가 끼어듦(차43-2 고객A)",
+    "route": "자동 처리 후보",
+    "rules": [],
+    "chart": "차43-2",
+    "base": 30,
+    "schedule": null
+  },
+  "B004": {
+    "tag": "차로를 옮기다 뒤차와 부딪침(차43-2 고객B)",
+    "route": "자동 처리 후보",
+    "rules": [],
+    "chart": "차43-2",
+    "base": 70,
+    "schedule": null
+  },
+  "B005": {
+    "tag": "양쪽에서 동시에 가운데 차로로(차43-3 고객A)",
+    "route": "자동 처리 후보",
+    "rules": [],
+    "chart": "차43-3",
+    "base": 50,
+    "schedule": null
+  },
+  "B006": {
+    "tag": "합류하다 본선 차와 부딪침(차43-1 고객B)",
+    "route": "자동 처리 후보",
+    "rules": [],
+    "chart": "차43-1",
+    "base": 60,
+    "schedule": null
+  },
+  "B007": {
+    "tag": "앞차가 교차로에서 좌회전(차19-1 고객A)",
+    "route": "자동 처리 후보",
+    "rules": [],
+    "chart": "차19-1",
+    "base": 20,
+    "schedule": null
+  },
+  "B008": {
+    "tag": "교차로에서 좌회전하다 뒤차와(차19-1 고객B)",
+    "route": "자동 처리 후보",
+    "rules": [],
+    "chart": "차19-1",
+    "base": 80,
+    "schedule": null
+  },
+  "B009": {
+    "tag": "직진 중 오른쪽 길 차가 좌회전(차16-1 고객A)",
+    "route": "자동 처리 후보",
+    "rules": [],
+    "chart": "차16-1",
+    "base": 40,
+    "schedule": null
+  },
+  "B010": {
+    "tag": "좌회전 중 왼쪽 길 직진차와(차16-1 고객B)",
+    "route": "자동 처리 후보",
+    "rules": [],
+    "chart": "차16-1",
+    "base": 60,
+    "schedule": null
+  },
+  "B011": {
+    "tag": "우회전 중 왼쪽 길 직진차와(차13-1 고객A)",
+    "route": "자동 처리 후보",
+    "rules": [],
+    "chart": "차13-1",
+    "base": 60,
+    "schedule": null
+  },
+  "B012": {
+    "tag": "직진 중 오른쪽 길 우회전차와(차13-1 고객B)",
+    "route": "자동 처리 후보",
+    "rules": [],
+    "chart": "차13-1",
+    "base": 40,
+    "schedule": null
+  },
+  "B013": {
+    "tag": "직진 중 맞은편 좌회전(차15-1 고객A)",
+    "route": "자동 처리 후보",
+    "rules": [],
+    "chart": "차15-1",
+    "base": 30,
+    "schedule": null
+  },
+  "B014": {
+    "tag": "둘 다 직진했다고 함",
+    "route": "사람 심사",
+    "rules": [
+      "R05",
+      "R06"
+    ],
+    "chart": null,
+    "base": null,
+    "schedule": null
+  },
+  "B015": {
+    "tag": "서로 자기가 앞이었다고 함",
+    "route": "사람 심사",
+    "rules": [
+      "R05",
+      "R06"
+    ],
+    "chart": null,
+    "base": null,
+    "schedule": null
+  },
+  "B016": {
+    "tag": "깜빡이 없이 끼어들었다고 주장(차43-2 고객A)",
+    "route": "사람 심사",
+    "rules": [
+      "R07"
+    ],
+    "chart": "차43-2",
+    "base": 30,
+    "schedule": null
+  },
+  "B017": {
+    "tag": "앞차가 이유 없이 급히 섰다고 주장(차41-1 고객A)",
+    "route": "사람 심사",
+    "rules": [
+      "R07"
+    ],
+    "chart": "차41-1",
+    "base": 100,
+    "schedule": null
+  },
+  "B018": {
+    "tag": "맞은편 차가 너무 빨랐다고 주장(차15-1 고객B)",
+    "route": "사람 심사",
+    "rules": [
+      "R07"
+    ],
+    "chart": "차15-1",
+    "base": 70,
+    "schedule": null
+  },
+  "B019": {
+    "tag": "신호등 있는 교차로(도표 밖)",
+    "route": "사람 심사",
+    "rules": [
+      "R06"
+    ],
+    "chart": null,
+    "base": null,
+    "schedule": null
+  },
+  "B020": {
+    "tag": "합류 구간 본선 직진, 경상 13급(차43-1 고객A)",
+    "route": "자동 처리 후보",
+    "rules": [],
+    "chart": "차43-1",
+    "base": 40,
+    "schedule": [
+      "2026-12-09",
+      "2026-12-02"
+    ]
+  }
+}
