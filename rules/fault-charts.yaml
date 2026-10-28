@@ -1,0 +1,67 @@
+# 과실 도표 8개. 손해보험협회 과실비율정보포털의 도표 상세 페이지에서 옮김.
+# 고른 기준: 포털 '과실도표 검색순위' 차 대 차 탭(최근 30일, 2026-10-28 조회)에서
+# 주차, 주정차 도표를 빼고 움직이는 두 차의 사고 유형을 골랐다.
+# confirmed: 사용자가 포털에서 값을 직접 대조하면 true로 바꾼다.
+version: 2026-10-28
+source: https://accident.knia.or.kr/ranking
+moved_by: Claude, 도표 상세 페이지의 '기본 과실' 칸을 옮김
+confirmed: false
+
+# 조건 키: move(내 진행), order(선행/후행), from(상대가 온 쪽). 적지 않은 키는 따지지 않는다
+charts:
+  - id: 차41-1
+    title: 양 차량 주행 중 후방 추돌
+    place: 단일로
+    A: {move: 직진, order: 후행, from: 같은방향}
+    B: {move: [직진, 정지], order: 선행, from: 같은방향}
+    base: {A: 100, B: 0}
+    url: https://accident.knia.or.kr/myaccident-content?chartNo=차41-1&chartType=1
+  - id: 차43-2
+    title: 후행 직진 대 선행 진로변경
+    place: 단일로
+    A: {move: 직진, order: 후행, from: 같은방향}
+    B: {move: 진로변경, order: 선행, from: 같은방향}
+    base: {A: 30, B: 70}
+    url: https://accident.knia.or.kr/myaccident-content?chartNo=차43-2&chartType=1
+  - id: 차43-3
+    title: 좌우 동시 차로 변경 사고
+    place: 단일로
+    A: {move: 진로변경, from: 같은방향}
+    B: {move: 진로변경, from: 같은방향}
+    base: {A: 50, B: 50}
+    url: https://accident.knia.or.kr/myaccident-content?chartNo=차43-3&chartType=1
+  - id: 차43-1
+    title: 차로 감소 도로(합류) 사고
+    place: 합류지점
+    A: {move: 직진, from: 같은방향}
+    B: {move: 합류, from: 같은방향}
+    base: {A: 40, B: 60}
+    url: https://accident.knia.or.kr/myaccident-content?chartNo=차43-1&chartType=1
+  - id: 차19-1
+    title: 후행 직진 대 선행 좌(우)회전
+    place: 신호없는교차로
+    A: {move: 직진, order: 후행, from: 같은방향}
+    B: {move: [좌회전, 우회전], order: 선행, from: 같은방향}
+    base: {A: 20, B: 80}
+    url: https://accident.knia.or.kr/myaccident-content?chartNo=차19-1&chartType=1
+  - id: 차16-1
+    title: 왼쪽 직진 대 오른쪽 좌회전
+    place: 신호없는교차로
+    A: {move: 직진, from: 오른쪽}
+    B: {move: 좌회전, from: 왼쪽}
+    base: {A: 40, B: 60}
+    url: https://accident.knia.or.kr/myaccident-content?chartNo=차16-1&chartType=1
+  - id: 차13-1
+    title: 오른쪽 우회전 대 왼쪽 직진
+    place: 신호없는교차로
+    A: {move: 우회전, from: 왼쪽}
+    B: {move: 직진, from: 오른쪽}
+    base: {A: 60, B: 40}
+    url: https://accident.knia.or.kr/myaccident-content?chartNo=차13-1&chartType=1
+  - id: 차15-1
+    title: 직진 대 맞은편 좌회전
+    place: 신호없는교차로
+    A: {move: 직진, from: 맞은편}
+    B: {move: 좌회전, from: 맞은편}
+    base: {A: 30, B: 70}
+    url: https://accident.knia.or.kr/myaccident-content?chartNo=차15-1&chartType=1

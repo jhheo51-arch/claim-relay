@@ -1,0 +1,222 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>claim-relay 담당자 화면</title>
+<style>
+:root {
+  --bg: #f6f7f9; --panel: #ffffff; --line: #e3e6ea; --text: #1d232b; --muted: #66707c;
+  --auto: #1f7a4d; --auto-bg: #e5f4ec; --human: #a35a00; --human-bg: #fdf0dc;
+  --docs: #2457a6; --docs-bg: #e3ecfa; --stop: #b3261e; --stop-bg: #fbe5e3; --mark: #fff1a8;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #14171b; --panel: #1c2026; --line: #2c323a; --text: #e6e9ed; --muted: #9aa4af;
+    --auto: #6fd3a0; --auto-bg: #173326; --human: #f2b25c; --human-bg: #3a2a12;
+    --docs: #8fb4f0; --docs-bg: #1a2a45; --stop: #f08a82; --stop-bg: #3d1a18; --mark: #5a4d10;
+  }
+}
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--bg); color: var(--text);
+  font: 14px/1.55 "Pretendard", "Apple SD Gothic Neo", "Malgun Gothic", system-ui, sans-serif; }
+header { padding: 16px 20px; border-bottom: 1px solid var(--line); background: var(--panel); }
+header h1 { margin: 0; font-size: 18px; }
+header p { margin: 4px 0 0; color: var(--muted); font-size: 13px; }
+.stats { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 10px; }
+.stat { border: 1px solid var(--line); border-radius: 8px; padding: 6px 10px; font-size: 13px; cursor: pointer; background: var(--panel); color: var(--text); }
+.stat b { font-size: 16px; margin-left: 4px; }
+.stat.on { outline: 2px solid var(--text); }
+main { display: grid; grid-template-columns: 300px 1fr; min-height: calc(100vh - 110px); }
+nav { border-right: 1px solid var(--line); overflow-y: auto; max-height: calc(100vh - 110px); }
+nav button { display: block; width: 100%; text-align: left; border: 0; border-bottom: 1px solid var(--line);
+  background: none; color: var(--text); padding: 9px 14px; cursor: pointer; font: inherit; }
+nav button:hover, nav button.sel { background: var(--panel); }
+nav .id { font-weight: 600; margin-right: 6px; }
+nav .tag { color: var(--muted); font-size: 12px; }
+.pill { display: inline-block; border-radius: 999px; padding: 1px 8px; font-size: 12px; font-weight: 600; }
+.r-auto { color: var(--auto); background: var(--auto-bg); }
+.r-human { color: var(--human); background: var(--human-bg); }
+.r-docs { color: var(--docs); background: var(--docs-bg); }
+.r-stop { color: var(--stop); background: var(--stop-bg); }
+section#detail { padding: 18px 22px; overflow-x: hidden; }
+.grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.card { background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 12px 14px; margin-bottom: 14px; min-width: 0; }
+.card h3 { margin: 0 0 8px; font-size: 14px; }
+.card h4 { margin: 10px 0 4px; font-size: 13px; color: var(--muted); }
+ol.lines { margin: 0; padding-left: 22px; }
+ol.lines li { margin: 2px 0; }
+mark { background: var(--mark); color: inherit; border-radius: 3px; padding: 0 2px; }
+table { border-collapse: collapse; width: 100%; font-size: 13px; }
+td, th { border-bottom: 1px solid var(--line); padding: 4px 6px; text-align: left; vertical-align: top; }
+th { color: var(--muted); font-weight: 500; }
+pre { white-space: pre-wrap; margin: 0; font: inherit; }
+.muted { color: var(--muted); }
+.warn { color: var(--stop); }
+.ok { color: var(--auto); }
+a { color: var(--docs); }
+@media (max-width: 820px) {
+  main { grid-template-columns: 1fr; }
+  nav { max-height: 240px; border-right: 0; border-bottom: 1px solid var(--line); }
+  .grid { grid-template-columns: 1fr; }
+  section#detail { padding: 14px 16px; }
+}
+</style>
+</head>
+<body>
+<header>
+  <h1>claim-relay 담당자 화면</h1>
+  <p id="meta"></p>
+  <div class="stats" id="stats"></div>
+</header>
+<main>
+  <nav id="list"></nav>
+  <section id="detail"></section>
+</main>
+<script src="data.js"></script>
+<script>
+const D = window.DATA;
+const ROUTE_CLASS = { "자동 처리 후보": "r-auto", "사람 심사": "r-human", "서류 보완": "r-docs", "멈춤": "r-stop" };
+const LABEL = { place: "장소", me_move: "내 진행", me_order: "내 순서", other_move: "상대 진행", other_order: "상대 순서", other_from: "상대가 온 쪽" };
+let filter = null, selected = null;
+
+const esc = s => String(s ?? "").replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+const pill = r => `<span class="pill ${ROUTE_CLASS[r] || ""}">${esc(r)}</span>`;
+const lines = t => t.split("\n").map(s => s.trim()).filter(Boolean);
+
+function header() {
+  const charts = D.charts;
+  document.getElementById("meta").innerHTML =
+    `가상 사고 ${D.cases.length}건, 만든 날 ${esc(D.generated)}. 과실 도표 8개는 ` +
+    `<a href="${esc(charts.source)}" target="_blank" rel="noopener">과실비율정보포털</a>에서 ${esc(charts.version)}에 옮김 ` +
+    `(${charts.confirmed ? "대조 완료" : "사람 대조 전"}). 과실은 도표 기본값이며 확정이 아닙니다.`;
+  const count = {};
+  D.cases.forEach(c => count[c.result.route] = (count[c.result.route] || 0) + 1);
+  document.getElementById("stats").innerHTML = ["자동 처리 후보", "사람 심사", "서류 보완", "멈춤"].map(r =>
+    `<button class="stat ${filter === r ? "on" : ""}" data-r="${r}">${pill(r)}<b>${count[r] || 0}</b></button>`).join("");
+  document.querySelectorAll(".stat").forEach(b => b.onclick = () => {
+    filter = filter === b.dataset.r ? null : b.dataset.r; header(); list();
+  });
+}
+
+function list() {
+  const nav = document.getElementById("list");
+  const rows = D.cases.filter(c => !filter || c.result.route === filter);
+  nav.innerHTML = rows.map(c => {
+    const tag = c.expect ? c.expect.tag : "자연어 예시";
+    const miss = c.expect && c.expect.route !== c.result.route ? ` <span class="warn">기대와 다름</span>` : "";
+    return `<button data-id="${esc(c.case.id)}" class="${selected === c.case.id ? "sel" : ""}">
+      <span class="id">${esc(c.case.id)}</span>${pill(c.result.route)}${miss}<br><span class="tag">${esc(tag)}</span></button>`;
+  }).join("");
+  nav.querySelectorAll("button").forEach(b => b.onclick = () => show(b.dataset.id));
+}
+
+function statementCard(c, side, ev) {
+  const ls = lines(c.case.parties[side].statement || "");
+  const quotes = {};
+  if (ev && ev[side]) {
+    for (const [k, v] of Object.entries(ev[side])) {
+      const items = k === "modifiers" ? v : (v ? [v] : []);
+      items.forEach(it => (quotes[it.line] = quotes[it.line] || []).push(it.quote));
+    }
+  }
+  const body = ls.map((l, i) => {
+    let h = esc(l);
+    (quotes[i] || []).sort((a, b) => b.length - a.length).forEach(q => {
+      const e = esc(q);
+      if (h.includes(e) && !h.includes(`<mark>${e}`)) h = h.replace(e, `<mark>${e}</mark>`);
+    });
+    return `<li>${h}</li>`;
+  }).join("") || `<li class="muted">진술 없음</li>`;
+  return `<div class="card"><h3>${side} 진술</h3><ol class="lines" start="0">${body}</ol></div>`;
+}
+
+function elementsTable(r) {
+  if (!r.evidence) return "";
+  const rows = Object.keys(LABEL).map(f => {
+    const cell = s => {
+      const v = r.evidence[s][f];
+      return v ? `${esc(v.value)} <span class="muted">${v.line}번 줄 "${esc(v.quote)}"</span>` : `<span class="muted">모름</span>`;
+    };
+    return `<tr><th>${LABEL[f]}</th><td>${cell("고객")}</td><td>${cell("상대")}</td></tr>`;
+  }).join("");
+  const mods = s => r.evidence[s].modifiers.map(m => esc(m.value)).join(", ") || `<span class="muted">없음</span>`;
+  return `<div class="card"><h3>진술 요소와 근거</h3>
+    <table><tr><th></th><th>고객 진술</th><th>상대 진술</th></tr>${rows}
+    <tr><th>수정요소 주장</th><td>${mods("고객")}</td><td>${mods("상대")}</td></tr></table>
+    ${r.unverified.length ? `<p class="warn">근거 없음: ${esc(r.unverified.join(", "))}</p>` : ""}</div>`;
+}
+
+function faultCard(r) {
+  const s = r.notice && r.notice.staff;
+  let h = `<div class="card"><h3>과실 도표</h3>`;
+  if (s && s.chart) {
+    const c = s.chart;
+    h += `<p><a href="${esc(c.url)}" target="_blank" rel="noopener">${esc(c.id)} ${esc(c.title)}</a><br>
+      고객 ${esc(c.roles["고객"])}차 ${c.base["고객"]}%, 상대 ${esc(c.roles["상대"])}차 ${c.base["상대"]}% <span class="muted">(기본값)</span></p>`;
+  } else {
+    h += `<p class="muted">맞는 도표를 하나로 정하지 못했습니다.</p>`;
+  }
+  if (s) {
+    h += `<h4>쪽별 후보 도표</h4><p>고객: ${esc(s.candidates["고객"].join(", ") || "없음")} / 상대: ${esc(s.candidates["상대"].join(", ") || "없음")}</p>`;
+    if (s.conflicts.length) h += `<h4>엇갈린 항목</h4><table>${s.conflicts.map(x =>
+      `<tr><th>${esc(x.item)}</th><td>고객: ${esc(x["고객 진술"])}</td><td>상대: ${esc(x["상대 진술"])}</td></tr>`).join("")}</table>`;
+  }
+  return h + `</div>`;
+}
+
+function staffCard(c, r) {
+  let h = `<div class="card"><h3>담당자 카드</h3>`;
+  if (r.status === "멈춤") {
+    h += `<p class="warn">멈춤: ${esc(r.stop.badge)} ${esc(r.stop.agent)} 단계. ${esc(r.stop.reason)}</p>`;
+  } else {
+    const s = r.notice.staff;
+    h += `<p>${pill(r.route)}</p>`;
+    h += s.rules.length ? `<ul>${s.rules.map(x => `<li>${esc(x)}</li>`).join("")}</ul>` : `<p class="muted">걸린 규칙 없음</p>`;
+    h += `<table>
+      <tr><th>담보</th><td>${esc(c.case.coverage.join(", "))}</td></tr>
+      <tr><th>견적</th><td>${s.estimate == null ? "모름" : s.estimate.toLocaleString("ko-KR") + "원"}
+        ${s.estimate_limit ? `<span class="muted">(${esc(c.case.damage)} 상한 ${s.estimate_limit.toLocaleString("ko-KR")}원, 가상 기준)</span>` : ""}</td></tr>
+      <tr><th>상해등급</th><td>${s.injury_grade == null ? "해당 없음" : s.injury_grade + "급"}</td></tr>
+      <tr><th>빠진 서류</th><td>${esc(r.missing_docs.join(", ") || "없음")}</td></tr>
+    </table>`;
+    if (r.schedule) h += `<h4>경상 8주 일정 <span class="muted">(안내일 기준 확인 전)</span></h4>
+      <p>8주 되는 날 ${esc(r.schedule.limit_date)}, 서류 안내일 ${esc(r.schedule.notice_date)}</p>`;
+  }
+  if (c.expect) {
+    const ok = c.expect.route === r.route;
+    h += `<h4>테스트셋 기대값</h4><p class="${ok ? "ok" : "warn"}">기대 경로 ${esc(c.expect.route)}, 규칙 ${esc(c.expect.rules.join(", ") || "없음")} ${ok ? "(일치)" : "(다름)"}</p>`;
+  }
+  return h + `</div>`;
+}
+
+function ledgerCard(c) {
+  return `<div class="card"><h3>단계 이력과 사원증</h3><table>
+    <tr><th>사원증</th><th>단계</th><th>읽은 칸</th><th>쓴 칸</th></tr>
+    ${c.steps.map(s => `<tr><td>${esc(s.badge)}</td><td>${esc(D.agents[s.agent].name)}</td>
+      <td>${esc(s.read.join(", ") || "-")}</td><td>${esc(s.wrote.join(", ") || "-")}</td></tr>`).join("")}</table></div>`;
+}
+
+function show(id) {
+  selected = id; list();
+  const c = D.cases.find(x => x.case.id === id), r = c.result;
+  let h = `<h2 style="margin:0 0 4px">${esc(id)} ${pill(r.route)}</h2>
+    <p class="muted" style="margin:0 0 14px">${esc(c.case.date)} ${esc(c.case.kind)}, 담보 ${esc(c.case.coverage.join(", "))}, 피해 ${esc(c.case.damage)}
+    ${c.extractor ? `, 추출기 ${esc(c.extractor)}` : ""}</p>`;
+  if (c.alt) {
+    h += `<div class="card"><h3>추출기 비교</h3><p>단서 추출기(cues): ${pill(c.alt.route)} 도표 ${esc(c.alt.chart || "없음")}<br>
+      스킬 추출기(skill): ${pill(r.route)} 도표 ${esc(r.chart || "없음")}</p>
+      <p class="muted">단서 낱말에 없는 표현이면 단서 추출기는 값을 비워 사람 심사로 넘깁니다. 스킬은 원문 인용을 남기고, 코드가 그 인용을 다시 찾아 확인합니다.</p></div>`;
+  }
+  h += `<div class="grid">${statementCard(c, "고객", r.evidence)}${statementCard(c, "상대", r.evidence)}</div>`;
+  h += `<div class="grid"><div>${staffCard(c, r)}${faultCard(r)}</div><div>`;
+  h += `<div class="card"><h3>고객 안내문</h3>${r.notice ? `<pre>${esc(r.notice.customer)}</pre>
+    <p class="muted">금지 표현과 출처 없는 숫자 검사를 통과했습니다.</p>` : `<p class="muted">멈춰서 안내문을 만들지 않았습니다.</p>`}</div>`;
+  h += elementsTable(r) + ledgerCard(c) + `</div></div>`;
+  document.getElementById("detail").innerHTML = h;
+}
+
+header(); list(); show(D.cases[0].case.id);
+</script>
+</body>
+</html>

@@ -1,0 +1,83 @@
+{
+  "id": "C030",
+  "date": "2026-10-02",
+  "kind": "차대사람",
+  "coverage": [
+    "대인"
+  ],
+  "damage": "경미",
+  "parties": {
+    "고객": {
+      "statement": "신호등이 없는 교차로였습니다.\n저는 직진하고 있었습니다.\n상대 보행자는 오른쪽 도로에서 길을 건너고 있었습니다."
+    },
+    "상대": {
+      "statement": "신호등이 없는 교차로였습니다.\n저는 길을 건너고 있었습니다.\n상대 차는 왼쪽 도로에서 직진하고 있었습니다."
+    }
+  },
+  "attachments": [
+    {
+      "doc": "진단서",
+      "text": "진단명: 경추 염좌\n상해등급 9급"
+    },
+    {
+      "doc": "진료비내역",
+      "text": "외래 진료 3회"
+    }
+  ],
+  "expect": {
+    "tag": "차대사람 중상",
+    "route": "사람 심사",
+    "rules": [
+      "R02",
+      "R03",
+      "R06"
+    ],
+    "chart": null,
+    "base": null,
+    "schedule": null,
+    "elements": {
+      "고객": {
+        "place": {
+          "value": "신호없는교차로",
+          "line": 0,
+          "quote": "신호등이 없는 교차로"
+        },
+        "me_move": {
+          "value": "직진",
+          "line": 1,
+          "quote": "직진하고"
+        },
+        "me_order": null,
+        "other_move": null,
+        "other_order": null,
+        "other_from": {
+          "value": "오른쪽",
+          "line": 2,
+          "quote": "오른쪽 도로에서"
+        },
+        "modifiers": []
+      },
+      "상대": {
+        "place": {
+          "value": "신호없는교차로",
+          "line": 0,
+          "quote": "신호등이 없는 교차로"
+        },
+        "me_move": null,
+        "me_order": null,
+        "other_move": {
+          "value": "직진",
+          "line": 2,
+          "quote": "직진하고"
+        },
+        "other_order": null,
+        "other_from": {
+          "value": "왼쪽",
+          "line": 2,
+          "quote": "왼쪽 도로에서"
+        },
+        "modifiers": []
+      }
+    }
+  }
+}

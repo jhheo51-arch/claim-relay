@@ -1,0 +1,49 @@
+# 심사 경로 규칙표. 위에서부터 모두 검사하고, 걸린 규칙 중 가장 강한 경로를 따른다.
+# 강한 순서: 서류 보완 > 사람 심사 > 자동 처리 후보
+version: 2026-10-28
+rules:
+  - id: R01
+    when: missing_docs
+    route: 서류 보완
+    customer: 필요한 서류가 아직 없습니다
+    staff: 담보별 필요 서류 중 빠진 것이 있음
+  - id: R02
+    when: not_car_to_car
+    route: 사람 심사
+    customer: 차와 차 사이 사고가 아니어서 담당자가 확인합니다
+    staff: 차대차 외 사고는 자동 경로 대상이 아님
+  - id: R03
+    when: severe_injury
+    route: 사람 심사
+    customer: 부상 정도를 담당자가 확인합니다
+    staff: 상해등급 1~11급(중상)은 사람 심사
+  - id: R04
+    when: no_evidence
+    route: 사람 심사
+    customer: 사고 내용을 담당자가 다시 확인합니다
+    staff: AI가 뽑은 값 중 원문 줄에서 다시 찾지 못한 값이 있음
+  - id: R05
+    when: statement_conflict
+    route: 사람 심사
+    customer: 두 분의 사고 설명이 서로 달라 담당자가 확인합니다
+    staff: 양측 진술이 사고 요소에서 엇갈림
+  - id: R06
+    when: no_chart
+    route: 사람 심사
+    customer: 사고 유형을 담당자가 확인합니다
+    staff: 옮긴 도표 8개 중 맞는 도표가 하나로 정해지지 않음
+  - id: R07
+    when: modifiers_claimed
+    route: 사람 심사
+    customer: 과실을 바꿀 수 있는 사정이 있어 담당자가 확인합니다
+    staff: 진술에 수정요소 주장이 있음(자동 판단 안 함)
+  - id: R08
+    when: estimate_mismatch
+    route: 사람 심사
+    customer: 수리 견적을 담당자가 확인합니다
+    staff: 수리 견적이 신고한 피해 정도의 상한을 넘음
+  - id: R09
+    when: own_damage
+    route: 사람 심사
+    customer: 자기차량손해 청구는 담당자가 확인합니다
+    staff: 자차 담보는 이번 범위 밖

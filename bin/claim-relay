@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+# 사용: bin/claim-relay run C001 | eval | export  (--extractor cues|skill|fixture)
+set -euo pipefail
+ROOT="$(cd "$(dirname "$0")/.." && pwd)"
+PY="${PYTHON:-$(command -v python || command -v python3)}"
+PYTHONPATH="$ROOT" PYTHONIOENCODING=utf-8 exec "$PY" -m claim_relay "$@"

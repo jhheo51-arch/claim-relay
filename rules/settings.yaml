@@ -1,0 +1,27 @@
+# 설정값. 모두 가상 기준이며, 확인 전인 값은 confirmed: false로 둔다.
+version: 2026-10-28
+
+required_docs:
+  대물: [수리견적서]
+  대인: [진단서, 진료비내역]
+  자차: [수리견적서]
+
+# 피해 정도별 수리 견적 상한(원). 가상 기준.
+estimate_limit:
+  경미: 2000000
+  보통: 8000000
+  큼: null
+
+# 경상 대인 8주룰. 2026-09-10 시행 보도 기준.
+eight_weeks:
+  grades: [12, 13, 14]
+  limit_days: 56
+  notice_days: 49       # 사고 후 7주 서류 기한 보도. 원문 고시 확인 전
+  notice_confirmed: false
+
+route_strength:
+  서류 보완: 3
+  사람 심사: 2
+  자동 처리 후보: 1
+
+forbidden_phrases: [과실이 확정, 확정되었습니다, 지급되었습니다, 지급을 거절, 거절되었습니다]

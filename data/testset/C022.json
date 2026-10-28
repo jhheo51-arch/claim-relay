@@ -1,0 +1,85 @@
+{
+  "id": "C022",
+  "date": "2026-10-02",
+  "kind": "차대차",
+  "coverage": [
+    "대물"
+  ],
+  "damage": "경미",
+  "parties": {
+    "고객": {
+      "statement": "신호등이 없는 교차로였습니다.\n저는 직진하고 있었습니다.\n상대 차는 오른쪽 도로에서 좌회전하고 있었습니다."
+    },
+    "상대": {
+      "statement": "신호등이 없는 교차로였습니다.\n저는 좌회전하고 있었습니다.\n상대 차는 왼쪽 도로에서 직진하고 있었습니다."
+    }
+  },
+  "attachments": [
+    {
+      "doc": "수리견적서",
+      "text": "수리 항목: 범퍼\n금액은 추후 안내"
+    }
+  ],
+  "expect": {
+    "tag": "견적 총액 못 읽음",
+    "route": "서류 보완",
+    "rules": [
+      "R01"
+    ],
+    "chart": "차16-1",
+    "base": 40,
+    "schedule": null,
+    "elements": {
+      "고객": {
+        "place": {
+          "value": "신호없는교차로",
+          "line": 0,
+          "quote": "신호등이 없는 교차로"
+        },
+        "me_move": {
+          "value": "직진",
+          "line": 1,
+          "quote": "직진하고"
+        },
+        "me_order": null,
+        "other_move": {
+          "value": "좌회전",
+          "line": 2,
+          "quote": "좌회전하고"
+        },
+        "other_order": null,
+        "other_from": {
+          "value": "오른쪽",
+          "line": 2,
+          "quote": "오른쪽 도로에서"
+        },
+        "modifiers": []
+      },
+      "상대": {
+        "place": {
+          "value": "신호없는교차로",
+          "line": 0,
+          "quote": "신호등이 없는 교차로"
+        },
+        "me_move": {
+          "value": "좌회전",
+          "line": 1,
+          "quote": "좌회전하고"
+        },
+        "me_order": null,
+        "other_move": {
+          "value": "직진",
+          "line": 2,
+          "quote": "직진하고"
+        },
+        "other_order": null,
+        "other_from": {
+          "value": "왼쪽",
+          "line": 2,
+          "quote": "왼쪽 도로에서"
+        },
+        "modifiers": []
+      }
+    }
+  }
+}
