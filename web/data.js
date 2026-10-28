@@ -9969,6 +9969,3285 @@ window.DATA = {
      "checked": true
     }
    }
+  },
+  {
+   "case": {
+    "id": "N001",
+    "date": "2026-10-08",
+    "kind": "차대차",
+    "coverage": [
+     "대물"
+    ],
+    "damage": "경미",
+    "parties": {
+     "고객": {
+      "statement": "퇴근 시간이라 직선 도로가 꽉 막혀 있었어요.\n앞차를 따라가다 완전히 멈춰 있었는데\n뒤에 오던 차가 그대로 와서 제 차 뒤를 받았습니다."
+     },
+     "상대": {
+      "statement": "편도 3차로 직선도로에서 앞차와 같은 차로로 가고 있었습니다.\n앞차가 선 걸 늦게 봤습니다.\n브레이크를 밟았지만 앞차 뒤범퍼를 들이받았습니다."
+     }
+    },
+    "attachments": [
+     {
+      "doc": "수리견적서",
+      "text": "수리 항목: 범퍼와 펜더\n총액 900,000원"
+     }
+    ]
+   },
+   "expect": {
+    "tag": "정체 중 뒤에서 받힘(차41-1 고객B)",
+    "route": "자동 처리 후보",
+    "rules": [],
+    "chart": "차41-1",
+    "base": 0,
+    "schedule": null
+   },
+   "result": {
+    "id": "N001",
+    "status": "완료",
+    "stop": null,
+    "route": "자동 처리 후보",
+    "rules": [],
+    "chart": "차41-1",
+    "base": {
+     "고객": 0,
+     "상대": 100
+    },
+    "conflicts": [],
+    "modifiers": [],
+    "unverified": [],
+    "elements": {
+     "고객": {
+      "place": "단일로",
+      "me_move": "정지",
+      "me_order": "선행",
+      "other_move": "직진",
+      "other_order": "후행",
+      "other_from": "같은방향",
+      "modifiers": []
+     },
+     "상대": {
+      "place": "단일로",
+      "me_move": "직진",
+      "me_order": "후행",
+      "other_move": "정지",
+      "other_order": "선행",
+      "other_from": "같은방향",
+      "modifiers": []
+     }
+    },
+    "evidence": {
+     "고객": {
+      "place": {
+       "value": "단일로",
+       "line": 0,
+       "quote": "직선 도로"
+      },
+      "me_move": {
+       "value": "정지",
+       "line": 1,
+       "quote": "완전히 멈춰 있었는데"
+      },
+      "me_order": {
+       "value": "선행",
+       "line": 2,
+       "quote": "제 차 뒤를 받았습니다"
+      },
+      "other_move": {
+       "value": "직진",
+       "line": 2,
+       "quote": "그대로 와서"
+      },
+      "other_order": {
+       "value": "후행",
+       "line": 2,
+       "quote": "뒤에 오던 차가"
+      },
+      "other_from": {
+       "value": "같은방향",
+       "line": 2,
+       "quote": "뒤에 오던 차가"
+      },
+      "modifiers": []
+     },
+     "상대": {
+      "place": {
+       "value": "단일로",
+       "line": 0,
+       "quote": "직선도로"
+      },
+      "me_move": {
+       "value": "직진",
+       "line": 0,
+       "quote": "같은 차로로 가고 있었습니다"
+      },
+      "me_order": {
+       "value": "후행",
+       "line": 2,
+       "quote": "앞차 뒤범퍼를 들이받았습니다"
+      },
+      "other_move": {
+       "value": "정지",
+       "line": 1,
+       "quote": "앞차가 선 걸"
+      },
+      "other_order": {
+       "value": "선행",
+       "line": 1,
+       "quote": "앞차가"
+      },
+      "other_from": {
+       "value": "같은방향",
+       "line": 0,
+       "quote": "앞차와 같은 차로로"
+      },
+      "modifiers": []
+     }
+    },
+    "missing_docs": [],
+    "schedule": null,
+    "notice": {
+     "customer": "[N001] 사고 접수 안내\n접수하신 사고는 빠른 처리 대상 후보로 분류되었습니다. 담당자가 확인한 뒤 결과를 안내드립니다.\n예상 과실: 고객님 0%, 상대 100% (과실비율정보포털 도표 차41-1 기본값 기준, 확인 후 안내)",
+     "staff": {
+      "route": "자동 처리 후보",
+      "rules": [],
+      "chart": {
+       "id": "차41-1",
+       "title": "양 차량 주행 중 후방 추돌",
+       "url": "https://accident.knia.or.kr/myaccident-content?chartNo=차41-1&chartType=1",
+       "roles": {
+        "고객": "B",
+        "상대": "A"
+       },
+       "base": {
+        "고객": 0,
+        "상대": 100
+       }
+      },
+      "candidates": {
+       "고객": [
+        "차41-1"
+       ],
+       "상대": [
+        "차41-1"
+       ]
+      },
+      "conflicts": [],
+      "modifiers": [],
+      "estimate": 900000,
+      "estimate_limit": 2000000,
+      "injury_grade": null,
+      "charts_confirmed": true
+     },
+     "checked": true
+    }
+   },
+   "steps": [
+    {
+     "agent": "intake",
+     "badge": "AG-01",
+     "read": [
+      "raw"
+     ],
+     "wrote": [
+      "intake"
+     ]
+    },
+    {
+     "agent": "documents",
+     "badge": "AG-02",
+     "read": [
+      "intake"
+     ],
+     "wrote": [
+      "docs"
+     ]
+    },
+    {
+     "agent": "fault",
+     "badge": "AG-03",
+     "read": [
+      "intake"
+     ],
+     "wrote": [
+      "elements",
+      "fault"
+     ]
+    },
+    {
+     "agent": "route",
+     "badge": "AG-04",
+     "read": [
+      "intake",
+      "docs",
+      "elements",
+      "fault"
+     ],
+     "wrote": [
+      "route"
+     ]
+    },
+    {
+     "agent": "schedule",
+     "badge": "AG-05",
+     "read": [
+      "intake",
+      "docs"
+     ],
+     "wrote": [
+      "schedule"
+     ]
+    },
+    {
+     "agent": "notice",
+     "badge": "AG-06",
+     "read": [
+      "intake",
+      "docs",
+      "fault",
+      "route",
+      "schedule"
+     ],
+     "wrote": [
+      "notice"
+     ]
+    }
+   ],
+   "extractor": "skill",
+   "alt": {
+    "id": "N001",
+    "status": "완료",
+    "stop": null,
+    "route": "사람 심사",
+    "rules": [
+     "R06"
+    ],
+    "chart": null,
+    "base": null,
+    "conflicts": [],
+    "modifiers": [],
+    "unverified": [],
+    "elements": {
+     "고객": {
+      "place": "단일로",
+      "me_move": null,
+      "me_order": null,
+      "other_move": null,
+      "other_order": null,
+      "other_from": null,
+      "modifiers": []
+     },
+     "상대": {
+      "place": "단일로",
+      "me_move": null,
+      "me_order": null,
+      "other_move": null,
+      "other_order": null,
+      "other_from": null,
+      "modifiers": []
+     }
+    },
+    "evidence": {
+     "고객": {
+      "place": {
+       "value": "단일로",
+       "line": 0,
+       "quote": "직선 도로"
+      },
+      "me_move": null,
+      "me_order": null,
+      "other_move": null,
+      "other_order": null,
+      "other_from": null,
+      "modifiers": []
+     },
+     "상대": {
+      "place": {
+       "value": "단일로",
+       "line": 0,
+       "quote": "직선도로"
+      },
+      "me_move": null,
+      "me_order": null,
+      "other_move": null,
+      "other_order": null,
+      "other_from": null,
+      "modifiers": []
+     }
+    },
+    "missing_docs": [],
+    "schedule": null,
+    "notice": {
+     "customer": "[N001] 사고 접수 안내\n접수하신 사고는 담당자가 직접 살펴본 뒤 안내드립니다.\n- 사고 유형을 담당자가 확인합니다",
+     "staff": {
+      "route": "사람 심사",
+      "rules": [
+       "R06 옮긴 도표 8개 중 맞는 도표가 하나로 정해지지 않음"
+      ],
+      "chart": null,
+      "candidates": {
+       "고객": [],
+       "상대": []
+      },
+      "conflicts": [],
+      "modifiers": [],
+      "estimate": 900000,
+      "estimate_limit": 2000000,
+      "injury_grade": null,
+      "charts_confirmed": true
+     },
+     "checked": true
+    }
+   }
+  },
+  {
+   "case": {
+    "id": "N002",
+    "date": "2026-10-06",
+    "kind": "차대차",
+    "coverage": [
+     "대물",
+     "대인"
+    ],
+    "damage": "경미",
+    "parties": {
+     "고객": {
+      "statement": "편도 2차로 직선 구간 2차로로 출근하던 중이었습니다.\n제 차로를 따라 계속 달리고 있었는데\n옆 1차로 차가 갑자기 제 앞으로 들어오면서 제 차 앞부분과 그 차 뒷문이 부딪쳤습니다."
+     },
+     "상대": {
+      "statement": "직선 도로 1차로에서 달리다 2차로로 옮기려고 했습니다.\n옆 차로 뒤쪽 차와 거리가 충분하다고 생각했는데\n넘어가는 도중에 뒤에서 온 차가 제 차 옆을 받았습니다."
+     }
+    },
+    "attachments": [
+     {
+      "doc": "수리견적서",
+      "text": "수리 항목: 범퍼와 펜더\n총액 1,400,000원"
+     },
+     {
+      "doc": "진단서",
+      "text": "진단명: 경추 염좌\n상해등급 12급"
+     },
+     {
+      "doc": "진료비내역",
+      "text": "외래 진료 3회"
+     }
+    ]
+   },
+   "expect": {
+    "tag": "옆 차로 차가 끼어듦, 경상 12급(차43-2 고객A)",
+    "route": "자동 처리 후보",
+    "rules": [],
+    "chart": "차43-2",
+    "base": 30,
+    "schedule": [
+     "2026-12-01",
+     "2026-11-24"
+    ]
+   },
+   "result": {
+    "id": "N002",
+    "status": "완료",
+    "stop": null,
+    "route": "자동 처리 후보",
+    "rules": [],
+    "chart": "차43-2",
+    "base": {
+     "고객": 30,
+     "상대": 70
+    },
+    "conflicts": [],
+    "modifiers": [],
+    "unverified": [],
+    "elements": {
+     "고객": {
+      "place": "단일로",
+      "me_move": "직진",
+      "me_order": "후행",
+      "other_move": "진로변경",
+      "other_order": "선행",
+      "other_from": "같은방향",
+      "modifiers": []
+     },
+     "상대": {
+      "place": "단일로",
+      "me_move": "진로변경",
+      "me_order": "선행",
+      "other_move": "직진",
+      "other_order": "후행",
+      "other_from": "같은방향",
+      "modifiers": []
+     }
+    },
+    "evidence": {
+     "고객": {
+      "place": {
+       "value": "단일로",
+       "line": 0,
+       "quote": "직선 구간"
+      },
+      "me_move": {
+       "value": "직진",
+       "line": 1,
+       "quote": "제 차로를 따라 계속 달리고"
+      },
+      "me_order": {
+       "value": "후행",
+       "line": 2,
+       "quote": "제 앞으로 들어오면서"
+      },
+      "other_move": {
+       "value": "진로변경",
+       "line": 2,
+       "quote": "제 앞으로 들어오면서"
+      },
+      "other_order": {
+       "value": "선행",
+       "line": 2,
+       "quote": "제 앞으로"
+      },
+      "other_from": {
+       "value": "같은방향",
+       "line": 2,
+       "quote": "옆 1차로 차가"
+      },
+      "modifiers": []
+     },
+     "상대": {
+      "place": {
+       "value": "단일로",
+       "line": 0,
+       "quote": "직선 도로"
+      },
+      "me_move": {
+       "value": "진로변경",
+       "line": 0,
+       "quote": "2차로로 옮기려고"
+      },
+      "me_order": {
+       "value": "선행",
+       "line": 1,
+       "quote": "옆 차로 뒤쪽 차"
+      },
+      "other_move": {
+       "value": "직진",
+       "line": 2,
+       "quote": "뒤에서 온 차가"
+      },
+      "other_order": {
+       "value": "후행",
+       "line": 2,
+       "quote": "뒤에서 온 차가"
+      },
+      "other_from": {
+       "value": "같은방향",
+       "line": 1,
+       "quote": "옆 차로 뒤쪽 차"
+      },
+      "modifiers": []
+     }
+    },
+    "missing_docs": [],
+    "schedule": {
+     "grade": 12,
+     "limit_date": "2026-12-01",
+     "notice_date": "2026-11-24",
+     "notice_confirmed": false
+    },
+    "notice": {
+     "customer": "[N002] 사고 접수 안내\n접수하신 사고는 빠른 처리 대상 후보로 분류되었습니다. 담당자가 확인한 뒤 결과를 안내드립니다.\n예상 과실: 고객님 30%, 상대 70% (과실비율정보포털 도표 차43-2 기본값 기준, 확인 후 안내)\n경상 치료 일정: 사고일부터 8주가 되는 날은 2026-12-01입니다. 그 뒤에도 치료를 이어 가려면 2026-11-24까지 진단서를 더 내 주셔야 할 수 있습니다(기준 확인 전).",
+     "staff": {
+      "route": "자동 처리 후보",
+      "rules": [],
+      "chart": {
+       "id": "차43-2",
+       "title": "후행 직진 대 선행 진로변경",
+       "url": "https://accident.knia.or.kr/myaccident-content?chartNo=차43-2&chartType=1",
+       "roles": {
+        "고객": "A",
+        "상대": "B"
+       },
+       "base": {
+        "고객": 30,
+        "상대": 70
+       }
+      },
+      "candidates": {
+       "고객": [
+        "차43-2"
+       ],
+       "상대": [
+        "차43-2"
+       ]
+      },
+      "conflicts": [],
+      "modifiers": [],
+      "estimate": 1400000,
+      "estimate_limit": 2000000,
+      "injury_grade": 12,
+      "charts_confirmed": true
+     },
+     "checked": true
+    }
+   },
+   "steps": [
+    {
+     "agent": "intake",
+     "badge": "AG-01",
+     "read": [
+      "raw"
+     ],
+     "wrote": [
+      "intake"
+     ]
+    },
+    {
+     "agent": "documents",
+     "badge": "AG-02",
+     "read": [
+      "intake"
+     ],
+     "wrote": [
+      "docs"
+     ]
+    },
+    {
+     "agent": "fault",
+     "badge": "AG-03",
+     "read": [
+      "intake"
+     ],
+     "wrote": [
+      "elements",
+      "fault"
+     ]
+    },
+    {
+     "agent": "route",
+     "badge": "AG-04",
+     "read": [
+      "intake",
+      "docs",
+      "elements",
+      "fault"
+     ],
+     "wrote": [
+      "route"
+     ]
+    },
+    {
+     "agent": "schedule",
+     "badge": "AG-05",
+     "read": [
+      "intake",
+      "docs"
+     ],
+     "wrote": [
+      "schedule"
+     ]
+    },
+    {
+     "agent": "notice",
+     "badge": "AG-06",
+     "read": [
+      "intake",
+      "docs",
+      "fault",
+      "route",
+      "schedule"
+     ],
+     "wrote": [
+      "notice"
+     ]
+    }
+   ],
+   "extractor": "skill",
+   "alt": {
+    "id": "N002",
+    "status": "완료",
+    "stop": null,
+    "route": "사람 심사",
+    "rules": [
+     "R06"
+    ],
+    "chart": null,
+    "base": null,
+    "conflicts": [],
+    "modifiers": [],
+    "unverified": [],
+    "elements": {
+     "고객": {
+      "place": null,
+      "me_move": null,
+      "me_order": null,
+      "other_move": null,
+      "other_order": null,
+      "other_from": null,
+      "modifiers": []
+     },
+     "상대": {
+      "place": "단일로",
+      "me_move": null,
+      "me_order": null,
+      "other_move": null,
+      "other_order": null,
+      "other_from": null,
+      "modifiers": []
+     }
+    },
+    "evidence": {
+     "고객": {
+      "place": null,
+      "me_move": null,
+      "me_order": null,
+      "other_move": null,
+      "other_order": null,
+      "other_from": null,
+      "modifiers": []
+     },
+     "상대": {
+      "place": {
+       "value": "단일로",
+       "line": 0,
+       "quote": "직선 도로"
+      },
+      "me_move": null,
+      "me_order": null,
+      "other_move": null,
+      "other_order": null,
+      "other_from": null,
+      "modifiers": []
+     }
+    },
+    "missing_docs": [],
+    "schedule": {
+     "grade": 12,
+     "limit_date": "2026-12-01",
+     "notice_date": "2026-11-24",
+     "notice_confirmed": false
+    },
+    "notice": {
+     "customer": "[N002] 사고 접수 안내\n접수하신 사고는 담당자가 직접 살펴본 뒤 안내드립니다.\n- 사고 유형을 담당자가 확인합니다\n경상 치료 일정: 사고일부터 8주가 되는 날은 2026-12-01입니다. 그 뒤에도 치료를 이어 가려면 2026-11-24까지 진단서를 더 내 주셔야 할 수 있습니다(기준 확인 전).",
+     "staff": {
+      "route": "사람 심사",
+      "rules": [
+       "R06 옮긴 도표 8개 중 맞는 도표가 하나로 정해지지 않음"
+      ],
+      "chart": null,
+      "candidates": {
+       "고객": [],
+       "상대": []
+      },
+      "conflicts": [],
+      "modifiers": [],
+      "estimate": 1400000,
+      "estimate_limit": 2000000,
+      "injury_grade": 12,
+      "charts_confirmed": true
+     },
+     "checked": true
+    }
+   }
+  },
+  {
+   "case": {
+    "id": "N003",
+    "date": "2026-10-11",
+    "kind": "차대차",
+    "coverage": [
+     "대물"
+    ],
+    "damage": "보통",
+    "parties": {
+     "고객": {
+      "statement": "편도 3차로 직선 도로였습니다.\n저는 1차로에서 2차로로 옮겨 가고 있었습니다.\n그런데 같은 쪽으로 가던 3차로 차도 동시에 2차로로 들어오면서 가운데서 부딪쳤어요."
+     },
+     "상대": {
+      "statement": "직선 도로 3차로에서 2차로로 차선을 바꾸던 중이었습니다.\n같은 방향 1차로 차가 같은 때에 2차로로 넘어오는 걸 못 봤습니다."
+     }
+    },
+    "attachments": [
+     {
+      "doc": "수리견적서",
+      "text": "수리 항목: 범퍼와 펜더\n총액 3,400,000원"
+     }
+    ]
+   },
+   "expect": {
+    "tag": "양쪽에서 동시에 가운데 차로로(차43-3)",
+    "route": "자동 처리 후보",
+    "rules": [],
+    "chart": "차43-3",
+    "base": 50,
+    "schedule": null
+   },
+   "result": {
+    "id": "N003",
+    "status": "완료",
+    "stop": null,
+    "route": "자동 처리 후보",
+    "rules": [],
+    "chart": "차43-3",
+    "base": {
+     "고객": 50,
+     "상대": 50
+    },
+    "conflicts": [],
+    "modifiers": [],
+    "unverified": [],
+    "elements": {
+     "고객": {
+      "place": "단일로",
+      "me_move": "진로변경",
+      "me_order": null,
+      "other_move": "진로변경",
+      "other_order": null,
+      "other_from": "같은방향",
+      "modifiers": []
+     },
+     "상대": {
+      "place": "단일로",
+      "me_move": "진로변경",
+      "me_order": null,
+      "other_move": "진로변경",
+      "other_order": null,
+      "other_from": "같은방향",
+      "modifiers": []
+     }
+    },
+    "evidence": {
+     "고객": {
+      "place": {
+       "value": "단일로",
+       "line": 0,
+       "quote": "직선 도로"
+      },
+      "me_move": {
+       "value": "진로변경",
+       "line": 1,
+       "quote": "1차로에서 2차로로 옮겨 가고"
+      },
+      "me_order": null,
+      "other_move": {
+       "value": "진로변경",
+       "line": 2,
+       "quote": "동시에 2차로로 들어오면서"
+      },
+      "other_order": null,
+      "other_from": {
+       "value": "같은방향",
+       "line": 2,
+       "quote": "같은 쪽으로 가던"
+      },
+      "modifiers": []
+     },
+     "상대": {
+      "place": {
+       "value": "단일로",
+       "line": 0,
+       "quote": "직선 도로"
+      },
+      "me_move": {
+       "value": "진로변경",
+       "line": 0,
+       "quote": "차선을 바꾸던"
+      },
+      "me_order": null,
+      "other_move": {
+       "value": "진로변경",
+       "line": 1,
+       "quote": "2차로로 넘어오는"
+      },
+      "other_order": null,
+      "other_from": {
+       "value": "같은방향",
+       "line": 1,
+       "quote": "같은 방향"
+      },
+      "modifiers": []
+     }
+    },
+    "missing_docs": [],
+    "schedule": null,
+    "notice": {
+     "customer": "[N003] 사고 접수 안내\n접수하신 사고는 빠른 처리 대상 후보로 분류되었습니다. 담당자가 확인한 뒤 결과를 안내드립니다.\n예상 과실: 고객님 50%, 상대 50% (과실비율정보포털 도표 차43-3 기본값 기준, 확인 후 안내)",
+     "staff": {
+      "route": "자동 처리 후보",
+      "rules": [],
+      "chart": {
+       "id": "차43-3",
+       "title": "좌우 동시 차로 변경 사고",
+       "url": "https://accident.knia.or.kr/myaccident-content?chartNo=차43-3&chartType=1",
+       "roles": {
+        "고객": "A",
+        "상대": "B"
+       },
+       "base": {
+        "고객": 50,
+        "상대": 50
+       }
+      },
+      "candidates": {
+       "고객": [
+        "차43-3"
+       ],
+       "상대": [
+        "차43-3"
+       ]
+      },
+      "conflicts": [],
+      "modifiers": [],
+      "estimate": 3400000,
+      "estimate_limit": 8000000,
+      "injury_grade": null,
+      "charts_confirmed": true
+     },
+     "checked": true
+    }
+   },
+   "steps": [
+    {
+     "agent": "intake",
+     "badge": "AG-01",
+     "read": [
+      "raw"
+     ],
+     "wrote": [
+      "intake"
+     ]
+    },
+    {
+     "agent": "documents",
+     "badge": "AG-02",
+     "read": [
+      "intake"
+     ],
+     "wrote": [
+      "docs"
+     ]
+    },
+    {
+     "agent": "fault",
+     "badge": "AG-03",
+     "read": [
+      "intake"
+     ],
+     "wrote": [
+      "elements",
+      "fault"
+     ]
+    },
+    {
+     "agent": "route",
+     "badge": "AG-04",
+     "read": [
+      "intake",
+      "docs",
+      "elements",
+      "fault"
+     ],
+     "wrote": [
+      "route"
+     ]
+    },
+    {
+     "agent": "schedule",
+     "badge": "AG-05",
+     "read": [
+      "intake",
+      "docs"
+     ],
+     "wrote": [
+      "schedule"
+     ]
+    },
+    {
+     "agent": "notice",
+     "badge": "AG-06",
+     "read": [
+      "intake",
+      "docs",
+      "fault",
+      "route",
+      "schedule"
+     ],
+     "wrote": [
+      "notice"
+     ]
+    }
+   ],
+   "extractor": "skill",
+   "alt": {
+    "id": "N003",
+    "status": "완료",
+    "stop": null,
+    "route": "사람 심사",
+    "rules": [
+     "R06"
+    ],
+    "chart": null,
+    "base": null,
+    "conflicts": [],
+    "modifiers": [],
+    "unverified": [],
+    "elements": {
+     "고객": {
+      "place": "단일로",
+      "me_move": null,
+      "me_order": null,
+      "other_move": null,
+      "other_order": null,
+      "other_from": null,
+      "modifiers": []
+     },
+     "상대": {
+      "place": "단일로",
+      "me_move": null,
+      "me_order": null,
+      "other_move": null,
+      "other_order": null,
+      "other_from": null,
+      "modifiers": []
+     }
+    },
+    "evidence": {
+     "고객": {
+      "place": {
+       "value": "단일로",
+       "line": 0,
+       "quote": "직선 도로"
+      },
+      "me_move": null,
+      "me_order": null,
+      "other_move": null,
+      "other_order": null,
+      "other_from": null,
+      "modifiers": []
+     },
+     "상대": {
+      "place": {
+       "value": "단일로",
+       "line": 0,
+       "quote": "직선 도로"
+      },
+      "me_move": null,
+      "me_order": null,
+      "other_move": null,
+      "other_order": null,
+      "other_from": null,
+      "modifiers": []
+     }
+    },
+    "missing_docs": [],
+    "schedule": null,
+    "notice": {
+     "customer": "[N003] 사고 접수 안내\n접수하신 사고는 담당자가 직접 살펴본 뒤 안내드립니다.\n- 사고 유형을 담당자가 확인합니다",
+     "staff": {
+      "route": "사람 심사",
+      "rules": [
+       "R06 옮긴 도표 8개 중 맞는 도표가 하나로 정해지지 않음"
+      ],
+      "chart": null,
+      "candidates": {
+       "고객": [],
+       "상대": []
+      },
+      "conflicts": [],
+      "modifiers": [],
+      "estimate": 3400000,
+      "estimate_limit": 8000000,
+      "injury_grade": null,
+      "charts_confirmed": true
+     },
+     "checked": true
+    }
+   }
+  },
+  {
+   "case": {
+    "id": "N004",
+    "date": "2026-10-14",
+    "kind": "차대차",
+    "coverage": [
+     "대물"
+    ],
+    "damage": "경미",
+    "parties": {
+     "고객": {
+      "statement": "차로가 줄어드는 구간이었고 제 차로가 끝나 가고 있었습니다.\n저는 옆 차로로 합류하려다 뒤에서 오는 차를 못 봤습니다.\n옆 차로로 그대로 오던 차와 제 차 오른쪽이 부딪쳤습니다."
+     },
+     "상대": {
+      "statement": "합류 구간 바로 앞에서 제 차로를 그대로 달리고 있었습니다.\n오른쪽 끝 차로 차가 제 앞으로 밀고 들어와 피할 틈이 없었습니다."
+     }
+    },
+    "attachments": [
+     {
+      "doc": "수리견적서",
+      "text": "수리 항목: 범퍼와 펜더\n총액 1,800,000원"
+     }
+    ]
+   },
+   "expect": {
+    "tag": "끝나는 차로에서 합류(차43-1 고객B)",
+    "route": "자동 처리 후보",
+    "rules": [],
+    "chart": "차43-1",
+    "base": 60,
+    "schedule": null
+   },
+   "result": {
+    "id": "N004",
+    "status": "완료",
+    "stop": null,
+    "route": "자동 처리 후보",
+    "rules": [],
+    "chart": "차43-1",
+    "base": {
+     "고객": 60,
+     "상대": 40
+    },
+    "conflicts": [],
+    "modifiers": [],
+    "unverified": [],
+    "elements": {
+     "고객": {
+      "place": "합류지점",
+      "me_move": "합류",
+      "me_order": "선행",
+      "other_move": "직진",
+      "other_order": "후행",
+      "other_from": "같은방향",
+      "modifiers": []
+     },
+     "상대": {
+      "place": "합류지점",
+      "me_move": "직진",
+      "me_order": "후행",
+      "other_move": "합류",
+      "other_order": "선행",
+      "other_from": "같은방향",
+      "modifiers": []
+     }
+    },
+    "evidence": {
+     "고객": {
+      "place": {
+       "value": "합류지점",
+       "line": 0,
+       "quote": "차로가 줄어드는"
+      },
+      "me_move": {
+       "value": "합류",
+       "line": 1,
+       "quote": "합류하려다"
+      },
+      "me_order": {
+       "value": "선행",
+       "line": 1,
+       "quote": "뒤에서 오는 차를 못 봤습니다"
+      },
+      "other_move": {
+       "value": "직진",
+       "line": 2,
+       "quote": "그대로 오던 차"
+      },
+      "other_order": {
+       "value": "후행",
+       "line": 1,
+       "quote": "뒤에서 오는 차"
+      },
+      "other_from": {
+       "value": "같은방향",
+       "line": 2,
+       "quote": "옆 차로로 그대로 오던 차"
+      },
+      "modifiers": []
+     },
+     "상대": {
+      "place": {
+       "value": "합류지점",
+       "line": 0,
+       "quote": "합류 구간"
+      },
+      "me_move": {
+       "value": "직진",
+       "line": 0,
+       "quote": "제 차로를 그대로 달리고"
+      },
+      "me_order": {
+       "value": "후행",
+       "line": 1,
+       "quote": "제 앞으로 밀고 들어와"
+      },
+      "other_move": {
+       "value": "합류",
+       "line": 1,
+       "quote": "제 앞으로 밀고 들어와"
+      },
+      "other_order": {
+       "value": "선행",
+       "line": 1,
+       "quote": "제 앞으로"
+      },
+      "other_from": {
+       "value": "같은방향",
+       "line": 1,
+       "quote": "오른쪽 끝 차로 차가"
+      },
+      "modifiers": []
+     }
+    },
+    "missing_docs": [],
+    "schedule": null,
+    "notice": {
+     "customer": "[N004] 사고 접수 안내\n접수하신 사고는 빠른 처리 대상 후보로 분류되었습니다. 담당자가 확인한 뒤 결과를 안내드립니다.\n예상 과실: 고객님 60%, 상대 40% (과실비율정보포털 도표 차43-1 기본값 기준, 확인 후 안내)",
+     "staff": {
+      "route": "자동 처리 후보",
+      "rules": [],
+      "chart": {
+       "id": "차43-1",
+       "title": "차로 감소 도로(합류) 사고",
+       "url": "https://accident.knia.or.kr/myaccident-content?chartNo=차43-1&chartType=1",
+       "roles": {
+        "고객": "B",
+        "상대": "A"
+       },
+       "base": {
+        "고객": 60,
+        "상대": 40
+       }
+      },
+      "candidates": {
+       "고객": [
+        "차43-1"
+       ],
+       "상대": [
+        "차43-1"
+       ]
+      },
+      "conflicts": [],
+      "modifiers": [],
+      "estimate": 1800000,
+      "estimate_limit": 2000000,
+      "injury_grade": null,
+      "charts_confirmed": true
+     },
+     "checked": true
+    }
+   },
+   "steps": [
+    {
+     "agent": "intake",
+     "badge": "AG-01",
+     "read": [
+      "raw"
+     ],
+     "wrote": [
+      "intake"
+     ]
+    },
+    {
+     "agent": "documents",
+     "badge": "AG-02",
+     "read": [
+      "intake"
+     ],
+     "wrote": [
+      "docs"
+     ]
+    },
+    {
+     "agent": "fault",
+     "badge": "AG-03",
+     "read": [
+      "intake"
+     ],
+     "wrote": [
+      "elements",
+      "fault"
+     ]
+    },
+    {
+     "agent": "route",
+     "badge": "AG-04",
+     "read": [
+      "intake",
+      "docs",
+      "elements",
+      "fault"
+     ],
+     "wrote": [
+      "route"
+     ]
+    },
+    {
+     "agent": "schedule",
+     "badge": "AG-05",
+     "read": [
+      "intake",
+      "docs"
+     ],
+     "wrote": [
+      "schedule"
+     ]
+    },
+    {
+     "agent": "notice",
+     "badge": "AG-06",
+     "read": [
+      "intake",
+      "docs",
+      "fault",
+      "route",
+      "schedule"
+     ],
+     "wrote": [
+      "notice"
+     ]
+    }
+   ],
+   "extractor": "skill",
+   "alt": {
+    "id": "N004",
+    "status": "완료",
+    "stop": null,
+    "route": "사람 심사",
+    "rules": [
+     "R06"
+    ],
+    "chart": null,
+    "base": null,
+    "conflicts": [],
+    "modifiers": [],
+    "unverified": [],
+    "elements": {
+     "고객": {
+      "place": "합류지점",
+      "me_move": "합류",
+      "me_order": "후행",
+      "other_move": null,
+      "other_order": null,
+      "other_from": null,
+      "modifiers": []
+     },
+     "상대": {
+      "place": "합류지점",
+      "me_move": null,
+      "me_order": null,
+      "other_move": null,
+      "other_order": null,
+      "other_from": null,
+      "modifiers": []
+     }
+    },
+    "evidence": {
+     "고객": {
+      "place": {
+       "value": "합류지점",
+       "line": 0,
+       "quote": "차로가 줄어드는"
+      },
+      "me_move": {
+       "value": "합류",
+       "line": 1,
+       "quote": "합류하"
+      },
+      "me_order": {
+       "value": "후행",
+       "line": 1,
+       "quote": "뒤에서"
+      },
+      "other_move": null,
+      "other_order": null,
+      "other_from": null,
+      "modifiers": []
+     },
+     "상대": {
+      "place": {
+       "value": "합류지점",
+       "line": 0,
+       "quote": "합류 구간"
+      },
+      "me_move": null,
+      "me_order": null,
+      "other_move": null,
+      "other_order": null,
+      "other_from": null,
+      "modifiers": []
+     }
+    },
+    "missing_docs": [],
+    "schedule": null,
+    "notice": {
+     "customer": "[N004] 사고 접수 안내\n접수하신 사고는 담당자가 직접 살펴본 뒤 안내드립니다.\n- 사고 유형을 담당자가 확인합니다",
+     "staff": {
+      "route": "사람 심사",
+      "rules": [
+       "R06 옮긴 도표 8개 중 맞는 도표가 하나로 정해지지 않음"
+      ],
+      "chart": null,
+      "candidates": {
+       "고객": [],
+       "상대": []
+      },
+      "conflicts": [],
+      "modifiers": [],
+      "estimate": 1800000,
+      "estimate_limit": 2000000,
+      "injury_grade": null,
+      "charts_confirmed": true
+     },
+     "checked": true
+    }
+   }
+  },
+  {
+   "case": {
+    "id": "N005",
+    "date": "2026-10-17",
+    "kind": "차대차",
+    "coverage": [
+     "대물"
+    ],
+    "damage": "경미",
+    "parties": {
+     "고객": {
+      "statement": "신호등 없는 작은 사거리를 지나던 중이었습니다.\n앞차를 따라 똑바로 가고 있었는데\n앞차가 깜빡이를 켜고 갑자기 왼쪽으로 꺾어서 제 차 앞부분이 그 차 옆을 받았습니다."
+     },
+     "상대": {
+      "statement": "신호 없는 교차로에서 좌회전하려고 속도를 줄였습니다.\n방향지시등을 켜고 돌기 시작했는데 뒤차가 따라오다 제 차 오른쪽을 받았습니다."
+     }
+    },
+    "attachments": [
+     {
+      "doc": "수리견적서",
+      "text": "수리 항목: 범퍼와 펜더\n총액 1,100,000원"
+     }
+    ]
+   },
+   "expect": {
+    "tag": "앞차가 교차로에서 좌회전(차19-1 고객A)",
+    "route": "자동 처리 후보",
+    "rules": [],
+    "chart": "차19-1",
+    "base": 20,
+    "schedule": null
+   },
+   "result": {
+    "id": "N005",
+    "status": "완료",
+    "stop": null,
+    "route": "자동 처리 후보",
+    "rules": [],
+    "chart": "차19-1",
+    "base": {
+     "고객": 20,
+     "상대": 80
+    },
+    "conflicts": [],
+    "modifiers": [],
+    "unverified": [],
+    "elements": {
+     "고객": {
+      "place": "신호없는교차로",
+      "me_move": "직진",
+      "me_order": "후행",
+      "other_move": "좌회전",
+      "other_order": "선행",
+      "other_from": "같은방향",
+      "modifiers": []
+     },
+     "상대": {
+      "place": "신호없는교차로",
+      "me_move": "좌회전",
+      "me_order": "선행",
+      "other_move": "직진",
+      "other_order": "후행",
+      "other_from": "같은방향",
+      "modifiers": []
+     }
+    },
+    "evidence": {
+     "고객": {
+      "place": {
+       "value": "신호없는교차로",
+       "line": 0,
+       "quote": "신호등 없는 작은 사거리"
+      },
+      "me_move": {
+       "value": "직진",
+       "line": 1,
+       "quote": "똑바로 가고"
+      },
+      "me_order": {
+       "value": "후행",
+       "line": 1,
+       "quote": "앞차를 따라"
+      },
+      "other_move": {
+       "value": "좌회전",
+       "line": 2,
+       "quote": "왼쪽으로 꺾어서"
+      },
+      "other_order": {
+       "value": "선행",
+       "line": 2,
+       "quote": "앞차가"
+      },
+      "other_from": {
+       "value": "같은방향",
+       "line": 1,
+       "quote": "앞차를 따라"
+      },
+      "modifiers": []
+     },
+     "상대": {
+      "place": {
+       "value": "신호없는교차로",
+       "line": 0,
+       "quote": "신호 없는 교차로"
+      },
+      "me_move": {
+       "value": "좌회전",
+       "line": 0,
+       "quote": "좌회전하려고"
+      },
+      "me_order": {
+       "value": "선행",
+       "line": 1,
+       "quote": "뒤차가 따라오다"
+      },
+      "other_move": {
+       "value": "직진",
+       "line": 1,
+       "quote": "뒤차가 따라오다"
+      },
+      "other_order": {
+       "value": "후행",
+       "line": 1,
+       "quote": "뒤차가"
+      },
+      "other_from": {
+       "value": "같은방향",
+       "line": 1,
+       "quote": "뒤차가 따라오다"
+      },
+      "modifiers": []
+     }
+    },
+    "missing_docs": [],
+    "schedule": null,
+    "notice": {
+     "customer": "[N005] 사고 접수 안내\n접수하신 사고는 빠른 처리 대상 후보로 분류되었습니다. 담당자가 확인한 뒤 결과를 안내드립니다.\n예상 과실: 고객님 20%, 상대 80% (과실비율정보포털 도표 차19-1 기본값 기준, 확인 후 안내)",
+     "staff": {
+      "route": "자동 처리 후보",
+      "rules": [],
+      "chart": {
+       "id": "차19-1",
+       "title": "후행 직진 대 선행 좌(우)회전",
+       "url": "https://accident.knia.or.kr/myaccident-content?chartNo=차19-1&chartType=1",
+       "roles": {
+        "고객": "A",
+        "상대": "B"
+       },
+       "base": {
+        "고객": 20,
+        "상대": 80
+       }
+      },
+      "candidates": {
+       "고객": [
+        "차19-1"
+       ],
+       "상대": [
+        "차19-1"
+       ]
+      },
+      "conflicts": [],
+      "modifiers": [],
+      "estimate": 1100000,
+      "estimate_limit": 2000000,
+      "injury_grade": null,
+      "charts_confirmed": true
+     },
+     "checked": true
+    }
+   },
+   "steps": [
+    {
+     "agent": "intake",
+     "badge": "AG-01",
+     "read": [
+      "raw"
+     ],
+     "wrote": [
+      "intake"
+     ]
+    },
+    {
+     "agent": "documents",
+     "badge": "AG-02",
+     "read": [
+      "intake"
+     ],
+     "wrote": [
+      "docs"
+     ]
+    },
+    {
+     "agent": "fault",
+     "badge": "AG-03",
+     "read": [
+      "intake"
+     ],
+     "wrote": [
+      "elements",
+      "fault"
+     ]
+    },
+    {
+     "agent": "route",
+     "badge": "AG-04",
+     "read": [
+      "intake",
+      "docs",
+      "elements",
+      "fault"
+     ],
+     "wrote": [
+      "route"
+     ]
+    },
+    {
+     "agent": "schedule",
+     "badge": "AG-05",
+     "read": [
+      "intake",
+      "docs"
+     ],
+     "wrote": [
+      "schedule"
+     ]
+    },
+    {
+     "agent": "notice",
+     "badge": "AG-06",
+     "read": [
+      "intake",
+      "docs",
+      "fault",
+      "route",
+      "schedule"
+     ],
+     "wrote": [
+      "notice"
+     ]
+    }
+   ],
+   "extractor": "skill",
+   "alt": {
+    "id": "N005",
+    "status": "완료",
+    "stop": null,
+    "route": "사람 심사",
+    "rules": [
+     "R06"
+    ],
+    "chart": null,
+    "base": null,
+    "conflicts": [],
+    "modifiers": [],
+    "unverified": [],
+    "elements": {
+     "고객": {
+      "place": null,
+      "me_move": null,
+      "me_order": null,
+      "other_move": null,
+      "other_order": null,
+      "other_from": null,
+      "modifiers": []
+     },
+     "상대": {
+      "place": "신호없는교차로",
+      "me_move": null,
+      "me_order": null,
+      "other_move": null,
+      "other_order": null,
+      "other_from": null,
+      "modifiers": []
+     }
+    },
+    "evidence": {
+     "고객": {
+      "place": null,
+      "me_move": null,
+      "me_order": null,
+      "other_move": null,
+      "other_order": null,
+      "other_from": null,
+      "modifiers": []
+     },
+     "상대": {
+      "place": {
+       "value": "신호없는교차로",
+       "line": 0,
+       "quote": "신호 없는 교차로"
+      },
+      "me_move": null,
+      "me_order": null,
+      "other_move": null,
+      "other_order": null,
+      "other_from": null,
+      "modifiers": []
+     }
+    },
+    "missing_docs": [],
+    "schedule": null,
+    "notice": {
+     "customer": "[N005] 사고 접수 안내\n접수하신 사고는 담당자가 직접 살펴본 뒤 안내드립니다.\n- 사고 유형을 담당자가 확인합니다",
+     "staff": {
+      "route": "사람 심사",
+      "rules": [
+       "R06 옮긴 도표 8개 중 맞는 도표가 하나로 정해지지 않음"
+      ],
+      "chart": null,
+      "candidates": {
+       "고객": [],
+       "상대": []
+      },
+      "conflicts": [],
+      "modifiers": [],
+      "estimate": 1100000,
+      "estimate_limit": 2000000,
+      "injury_grade": null,
+      "charts_confirmed": true
+     },
+     "checked": true
+    }
+   }
+  },
+  {
+   "case": {
+    "id": "N006",
+    "date": "2026-10-19",
+    "kind": "차대차",
+    "coverage": [
+     "대물"
+    ],
+    "damage": "경미",
+    "parties": {
+     "고객": {
+      "statement": "신호등이 없는 교차로에서 좌회전하던 중이었습니다.\n제 왼쪽 길에서 직진해 오던 차와 교차로 한가운데서 부딪쳤습니다."
+     },
+     "상대": {
+      "statement": "신호 없는 사거리를 똑바로 지나가고 있었습니다.\n오른쪽 길에서 나온 차가 제 앞을 가로질러 왼쪽으로 돌다가 부딪쳤습니다."
+     }
+    },
+    "attachments": [
+     {
+      "doc": "수리견적서",
+      "text": "수리 항목: 범퍼와 펜더\n총액 1,500,000원"
+     }
+    ]
+   },
+   "expect": {
+    "tag": "좌회전 중 왼쪽 길 직진 차(차16-1 고객B)",
+    "route": "자동 처리 후보",
+    "rules": [],
+    "chart": "차16-1",
+    "base": 60,
+    "schedule": null
+   },
+   "result": {
+    "id": "N006",
+    "status": "완료",
+    "stop": null,
+    "route": "자동 처리 후보",
+    "rules": [],
+    "chart": "차16-1",
+    "base": {
+     "고객": 60,
+     "상대": 40
+    },
+    "conflicts": [],
+    "modifiers": [],
+    "unverified": [],
+    "elements": {
+     "고객": {
+      "place": "신호없는교차로",
+      "me_move": "좌회전",
+      "me_order": null,
+      "other_move": "직진",
+      "other_order": null,
+      "other_from": "왼쪽",
+      "modifiers": []
+     },
+     "상대": {
+      "place": "신호없는교차로",
+      "me_move": "직진",
+      "me_order": null,
+      "other_move": "좌회전",
+      "other_order": null,
+      "other_from": "오른쪽",
+      "modifiers": []
+     }
+    },
+    "evidence": {
+     "고객": {
+      "place": {
+       "value": "신호없는교차로",
+       "line": 0,
+       "quote": "신호등이 없는 교차로"
+      },
+      "me_move": {
+       "value": "좌회전",
+       "line": 0,
+       "quote": "좌회전하던"
+      },
+      "me_order": null,
+      "other_move": {
+       "value": "직진",
+       "line": 1,
+       "quote": "직진해 오던"
+      },
+      "other_order": null,
+      "other_from": {
+       "value": "왼쪽",
+       "line": 1,
+       "quote": "제 왼쪽 길에서"
+      },
+      "modifiers": []
+     },
+     "상대": {
+      "place": {
+       "value": "신호없는교차로",
+       "line": 0,
+       "quote": "신호 없는 사거리"
+      },
+      "me_move": {
+       "value": "직진",
+       "line": 0,
+       "quote": "똑바로 지나가고"
+      },
+      "me_order": null,
+      "other_move": {
+       "value": "좌회전",
+       "line": 1,
+       "quote": "왼쪽으로 돌다가"
+      },
+      "other_order": null,
+      "other_from": {
+       "value": "오른쪽",
+       "line": 1,
+       "quote": "오른쪽 길에서"
+      },
+      "modifiers": []
+     }
+    },
+    "missing_docs": [],
+    "schedule": null,
+    "notice": {
+     "customer": "[N006] 사고 접수 안내\n접수하신 사고는 빠른 처리 대상 후보로 분류되었습니다. 담당자가 확인한 뒤 결과를 안내드립니다.\n예상 과실: 고객님 60%, 상대 40% (과실비율정보포털 도표 차16-1 기본값 기준, 확인 후 안내)",
+     "staff": {
+      "route": "자동 처리 후보",
+      "rules": [],
+      "chart": {
+       "id": "차16-1",
+       "title": "왼쪽 직진 대 오른쪽 좌회전",
+       "url": "https://accident.knia.or.kr/myaccident-content?chartNo=차16-1&chartType=1",
+       "roles": {
+        "고객": "B",
+        "상대": "A"
+       },
+       "base": {
+        "고객": 60,
+        "상대": 40
+       }
+      },
+      "candidates": {
+       "고객": [
+        "차16-1"
+       ],
+       "상대": [
+        "차16-1"
+       ]
+      },
+      "conflicts": [],
+      "modifiers": [],
+      "estimate": 1500000,
+      "estimate_limit": 2000000,
+      "injury_grade": null,
+      "charts_confirmed": true
+     },
+     "checked": true
+    }
+   },
+   "steps": [
+    {
+     "agent": "intake",
+     "badge": "AG-01",
+     "read": [
+      "raw"
+     ],
+     "wrote": [
+      "intake"
+     ]
+    },
+    {
+     "agent": "documents",
+     "badge": "AG-02",
+     "read": [
+      "intake"
+     ],
+     "wrote": [
+      "docs"
+     ]
+    },
+    {
+     "agent": "fault",
+     "badge": "AG-03",
+     "read": [
+      "intake"
+     ],
+     "wrote": [
+      "elements",
+      "fault"
+     ]
+    },
+    {
+     "agent": "route",
+     "badge": "AG-04",
+     "read": [
+      "intake",
+      "docs",
+      "elements",
+      "fault"
+     ],
+     "wrote": [
+      "route"
+     ]
+    },
+    {
+     "agent": "schedule",
+     "badge": "AG-05",
+     "read": [
+      "intake",
+      "docs"
+     ],
+     "wrote": [
+      "schedule"
+     ]
+    },
+    {
+     "agent": "notice",
+     "badge": "AG-06",
+     "read": [
+      "intake",
+      "docs",
+      "fault",
+      "route",
+      "schedule"
+     ],
+     "wrote": [
+      "notice"
+     ]
+    }
+   ],
+   "extractor": "skill",
+   "alt": {
+    "id": "N006",
+    "status": "완료",
+    "stop": null,
+    "route": "사람 심사",
+    "rules": [
+     "R06"
+    ],
+    "chart": null,
+    "base": null,
+    "conflicts": [],
+    "modifiers": [],
+    "unverified": [],
+    "elements": {
+     "고객": {
+      "place": "신호없는교차로",
+      "me_move": null,
+      "me_order": null,
+      "other_move": null,
+      "other_order": null,
+      "other_from": null,
+      "modifiers": []
+     },
+     "상대": {
+      "place": null,
+      "me_move": null,
+      "me_order": null,
+      "other_move": null,
+      "other_order": null,
+      "other_from": null,
+      "modifiers": []
+     }
+    },
+    "evidence": {
+     "고객": {
+      "place": {
+       "value": "신호없는교차로",
+       "line": 0,
+       "quote": "신호등이 없는 교차로"
+      },
+      "me_move": null,
+      "me_order": null,
+      "other_move": null,
+      "other_order": null,
+      "other_from": null,
+      "modifiers": []
+     },
+     "상대": {
+      "place": null,
+      "me_move": null,
+      "me_order": null,
+      "other_move": null,
+      "other_order": null,
+      "other_from": null,
+      "modifiers": []
+     }
+    },
+    "missing_docs": [],
+    "schedule": null,
+    "notice": {
+     "customer": "[N006] 사고 접수 안내\n접수하신 사고는 담당자가 직접 살펴본 뒤 안내드립니다.\n- 사고 유형을 담당자가 확인합니다",
+     "staff": {
+      "route": "사람 심사",
+      "rules": [
+       "R06 옮긴 도표 8개 중 맞는 도표가 하나로 정해지지 않음"
+      ],
+      "chart": null,
+      "candidates": {
+       "고객": [],
+       "상대": []
+      },
+      "conflicts": [],
+      "modifiers": [],
+      "estimate": 1500000,
+      "estimate_limit": 2000000,
+      "injury_grade": null,
+      "charts_confirmed": true
+     },
+     "checked": true
+    }
+   }
+  },
+  {
+   "case": {
+    "id": "N007",
+    "date": "2026-10-20",
+    "kind": "차대차",
+    "coverage": [
+     "대물",
+     "대인"
+    ],
+    "damage": "경미",
+    "parties": {
+     "고객": {
+      "statement": "신호 없는 교차로를 곧장 지나가려던 참이었습니다.\n마주 오던 차가 제 앞에서 갑자기 좌회전을 했고 피하지 못했습니다."
+     },
+     "상대": {
+      "statement": "신호등 없는 교차로에서 좌회전하려고 기다리다가 반대편이 비었다고 보고 돌았습니다.\n반대편에서 직진해 온 차와 부딪쳤습니다."
+     }
+    },
+    "attachments": [
+     {
+      "doc": "수리견적서",
+      "text": "수리 항목: 범퍼와 펜더\n총액 1,600,000원"
+     },
+     {
+      "doc": "진단서",
+      "text": "진단명: 경추 염좌\n상해등급 13급"
+     },
+     {
+      "doc": "진료비내역",
+      "text": "외래 진료 3회"
+     }
+    ]
+   },
+   "expect": {
+    "tag": "맞은편 차 좌회전, 경상 13급(차15-1 고객A)",
+    "route": "자동 처리 후보",
+    "rules": [],
+    "chart": "차15-1",
+    "base": 30,
+    "schedule": [
+     "2026-12-15",
+     "2026-12-08"
+    ]
+   },
+   "result": {
+    "id": "N007",
+    "status": "완료",
+    "stop": null,
+    "route": "자동 처리 후보",
+    "rules": [],
+    "chart": "차15-1",
+    "base": {
+     "고객": 30,
+     "상대": 70
+    },
+    "conflicts": [],
+    "modifiers": [],
+    "unverified": [],
+    "elements": {
+     "고객": {
+      "place": "신호없는교차로",
+      "me_move": "직진",
+      "me_order": null,
+      "other_move": "좌회전",
+      "other_order": null,
+      "other_from": "맞은편",
+      "modifiers": []
+     },
+     "상대": {
+      "place": "신호없는교차로",
+      "me_move": "좌회전",
+      "me_order": null,
+      "other_move": "직진",
+      "other_order": null,
+      "other_from": "맞은편",
+      "modifiers": []
+     }
+    },
+    "evidence": {
+     "고객": {
+      "place": {
+       "value": "신호없는교차로",
+       "line": 0,
+       "quote": "신호 없는 교차로"
+      },
+      "me_move": {
+       "value": "직진",
+       "line": 0,
+       "quote": "곧장 지나가려던"
+      },
+      "me_order": null,
+      "other_move": {
+       "value": "좌회전",
+       "line": 1,
+       "quote": "좌회전을 했고"
+      },
+      "other_order": null,
+      "other_from": {
+       "value": "맞은편",
+       "line": 1,
+       "quote": "마주 오던 차가"
+      },
+      "modifiers": []
+     },
+     "상대": {
+      "place": {
+       "value": "신호없는교차로",
+       "line": 0,
+       "quote": "신호등 없는 교차로"
+      },
+      "me_move": {
+       "value": "좌회전",
+       "line": 0,
+       "quote": "좌회전하려고"
+      },
+      "me_order": null,
+      "other_move": {
+       "value": "직진",
+       "line": 1,
+       "quote": "직진해 온 차"
+      },
+      "other_order": null,
+      "other_from": {
+       "value": "맞은편",
+       "line": 1,
+       "quote": "반대편에서"
+      },
+      "modifiers": []
+     }
+    },
+    "missing_docs": [],
+    "schedule": {
+     "grade": 13,
+     "limit_date": "2026-12-15",
+     "notice_date": "2026-12-08",
+     "notice_confirmed": false
+    },
+    "notice": {
+     "customer": "[N007] 사고 접수 안내\n접수하신 사고는 빠른 처리 대상 후보로 분류되었습니다. 담당자가 확인한 뒤 결과를 안내드립니다.\n예상 과실: 고객님 30%, 상대 70% (과실비율정보포털 도표 차15-1 기본값 기준, 확인 후 안내)\n경상 치료 일정: 사고일부터 8주가 되는 날은 2026-12-15입니다. 그 뒤에도 치료를 이어 가려면 2026-12-08까지 진단서를 더 내 주셔야 할 수 있습니다(기준 확인 전).",
+     "staff": {
+      "route": "자동 처리 후보",
+      "rules": [],
+      "chart": {
+       "id": "차15-1",
+       "title": "직진 대 맞은편 좌회전",
+       "url": "https://accident.knia.or.kr/myaccident-content?chartNo=차15-1&chartType=1",
+       "roles": {
+        "고객": "A",
+        "상대": "B"
+       },
+       "base": {
+        "고객": 30,
+        "상대": 70
+       }
+      },
+      "candidates": {
+       "고객": [
+        "차15-1"
+       ],
+       "상대": [
+        "차15-1"
+       ]
+      },
+      "conflicts": [],
+      "modifiers": [],
+      "estimate": 1600000,
+      "estimate_limit": 2000000,
+      "injury_grade": 13,
+      "charts_confirmed": true
+     },
+     "checked": true
+    }
+   },
+   "steps": [
+    {
+     "agent": "intake",
+     "badge": "AG-01",
+     "read": [
+      "raw"
+     ],
+     "wrote": [
+      "intake"
+     ]
+    },
+    {
+     "agent": "documents",
+     "badge": "AG-02",
+     "read": [
+      "intake"
+     ],
+     "wrote": [
+      "docs"
+     ]
+    },
+    {
+     "agent": "fault",
+     "badge": "AG-03",
+     "read": [
+      "intake"
+     ],
+     "wrote": [
+      "elements",
+      "fault"
+     ]
+    },
+    {
+     "agent": "route",
+     "badge": "AG-04",
+     "read": [
+      "intake",
+      "docs",
+      "elements",
+      "fault"
+     ],
+     "wrote": [
+      "route"
+     ]
+    },
+    {
+     "agent": "schedule",
+     "badge": "AG-05",
+     "read": [
+      "intake",
+      "docs"
+     ],
+     "wrote": [
+      "schedule"
+     ]
+    },
+    {
+     "agent": "notice",
+     "badge": "AG-06",
+     "read": [
+      "intake",
+      "docs",
+      "fault",
+      "route",
+      "schedule"
+     ],
+     "wrote": [
+      "notice"
+     ]
+    }
+   ],
+   "extractor": "skill",
+   "alt": {
+    "id": "N007",
+    "status": "완료",
+    "stop": null,
+    "route": "사람 심사",
+    "rules": [
+     "R06"
+    ],
+    "chart": null,
+    "base": null,
+    "conflicts": [],
+    "modifiers": [],
+    "unverified": [],
+    "elements": {
+     "고객": {
+      "place": "신호없는교차로",
+      "me_move": null,
+      "me_order": null,
+      "other_move": null,
+      "other_order": null,
+      "other_from": null,
+      "modifiers": []
+     },
+     "상대": {
+      "place": null,
+      "me_move": null,
+      "me_order": null,
+      "other_move": null,
+      "other_order": null,
+      "other_from": null,
+      "modifiers": []
+     }
+    },
+    "evidence": {
+     "고객": {
+      "place": {
+       "value": "신호없는교차로",
+       "line": 0,
+       "quote": "신호 없는 교차로"
+      },
+      "me_move": null,
+      "me_order": null,
+      "other_move": null,
+      "other_order": null,
+      "other_from": null,
+      "modifiers": []
+     },
+     "상대": {
+      "place": null,
+      "me_move": null,
+      "me_order": null,
+      "other_move": null,
+      "other_order": null,
+      "other_from": null,
+      "modifiers": []
+     }
+    },
+    "missing_docs": [],
+    "schedule": {
+     "grade": 13,
+     "limit_date": "2026-12-15",
+     "notice_date": "2026-12-08",
+     "notice_confirmed": false
+    },
+    "notice": {
+     "customer": "[N007] 사고 접수 안내\n접수하신 사고는 담당자가 직접 살펴본 뒤 안내드립니다.\n- 사고 유형을 담당자가 확인합니다\n경상 치료 일정: 사고일부터 8주가 되는 날은 2026-12-15입니다. 그 뒤에도 치료를 이어 가려면 2026-12-08까지 진단서를 더 내 주셔야 할 수 있습니다(기준 확인 전).",
+     "staff": {
+      "route": "사람 심사",
+      "rules": [
+       "R06 옮긴 도표 8개 중 맞는 도표가 하나로 정해지지 않음"
+      ],
+      "chart": null,
+      "candidates": {
+       "고객": [],
+       "상대": []
+      },
+      "conflicts": [],
+      "modifiers": [],
+      "estimate": 1600000,
+      "estimate_limit": 2000000,
+      "injury_grade": 13,
+      "charts_confirmed": true
+     },
+     "checked": true
+    }
+   }
+  },
+  {
+   "case": {
+    "id": "N008",
+    "date": "2026-10-21",
+    "kind": "차대차",
+    "coverage": [
+     "대물"
+    ],
+    "damage": "경미",
+    "parties": {
+     "고객": {
+      "statement": "직선 도로 2차로를 그대로 달리고 있었고 1차로에도 같은 방향 차가 있었습니다.\n1차로 차가 제 앞으로 확 들어왔습니다."
+     },
+     "상대": {
+      "statement": "직선 도로 1차로를 쭉 달리고 있었습니다.\n옆 2차로 차가 제 차로로 넘어오면서 제 차 옆을 긁었습니다. 저는 차로를 바꾼 적이 없습니다."
+     }
+    },
+    "attachments": [
+     {
+      "doc": "수리견적서",
+      "text": "수리 항목: 범퍼와 펜더\n총액 1,300,000원"
+     }
+    ]
+   },
+   "expect": {
+    "tag": "서로 상대가 끼어들었다고 함",
+    "route": "사람 심사",
+    "rules": [
+     "R05",
+     "R06"
+    ],
+    "chart": null,
+    "base": null,
+    "schedule": null
+   },
+   "result": {
+    "id": "N008",
+    "status": "완료",
+    "stop": null,
+    "route": "사람 심사",
+    "rules": [
+     "R05",
+     "R06"
+    ],
+    "chart": null,
+    "base": null,
+    "conflicts": [
+     {
+      "item": "고객 차 진행",
+      "고객 진술": "직진",
+      "상대 진술": "진로변경"
+     },
+     {
+      "item": "상대 차 진행",
+      "고객 진술": "진로변경",
+      "상대 진술": "직진"
+     }
+    ],
+    "modifiers": [],
+    "unverified": [],
+    "elements": {
+     "고객": {
+      "place": "단일로",
+      "me_move": "직진",
+      "me_order": "후행",
+      "other_move": "진로변경",
+      "other_order": "선행",
+      "other_from": "같은방향",
+      "modifiers": []
+     },
+     "상대": {
+      "place": "단일로",
+      "me_move": "직진",
+      "me_order": null,
+      "other_move": "진로변경",
+      "other_order": null,
+      "other_from": "같은방향",
+      "modifiers": []
+     }
+    },
+    "evidence": {
+     "고객": {
+      "place": {
+       "value": "단일로",
+       "line": 0,
+       "quote": "직선 도로"
+      },
+      "me_move": {
+       "value": "직진",
+       "line": 0,
+       "quote": "2차로를 그대로 달리고"
+      },
+      "me_order": {
+       "value": "후행",
+       "line": 1,
+       "quote": "제 앞으로 확 들어왔습니다"
+      },
+      "other_move": {
+       "value": "진로변경",
+       "line": 1,
+       "quote": "제 앞으로 확 들어왔습니다"
+      },
+      "other_order": {
+       "value": "선행",
+       "line": 1,
+       "quote": "제 앞으로"
+      },
+      "other_from": {
+       "value": "같은방향",
+       "line": 0,
+       "quote": "같은 방향"
+      },
+      "modifiers": []
+     },
+     "상대": {
+      "place": {
+       "value": "단일로",
+       "line": 0,
+       "quote": "직선 도로"
+      },
+      "me_move": {
+       "value": "직진",
+       "line": 0,
+       "quote": "1차로를 쭉 달리고"
+      },
+      "me_order": null,
+      "other_move": {
+       "value": "진로변경",
+       "line": 1,
+       "quote": "제 차로로 넘어오면서"
+      },
+      "other_order": null,
+      "other_from": {
+       "value": "같은방향",
+       "line": 1,
+       "quote": "옆 2차로 차가"
+      },
+      "modifiers": []
+     }
+    },
+    "missing_docs": [],
+    "schedule": null,
+    "notice": {
+     "customer": "[N008] 사고 접수 안내\n접수하신 사고는 담당자가 직접 살펴본 뒤 안내드립니다.\n- 두 분의 사고 설명이 서로 달라 담당자가 확인합니다\n- 사고 유형을 담당자가 확인합니다",
+     "staff": {
+      "route": "사람 심사",
+      "rules": [
+       "R05 양측 진술이 사고 요소에서 엇갈림",
+       "R06 옮긴 도표 8개 중 맞는 도표가 하나로 정해지지 않음"
+      ],
+      "chart": null,
+      "candidates": {
+       "고객": [
+        "차43-2"
+       ],
+       "상대": []
+      },
+      "conflicts": [
+       {
+        "item": "고객 차 진행",
+        "고객 진술": "직진",
+        "상대 진술": "진로변경"
+       },
+       {
+        "item": "상대 차 진행",
+        "고객 진술": "진로변경",
+        "상대 진술": "직진"
+       }
+      ],
+      "modifiers": [],
+      "estimate": 1300000,
+      "estimate_limit": 2000000,
+      "injury_grade": null,
+      "charts_confirmed": true
+     },
+     "checked": true
+    }
+   },
+   "steps": [
+    {
+     "agent": "intake",
+     "badge": "AG-01",
+     "read": [
+      "raw"
+     ],
+     "wrote": [
+      "intake"
+     ]
+    },
+    {
+     "agent": "documents",
+     "badge": "AG-02",
+     "read": [
+      "intake"
+     ],
+     "wrote": [
+      "docs"
+     ]
+    },
+    {
+     "agent": "fault",
+     "badge": "AG-03",
+     "read": [
+      "intake"
+     ],
+     "wrote": [
+      "elements",
+      "fault"
+     ]
+    },
+    {
+     "agent": "route",
+     "badge": "AG-04",
+     "read": [
+      "intake",
+      "docs",
+      "elements",
+      "fault"
+     ],
+     "wrote": [
+      "route"
+     ]
+    },
+    {
+     "agent": "schedule",
+     "badge": "AG-05",
+     "read": [
+      "intake",
+      "docs"
+     ],
+     "wrote": [
+      "schedule"
+     ]
+    },
+    {
+     "agent": "notice",
+     "badge": "AG-06",
+     "read": [
+      "intake",
+      "docs",
+      "fault",
+      "route",
+      "schedule"
+     ],
+     "wrote": [
+      "notice"
+     ]
+    }
+   ],
+   "extractor": "skill",
+   "alt": {
+    "id": "N008",
+    "status": "완료",
+    "stop": null,
+    "route": "사람 심사",
+    "rules": [
+     "R06"
+    ],
+    "chart": null,
+    "base": null,
+    "conflicts": [],
+    "modifiers": [],
+    "unverified": [],
+    "elements": {
+     "고객": {
+      "place": "단일로",
+      "me_move": null,
+      "me_order": null,
+      "other_move": null,
+      "other_order": null,
+      "other_from": null,
+      "modifiers": []
+     },
+     "상대": {
+      "place": "단일로",
+      "me_move": null,
+      "me_order": null,
+      "other_move": null,
+      "other_order": null,
+      "other_from": null,
+      "modifiers": []
+     }
+    },
+    "evidence": {
+     "고객": {
+      "place": {
+       "value": "단일로",
+       "line": 0,
+       "quote": "직선 도로"
+      },
+      "me_move": null,
+      "me_order": null,
+      "other_move": null,
+      "other_order": null,
+      "other_from": null,
+      "modifiers": []
+     },
+     "상대": {
+      "place": {
+       "value": "단일로",
+       "line": 0,
+       "quote": "직선 도로"
+      },
+      "me_move": null,
+      "me_order": null,
+      "other_move": null,
+      "other_order": null,
+      "other_from": null,
+      "modifiers": []
+     }
+    },
+    "missing_docs": [],
+    "schedule": null,
+    "notice": {
+     "customer": "[N008] 사고 접수 안내\n접수하신 사고는 담당자가 직접 살펴본 뒤 안내드립니다.\n- 사고 유형을 담당자가 확인합니다",
+     "staff": {
+      "route": "사람 심사",
+      "rules": [
+       "R06 옮긴 도표 8개 중 맞는 도표가 하나로 정해지지 않음"
+      ],
+      "chart": null,
+      "candidates": {
+       "고객": [],
+       "상대": []
+      },
+      "conflicts": [],
+      "modifiers": [],
+      "estimate": 1300000,
+      "estimate_limit": 2000000,
+      "injury_grade": null,
+      "charts_confirmed": true
+     },
+     "checked": true
+    }
+   }
+  },
+  {
+   "case": {
+    "id": "N009",
+    "date": "2026-10-22",
+    "kind": "차대차",
+    "coverage": [
+     "대물"
+    ],
+    "damage": "경미",
+    "parties": {
+     "고객": {
+      "statement": "직선 도로에서 제 차로를 따라 쭉 가고 있었습니다.\n같은 방향 옆 차로 차가 깜빡이도 안 켜고 제 앞으로 차선을 바꿨습니다."
+     },
+     "상대": {
+      "statement": "직선 도로에서 오른쪽 차로로 옮기던 중이었습니다.\n제가 앞서 들어갔는데 뒤에서 오던 차가 속도를 줄이지 않아 부딪쳤습니다."
+     }
+    },
+    "attachments": [
+     {
+      "doc": "수리견적서",
+      "text": "수리 항목: 범퍼와 펜더\n총액 1,250,000원"
+     }
+    ]
+   },
+   "expect": {
+    "tag": "깜빡이 없이 끼어들었다는 주장(차43-2 고객A)",
+    "route": "사람 심사",
+    "rules": [
+     "R07"
+    ],
+    "chart": "차43-2",
+    "base": 30,
+    "schedule": null
+   },
+   "result": {
+    "id": "N009",
+    "status": "완료",
+    "stop": null,
+    "route": "사람 심사",
+    "rules": [
+     "R07"
+    ],
+    "chart": "차43-2",
+    "base": {
+     "고객": 30,
+     "상대": 70
+    },
+    "conflicts": [],
+    "modifiers": [
+     "방향지시등 미작동"
+    ],
+    "unverified": [],
+    "elements": {
+     "고객": {
+      "place": "단일로",
+      "me_move": "직진",
+      "me_order": "후행",
+      "other_move": "진로변경",
+      "other_order": "선행",
+      "other_from": "같은방향",
+      "modifiers": [
+       "방향지시등 미작동"
+      ]
+     },
+     "상대": {
+      "place": "단일로",
+      "me_move": "진로변경",
+      "me_order": "선행",
+      "other_move": "직진",
+      "other_order": "후행",
+      "other_from": "같은방향",
+      "modifiers": []
+     }
+    },
+    "evidence": {
+     "고객": {
+      "place": {
+       "value": "단일로",
+       "line": 0,
+       "quote": "직선 도로"
+      },
+      "me_move": {
+       "value": "직진",
+       "line": 0,
+       "quote": "제 차로를 따라 쭉 가고"
+      },
+      "me_order": {
+       "value": "후행",
+       "line": 1,
+       "quote": "제 앞으로 차선을 바꿨습니다"
+      },
+      "other_move": {
+       "value": "진로변경",
+       "line": 1,
+       "quote": "차선을 바꿨습니다"
+      },
+      "other_order": {
+       "value": "선행",
+       "line": 1,
+       "quote": "제 앞으로"
+      },
+      "other_from": {
+       "value": "같은방향",
+       "line": 1,
+       "quote": "같은 방향"
+      },
+      "modifiers": [
+       {
+        "value": "방향지시등 미작동",
+        "line": 1,
+        "quote": "깜빡이도 안 켜고"
+       }
+      ]
+     },
+     "상대": {
+      "place": {
+       "value": "단일로",
+       "line": 0,
+       "quote": "직선 도로"
+      },
+      "me_move": {
+       "value": "진로변경",
+       "line": 0,
+       "quote": "오른쪽 차로로 옮기던"
+      },
+      "me_order": {
+       "value": "선행",
+       "line": 1,
+       "quote": "앞서 들어갔는데"
+      },
+      "other_move": {
+       "value": "직진",
+       "line": 1,
+       "quote": "뒤에서 오던 차가"
+      },
+      "other_order": {
+       "value": "후행",
+       "line": 1,
+       "quote": "뒤에서 오던"
+      },
+      "other_from": {
+       "value": "같은방향",
+       "line": 1,
+       "quote": "뒤에서 오던 차가"
+      },
+      "modifiers": []
+     }
+    },
+    "missing_docs": [],
+    "schedule": null,
+    "notice": {
+     "customer": "[N009] 사고 접수 안내\n접수하신 사고는 담당자가 직접 살펴본 뒤 안내드립니다.\n- 과실을 바꿀 수 있는 사정이 있어 담당자가 확인합니다\n예상 과실: 고객님 30%, 상대 70% (과실비율정보포털 도표 차43-2 기본값 기준, 확인 후 안내)",
+     "staff": {
+      "route": "사람 심사",
+      "rules": [
+       "R07 진술에 수정요소 주장이 있음(자동 판단 안 함)"
+      ],
+      "chart": {
+       "id": "차43-2",
+       "title": "후행 직진 대 선행 진로변경",
+       "url": "https://accident.knia.or.kr/myaccident-content?chartNo=차43-2&chartType=1",
+       "roles": {
+        "고객": "A",
+        "상대": "B"
+       },
+       "base": {
+        "고객": 30,
+        "상대": 70
+       }
+      },
+      "candidates": {
+       "고객": [
+        "차43-2"
+       ],
+       "상대": [
+        "차43-2"
+       ]
+      },
+      "conflicts": [],
+      "modifiers": [
+       "방향지시등 미작동"
+      ],
+      "estimate": 1250000,
+      "estimate_limit": 2000000,
+      "injury_grade": null,
+      "charts_confirmed": true
+     },
+     "checked": true
+    }
+   },
+   "steps": [
+    {
+     "agent": "intake",
+     "badge": "AG-01",
+     "read": [
+      "raw"
+     ],
+     "wrote": [
+      "intake"
+     ]
+    },
+    {
+     "agent": "documents",
+     "badge": "AG-02",
+     "read": [
+      "intake"
+     ],
+     "wrote": [
+      "docs"
+     ]
+    },
+    {
+     "agent": "fault",
+     "badge": "AG-03",
+     "read": [
+      "intake"
+     ],
+     "wrote": [
+      "elements",
+      "fault"
+     ]
+    },
+    {
+     "agent": "route",
+     "badge": "AG-04",
+     "read": [
+      "intake",
+      "docs",
+      "elements",
+      "fault"
+     ],
+     "wrote": [
+      "route"
+     ]
+    },
+    {
+     "agent": "schedule",
+     "badge": "AG-05",
+     "read": [
+      "intake",
+      "docs"
+     ],
+     "wrote": [
+      "schedule"
+     ]
+    },
+    {
+     "agent": "notice",
+     "badge": "AG-06",
+     "read": [
+      "intake",
+      "docs",
+      "fault",
+      "route",
+      "schedule"
+     ],
+     "wrote": [
+      "notice"
+     ]
+    }
+   ],
+   "extractor": "skill",
+   "alt": {
+    "id": "N009",
+    "status": "완료",
+    "stop": null,
+    "route": "사람 심사",
+    "rules": [
+     "R06"
+    ],
+    "chart": null,
+    "base": null,
+    "conflicts": [],
+    "modifiers": [],
+    "unverified": [],
+    "elements": {
+     "고객": {
+      "place": "단일로",
+      "me_move": null,
+      "me_order": null,
+      "other_move": null,
+      "other_order": null,
+      "other_from": null,
+      "modifiers": []
+     },
+     "상대": {
+      "place": "단일로",
+      "me_move": null,
+      "me_order": null,
+      "other_move": null,
+      "other_order": null,
+      "other_from": null,
+      "modifiers": []
+     }
+    },
+    "evidence": {
+     "고객": {
+      "place": {
+       "value": "단일로",
+       "line": 0,
+       "quote": "직선 도로"
+      },
+      "me_move": null,
+      "me_order": null,
+      "other_move": null,
+      "other_order": null,
+      "other_from": null,
+      "modifiers": []
+     },
+     "상대": {
+      "place": {
+       "value": "단일로",
+       "line": 0,
+       "quote": "직선 도로"
+      },
+      "me_move": null,
+      "me_order": null,
+      "other_move": null,
+      "other_order": null,
+      "other_from": null,
+      "modifiers": []
+     }
+    },
+    "missing_docs": [],
+    "schedule": null,
+    "notice": {
+     "customer": "[N009] 사고 접수 안내\n접수하신 사고는 담당자가 직접 살펴본 뒤 안내드립니다.\n- 사고 유형을 담당자가 확인합니다",
+     "staff": {
+      "route": "사람 심사",
+      "rules": [
+       "R06 옮긴 도표 8개 중 맞는 도표가 하나로 정해지지 않음"
+      ],
+      "chart": null,
+      "candidates": {
+       "고객": [],
+       "상대": []
+      },
+      "conflicts": [],
+      "modifiers": [],
+      "estimate": 1250000,
+      "estimate_limit": 2000000,
+      "injury_grade": null,
+      "charts_confirmed": true
+     },
+     "checked": true
+    }
+   }
+  },
+  {
+   "case": {
+    "id": "N010",
+    "date": "2026-10-24",
+    "kind": "차대차",
+    "coverage": [
+     "대물"
+    ],
+    "damage": "경미",
+    "parties": {
+     "고객": {
+      "statement": "신호등이 있는 사거리에서 초록불을 받고 직진했습니다.\n맞은편에서 비보호로 좌회전하던 차가 제 앞을 막았습니다."
+     },
+     "상대": {
+      "statement": "신호 있는 교차로에서 비보호 좌회전을 하던 중이었습니다.\n맞은편 직진 차가 노란불에 들어와 부딪쳤습니다."
+     }
+    },
+    "attachments": [
+     {
+      "doc": "수리견적서",
+      "text": "수리 항목: 범퍼와 펜더\n총액 1,700,000원"
+     }
+    ]
+   },
+   "expect": {
+    "tag": "신호 교차로 비보호 좌회전(도표 밖)",
+    "route": "사람 심사",
+    "rules": [
+     "R06"
+    ],
+    "chart": null,
+    "base": null,
+    "schedule": null
+   },
+   "result": {
+    "id": "N010",
+    "status": "완료",
+    "stop": null,
+    "route": "사람 심사",
+    "rules": [
+     "R06"
+    ],
+    "chart": null,
+    "base": null,
+    "conflicts": [],
+    "modifiers": [],
+    "unverified": [],
+    "elements": {
+     "고객": {
+      "place": "신호교차로",
+      "me_move": "직진",
+      "me_order": null,
+      "other_move": "좌회전",
+      "other_order": null,
+      "other_from": "맞은편",
+      "modifiers": []
+     },
+     "상대": {
+      "place": "신호교차로",
+      "me_move": "좌회전",
+      "me_order": null,
+      "other_move": "직진",
+      "other_order": null,
+      "other_from": "맞은편",
+      "modifiers": []
+     }
+    },
+    "evidence": {
+     "고객": {
+      "place": {
+       "value": "신호교차로",
+       "line": 0,
+       "quote": "신호등이 있는 사거리"
+      },
+      "me_move": {
+       "value": "직진",
+       "line": 0,
+       "quote": "직진했습니다"
+      },
+      "me_order": null,
+      "other_move": {
+       "value": "좌회전",
+       "line": 1,
+       "quote": "좌회전하던"
+      },
+      "other_order": null,
+      "other_from": {
+       "value": "맞은편",
+       "line": 1,
+       "quote": "맞은편에서"
+      },
+      "modifiers": []
+     },
+     "상대": {
+      "place": {
+       "value": "신호교차로",
+       "line": 0,
+       "quote": "신호 있는 교차로"
+      },
+      "me_move": {
+       "value": "좌회전",
+       "line": 0,
+       "quote": "비보호 좌회전을 하던"
+      },
+      "me_order": null,
+      "other_move": {
+       "value": "직진",
+       "line": 1,
+       "quote": "직진 차가"
+      },
+      "other_order": null,
+      "other_from": {
+       "value": "맞은편",
+       "line": 1,
+       "quote": "맞은편"
+      },
+      "modifiers": []
+     }
+    },
+    "missing_docs": [],
+    "schedule": null,
+    "notice": {
+     "customer": "[N010] 사고 접수 안내\n접수하신 사고는 담당자가 직접 살펴본 뒤 안내드립니다.\n- 사고 유형을 담당자가 확인합니다",
+     "staff": {
+      "route": "사람 심사",
+      "rules": [
+       "R06 옮긴 도표 8개 중 맞는 도표가 하나로 정해지지 않음"
+      ],
+      "chart": null,
+      "candidates": {
+       "고객": [],
+       "상대": []
+      },
+      "conflicts": [],
+      "modifiers": [],
+      "estimate": 1700000,
+      "estimate_limit": 2000000,
+      "injury_grade": null,
+      "charts_confirmed": true
+     },
+     "checked": true
+    }
+   },
+   "steps": [
+    {
+     "agent": "intake",
+     "badge": "AG-01",
+     "read": [
+      "raw"
+     ],
+     "wrote": [
+      "intake"
+     ]
+    },
+    {
+     "agent": "documents",
+     "badge": "AG-02",
+     "read": [
+      "intake"
+     ],
+     "wrote": [
+      "docs"
+     ]
+    },
+    {
+     "agent": "fault",
+     "badge": "AG-03",
+     "read": [
+      "intake"
+     ],
+     "wrote": [
+      "elements",
+      "fault"
+     ]
+    },
+    {
+     "agent": "route",
+     "badge": "AG-04",
+     "read": [
+      "intake",
+      "docs",
+      "elements",
+      "fault"
+     ],
+     "wrote": [
+      "route"
+     ]
+    },
+    {
+     "agent": "schedule",
+     "badge": "AG-05",
+     "read": [
+      "intake",
+      "docs"
+     ],
+     "wrote": [
+      "schedule"
+     ]
+    },
+    {
+     "agent": "notice",
+     "badge": "AG-06",
+     "read": [
+      "intake",
+      "docs",
+      "fault",
+      "route",
+      "schedule"
+     ],
+     "wrote": [
+      "notice"
+     ]
+    }
+   ],
+   "extractor": "skill",
+   "alt": {
+    "id": "N010",
+    "status": "완료",
+    "stop": null,
+    "route": "사람 심사",
+    "rules": [
+     "R06"
+    ],
+    "chart": null,
+    "base": null,
+    "conflicts": [],
+    "modifiers": [],
+    "unverified": [],
+    "elements": {
+     "고객": {
+      "place": null,
+      "me_move": null,
+      "me_order": null,
+      "other_move": null,
+      "other_order": null,
+      "other_from": null,
+      "modifiers": []
+     },
+     "상대": {
+      "place": "신호교차로",
+      "me_move": null,
+      "me_order": null,
+      "other_move": null,
+      "other_order": null,
+      "other_from": null,
+      "modifiers": []
+     }
+    },
+    "evidence": {
+     "고객": {
+      "place": null,
+      "me_move": null,
+      "me_order": null,
+      "other_move": null,
+      "other_order": null,
+      "other_from": null,
+      "modifiers": []
+     },
+     "상대": {
+      "place": {
+       "value": "신호교차로",
+       "line": 0,
+       "quote": "신호 있는 교차로"
+      },
+      "me_move": null,
+      "me_order": null,
+      "other_move": null,
+      "other_order": null,
+      "other_from": null,
+      "modifiers": []
+     }
+    },
+    "missing_docs": [],
+    "schedule": null,
+    "notice": {
+     "customer": "[N010] 사고 접수 안내\n접수하신 사고는 담당자가 직접 살펴본 뒤 안내드립니다.\n- 사고 유형을 담당자가 확인합니다",
+     "staff": {
+      "route": "사람 심사",
+      "rules": [
+       "R06 옮긴 도표 8개 중 맞는 도표가 하나로 정해지지 않음"
+      ],
+      "chart": null,
+      "candidates": {
+       "고객": [],
+       "상대": []
+      },
+      "conflicts": [],
+      "modifiers": [],
+      "estimate": 1700000,
+      "estimate_limit": 2000000,
+      "injury_grade": null,
+      "charts_confirmed": true
+     },
+     "checked": true
+    }
+   }
   }
  ]
 };

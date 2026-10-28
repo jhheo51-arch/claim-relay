@@ -1,0 +1,68 @@
+{
+  "고객": {
+    "place": {
+      "value": "신호없는교차로",
+      "line": 0,
+      "quote": "신호등 없는 작은 사거리"
+    },
+    "me_move": {
+      "value": "직진",
+      "line": 1,
+      "quote": "똑바로 가고"
+    },
+    "me_order": {
+      "value": "후행",
+      "line": 1,
+      "quote": "앞차를 따라"
+    },
+    "other_move": {
+      "value": "좌회전",
+      "line": 2,
+      "quote": "왼쪽으로 꺾어서"
+    },
+    "other_order": {
+      "value": "선행",
+      "line": 2,
+      "quote": "앞차가"
+    },
+    "other_from": {
+      "value": "같은방향",
+      "line": 1,
+      "quote": "앞차를 따라"
+    },
+    "modifiers": []
+  },
+  "상대": {
+    "place": {
+      "value": "신호없는교차로",
+      "line": 0,
+      "quote": "신호 없는 교차로"
+    },
+    "me_move": {
+      "value": "좌회전",
+      "line": 0,
+      "quote": "좌회전하려고"
+    },
+    "me_order": {
+      "value": "선행",
+      "line": 1,
+      "quote": "뒤차가 따라오다"
+    },
+    "other_move": {
+      "value": "직진",
+      "line": 1,
+      "quote": "뒤차가 따라오다"
+    },
+    "other_order": {
+      "value": "후행",
+      "line": 1,
+      "quote": "뒤차가"
+    },
+    "other_from": {
+      "value": "같은방향",
+      "line": 1,
+      "quote": "뒤차가 따라오다"
+    },
+    "modifiers": []
+  }
+}

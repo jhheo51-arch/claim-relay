@@ -1,0 +1,709 @@
+{
+  "N001": {
+    "tag": "정체 중 뒤에서 받힘(차41-1 고객B)",
+    "route": "자동 처리 후보",
+    "rules": [],
+    "chart": "차41-1",
+    "base": 0,
+    "schedule": null,
+    "elements": {
+      "고객": {
+        "place": {
+          "value": "단일로",
+          "line": 0,
+          "quote": "직선 도로"
+        },
+        "me_move": {
+          "value": "정지",
+          "line": 1,
+          "quote": "멈춰 있었는데"
+        },
+        "me_order": {
+          "value": "선행",
+          "line": 2,
+          "quote": "제 차 뒤를"
+        },
+        "other_move": {
+          "value": "직진",
+          "line": 2,
+          "quote": "그대로 와서"
+        },
+        "other_order": {
+          "value": "후행",
+          "line": 2,
+          "quote": "뒤에 오던"
+        },
+        "other_from": {
+          "value": "같은방향",
+          "line": 2,
+          "quote": "뒤에 오던 차"
+        },
+        "modifiers": []
+      },
+      "상대": {
+        "place": {
+          "value": "단일로",
+          "line": 0,
+          "quote": "직선도로"
+        },
+        "me_move": {
+          "value": "직진",
+          "line": 0,
+          "quote": "가고 있었습니다"
+        },
+        "me_order": {
+          "value": "후행",
+          "line": 2,
+          "quote": "앞차 뒤범퍼를"
+        },
+        "other_move": {
+          "value": "정지",
+          "line": 1,
+          "quote": "앞차가 선 걸"
+        },
+        "other_order": {
+          "value": "선행",
+          "line": 0,
+          "quote": "앞차와"
+        },
+        "other_from": {
+          "value": "같은방향",
+          "line": 0,
+          "quote": "같은 차로로"
+        },
+        "modifiers": []
+      }
+    }
+  },
+  "N002": {
+    "tag": "옆 차로 차가 끼어듦, 경상 12급(차43-2 고객A)",
+    "route": "자동 처리 후보",
+    "rules": [],
+    "chart": "차43-2",
+    "base": 30,
+    "schedule": [
+      "2026-12-01",
+      "2026-11-24"
+    ],
+    "elements": {
+      "고객": {
+        "place": {
+          "value": "단일로",
+          "line": 0,
+          "quote": "직선 구간"
+        },
+        "me_move": {
+          "value": "직진",
+          "line": 1,
+          "quote": "계속 달리고"
+        },
+        "me_order": {
+          "value": "후행",
+          "line": 2,
+          "quote": "제 앞으로"
+        },
+        "other_move": {
+          "value": "진로변경",
+          "line": 2,
+          "quote": "제 앞으로 들어오면서"
+        },
+        "other_order": {
+          "value": "선행",
+          "line": 2,
+          "quote": "제 앞으로"
+        },
+        "other_from": {
+          "value": "같은방향",
+          "line": 2,
+          "quote": "옆 1차로 차가"
+        },
+        "modifiers": []
+      },
+      "상대": {
+        "place": {
+          "value": "단일로",
+          "line": 0,
+          "quote": "직선 도로"
+        },
+        "me_move": {
+          "value": "진로변경",
+          "line": 0,
+          "quote": "2차로로 옮기려고"
+        },
+        "me_order": {
+          "value": "선행",
+          "line": 2,
+          "quote": "뒤에서 온 차가"
+        },
+        "other_move": {
+          "value": "직진",
+          "line": 2,
+          "quote": "뒤에서 온"
+        },
+        "other_order": {
+          "value": "후행",
+          "line": 2,
+          "quote": "뒤에서 온"
+        },
+        "other_from": {
+          "value": "같은방향",
+          "line": 1,
+          "quote": "옆 차로 뒤쪽 차"
+        },
+        "modifiers": []
+      }
+    }
+  },
+  "N003": {
+    "tag": "양쪽에서 동시에 가운데 차로로(차43-3)",
+    "route": "자동 처리 후보",
+    "rules": [],
+    "chart": "차43-3",
+    "base": 50,
+    "schedule": null,
+    "elements": {
+      "고객": {
+        "place": {
+          "value": "단일로",
+          "line": 0,
+          "quote": "직선 도로"
+        },
+        "me_move": {
+          "value": "진로변경",
+          "line": 1,
+          "quote": "2차로로 옮겨 가고"
+        },
+        "me_order": null,
+        "other_move": {
+          "value": "진로변경",
+          "line": 2,
+          "quote": "2차로로 들어오면서"
+        },
+        "other_order": null,
+        "other_from": {
+          "value": "같은방향",
+          "line": 2,
+          "quote": "같은 쪽으로 가던"
+        },
+        "modifiers": []
+      },
+      "상대": {
+        "place": {
+          "value": "단일로",
+          "line": 0,
+          "quote": "직선 도로"
+        },
+        "me_move": {
+          "value": "진로변경",
+          "line": 0,
+          "quote": "차선을 바꾸던"
+        },
+        "me_order": null,
+        "other_move": {
+          "value": "진로변경",
+          "line": 1,
+          "quote": "2차로로 넘어오는"
+        },
+        "other_order": null,
+        "other_from": {
+          "value": "같은방향",
+          "line": 1,
+          "quote": "같은 방향"
+        },
+        "modifiers": []
+      }
+    }
+  },
+  "N004": {
+    "tag": "끝나는 차로에서 합류(차43-1 고객B)",
+    "route": "자동 처리 후보",
+    "rules": [],
+    "chart": "차43-1",
+    "base": 60,
+    "schedule": null,
+    "elements": {
+      "고객": {
+        "place": {
+          "value": "합류지점",
+          "line": 0,
+          "quote": "차로가 줄어드는"
+        },
+        "me_move": {
+          "value": "합류",
+          "line": 1,
+          "quote": "합류하려다"
+        },
+        "me_order": {
+          "value": "선행",
+          "line": 1,
+          "quote": "뒤에서 오는 차를"
+        },
+        "other_move": {
+          "value": "직진",
+          "line": 2,
+          "quote": "그대로 오던"
+        },
+        "other_order": {
+          "value": "후행",
+          "line": 1,
+          "quote": "뒤에서 오는"
+        },
+        "other_from": {
+          "value": "같은방향",
+          "line": 2,
+          "quote": "옆 차로로"
+        },
+        "modifiers": []
+      },
+      "상대": {
+        "place": {
+          "value": "합류지점",
+          "line": 0,
+          "quote": "합류 구간"
+        },
+        "me_move": {
+          "value": "직진",
+          "line": 0,
+          "quote": "그대로 달리고"
+        },
+        "me_order": {
+          "value": "후행",
+          "line": 1,
+          "quote": "제 앞으로"
+        },
+        "other_move": {
+          "value": "합류",
+          "line": 1,
+          "quote": "밀고 들어와"
+        },
+        "other_order": {
+          "value": "선행",
+          "line": 1,
+          "quote": "제 앞으로"
+        },
+        "other_from": {
+          "value": "같은방향",
+          "line": 1,
+          "quote": "오른쪽 끝 차로 차가"
+        },
+        "modifiers": []
+      }
+    }
+  },
+  "N005": {
+    "tag": "앞차가 교차로에서 좌회전(차19-1 고객A)",
+    "route": "자동 처리 후보",
+    "rules": [],
+    "chart": "차19-1",
+    "base": 20,
+    "schedule": null,
+    "elements": {
+      "고객": {
+        "place": {
+          "value": "신호없는교차로",
+          "line": 0,
+          "quote": "신호등 없는 작은 사거리"
+        },
+        "me_move": {
+          "value": "직진",
+          "line": 1,
+          "quote": "똑바로 가고"
+        },
+        "me_order": {
+          "value": "후행",
+          "line": 1,
+          "quote": "앞차를 따라"
+        },
+        "other_move": {
+          "value": "좌회전",
+          "line": 2,
+          "quote": "왼쪽으로 꺾어서"
+        },
+        "other_order": {
+          "value": "선행",
+          "line": 2,
+          "quote": "앞차가"
+        },
+        "other_from": {
+          "value": "같은방향",
+          "line": 1,
+          "quote": "앞차를 따라"
+        },
+        "modifiers": []
+      },
+      "상대": {
+        "place": {
+          "value": "신호없는교차로",
+          "line": 0,
+          "quote": "신호 없는 교차로"
+        },
+        "me_move": {
+          "value": "좌회전",
+          "line": 0,
+          "quote": "좌회전하려고"
+        },
+        "me_order": {
+          "value": "선행",
+          "line": 1,
+          "quote": "뒤차가"
+        },
+        "other_move": {
+          "value": "직진",
+          "line": 1,
+          "quote": "따라오다"
+        },
+        "other_order": {
+          "value": "후행",
+          "line": 1,
+          "quote": "뒤차가"
+        },
+        "other_from": {
+          "value": "같은방향",
+          "line": 1,
+          "quote": "뒤차가 따라오다"
+        },
+        "modifiers": []
+      }
+    }
+  },
+  "N006": {
+    "tag": "좌회전 중 왼쪽 길 직진 차(차16-1 고객B)",
+    "route": "자동 처리 후보",
+    "rules": [],
+    "chart": "차16-1",
+    "base": 60,
+    "schedule": null,
+    "elements": {
+      "고객": {
+        "place": {
+          "value": "신호없는교차로",
+          "line": 0,
+          "quote": "신호등이 없는 교차로"
+        },
+        "me_move": {
+          "value": "좌회전",
+          "line": 0,
+          "quote": "좌회전하던"
+        },
+        "me_order": null,
+        "other_move": {
+          "value": "직진",
+          "line": 1,
+          "quote": "직진해 오던"
+        },
+        "other_order": null,
+        "other_from": {
+          "value": "왼쪽",
+          "line": 1,
+          "quote": "제 왼쪽 길에서"
+        },
+        "modifiers": []
+      },
+      "상대": {
+        "place": {
+          "value": "신호없는교차로",
+          "line": 0,
+          "quote": "신호 없는 사거리"
+        },
+        "me_move": {
+          "value": "직진",
+          "line": 0,
+          "quote": "똑바로 지나가고"
+        },
+        "me_order": null,
+        "other_move": {
+          "value": "좌회전",
+          "line": 1,
+          "quote": "왼쪽으로 돌다가"
+        },
+        "other_order": null,
+        "other_from": {
+          "value": "오른쪽",
+          "line": 1,
+          "quote": "오른쪽 길에서"
+        },
+        "modifiers": []
+      }
+    }
+  },
+  "N007": {
+    "tag": "맞은편 차 좌회전, 경상 13급(차15-1 고객A)",
+    "route": "자동 처리 후보",
+    "rules": [],
+    "chart": "차15-1",
+    "base": 30,
+    "schedule": [
+      "2026-12-15",
+      "2026-12-08"
+    ],
+    "elements": {
+      "고객": {
+        "place": {
+          "value": "신호없는교차로",
+          "line": 0,
+          "quote": "신호 없는 교차로"
+        },
+        "me_move": {
+          "value": "직진",
+          "line": 0,
+          "quote": "곧장 지나가려던"
+        },
+        "me_order": null,
+        "other_move": {
+          "value": "좌회전",
+          "line": 1,
+          "quote": "좌회전을 했고"
+        },
+        "other_order": null,
+        "other_from": {
+          "value": "맞은편",
+          "line": 1,
+          "quote": "마주 오던 차가"
+        },
+        "modifiers": []
+      },
+      "상대": {
+        "place": {
+          "value": "신호없는교차로",
+          "line": 0,
+          "quote": "신호등 없는 교차로"
+        },
+        "me_move": {
+          "value": "좌회전",
+          "line": 0,
+          "quote": "좌회전하려고"
+        },
+        "me_order": null,
+        "other_move": {
+          "value": "직진",
+          "line": 1,
+          "quote": "직진해 온"
+        },
+        "other_order": null,
+        "other_from": {
+          "value": "맞은편",
+          "line": 1,
+          "quote": "반대편에서"
+        },
+        "modifiers": []
+      }
+    }
+  },
+  "N008": {
+    "tag": "서로 상대가 끼어들었다고 함",
+    "route": "사람 심사",
+    "rules": [
+      "R05",
+      "R06"
+    ],
+    "chart": null,
+    "base": null,
+    "schedule": null,
+    "elements": {
+      "고객": {
+        "place": {
+          "value": "단일로",
+          "line": 0,
+          "quote": "직선 도로"
+        },
+        "me_move": {
+          "value": "직진",
+          "line": 0,
+          "quote": "그대로 달리고"
+        },
+        "me_order": {
+          "value": "후행",
+          "line": 1,
+          "quote": "제 앞으로"
+        },
+        "other_move": {
+          "value": "진로변경",
+          "line": 1,
+          "quote": "제 앞으로 확 들어왔습니다"
+        },
+        "other_order": {
+          "value": "선행",
+          "line": 1,
+          "quote": "제 앞으로"
+        },
+        "other_from": {
+          "value": "같은방향",
+          "line": 0,
+          "quote": "같은 방향"
+        },
+        "modifiers": []
+      },
+      "상대": {
+        "place": {
+          "value": "단일로",
+          "line": 0,
+          "quote": "직선 도로"
+        },
+        "me_move": {
+          "value": "직진",
+          "line": 0,
+          "quote": "쭉 달리고"
+        },
+        "me_order": null,
+        "other_move": {
+          "value": "진로변경",
+          "line": 1,
+          "quote": "제 차로로 넘어오면서"
+        },
+        "other_order": null,
+        "other_from": {
+          "value": "같은방향",
+          "line": 1,
+          "quote": "옆 2차로 차가"
+        },
+        "modifiers": []
+      }
+    }
+  },
+  "N009": {
+    "tag": "깜빡이 없이 끼어들었다는 주장(차43-2 고객A)",
+    "route": "사람 심사",
+    "rules": [
+      "R07"
+    ],
+    "chart": "차43-2",
+    "base": 30,
+    "schedule": null,
+    "elements": {
+      "고객": {
+        "place": {
+          "value": "단일로",
+          "line": 0,
+          "quote": "직선 도로"
+        },
+        "me_move": {
+          "value": "직진",
+          "line": 0,
+          "quote": "쭉 가고"
+        },
+        "me_order": {
+          "value": "후행",
+          "line": 1,
+          "quote": "제 앞으로"
+        },
+        "other_move": {
+          "value": "진로변경",
+          "line": 1,
+          "quote": "차선을 바꿨습니다"
+        },
+        "other_order": {
+          "value": "선행",
+          "line": 1,
+          "quote": "제 앞으로"
+        },
+        "other_from": {
+          "value": "같은방향",
+          "line": 1,
+          "quote": "같은 방향"
+        },
+        "modifiers": [
+          {
+            "value": "방향지시등 미작동",
+            "line": 1,
+            "quote": "깜빡이도 안 켜고"
+          }
+        ]
+      },
+      "상대": {
+        "place": {
+          "value": "단일로",
+          "line": 0,
+          "quote": "직선 도로"
+        },
+        "me_move": {
+          "value": "진로변경",
+          "line": 0,
+          "quote": "오른쪽 차로로 옮기던"
+        },
+        "me_order": {
+          "value": "선행",
+          "line": 1,
+          "quote": "제가 앞서"
+        },
+        "other_move": {
+          "value": "직진",
+          "line": 1,
+          "quote": "뒤에서 오던"
+        },
+        "other_order": {
+          "value": "후행",
+          "line": 1,
+          "quote": "뒤에서 오던"
+        },
+        "other_from": {
+          "value": "같은방향",
+          "line": 1,
+          "quote": "뒤에서 오던 차가"
+        },
+        "modifiers": []
+      }
+    }
+  },
+  "N010": {
+    "tag": "신호 교차로 비보호 좌회전(도표 밖)",
+    "route": "사람 심사",
+    "rules": [
+      "R06"
+    ],
+    "chart": null,
+    "base": null,
+    "schedule": null,
+    "elements": {
+      "고객": {
+        "place": {
+          "value": "신호교차로",
+          "line": 0,
+          "quote": "신호등이 있는 사거리"
+        },
+        "me_move": {
+          "value": "직진",
+          "line": 0,
+          "quote": "직진했습니다"
+        },
+        "me_order": null,
+        "other_move": {
+          "value": "좌회전",
+          "line": 1,
+          "quote": "좌회전하던"
+        },
+        "other_order": null,
+        "other_from": {
+          "value": "맞은편",
+          "line": 1,
+          "quote": "맞은편에서"
+        },
+        "modifiers": []
+      },
+      "상대": {
+        "place": {
+          "value": "신호교차로",
+          "line": 0,
+          "quote": "신호 있는 교차로"
+        },
+        "me_move": {
+          "value": "좌회전",
+          "line": 0,
+          "quote": "좌회전을 하던"
+        },
+        "me_order": null,
+        "other_move": {
+          "value": "직진",
+          "line": 1,
+          "quote": "직진 차가"
+        },
+        "other_order": null,
+        "other_from": {
+          "value": "맞은편",
+          "line": 1,
+          "quote": "맞은편"
+        },
+        "modifiers": []
+      }
+    }
+  }
+}

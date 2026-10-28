@@ -1,0 +1,52 @@
+{
+  "고객": {
+    "place": {
+      "value": "신호교차로",
+      "line": 0,
+      "quote": "신호등이 있는 사거리"
+    },
+    "me_move": {
+      "value": "직진",
+      "line": 0,
+      "quote": "직진했습니다"
+    },
+    "me_order": null,
+    "other_move": {
+      "value": "좌회전",
+      "line": 1,
+      "quote": "좌회전하던"
+    },
+    "other_order": null,
+    "other_from": {
+      "value": "맞은편",
+      "line": 1,
+      "quote": "맞은편에서"
+    },
+    "modifiers": []
+  },
+  "상대": {
+    "place": {
+      "value": "신호교차로",
+      "line": 0,
+      "quote": "신호 있는 교차로"
+    },
+    "me_move": {
+      "value": "좌회전",
+      "line": 0,
+      "quote": "비보호 좌회전을 하던"
+    },
+    "me_order": null,
+    "other_move": {
+      "value": "직진",
+      "line": 1,
+      "quote": "직진 차가"
+    },
+    "other_order": null,
+    "other_from": {
+      "value": "맞은편",
+      "line": 1,
+      "quote": "맞은편"
+    },
+    "modifiers": []
+  }
+}

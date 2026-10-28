@@ -1,15 +1,17 @@
-"""명령: run, eval, export. bin/claim-relay가 부른다."""
+"""명령: run, eval, compare, export. bin/claim-relay가 부른다."""
 import argparse
 import json
 import sys
 from datetime import date
 
 from .config import ROOT, load
-from .evaluate import evaluate, load_testset, report
+from .evaluate import compare, evaluate, load_natural, load_testset, report
 from .pipeline import run_case
 
 
 def find_case(arg):
+    if arg.startswith("N") and not (ROOT / arg).exists():
+        return next(c for c in load_natural() if c["id"] == arg)
     path = ROOT / arg
     if not path.exists():
         path = ROOT / "data" / "testset" / f"{arg}.json"
@@ -33,14 +35,25 @@ def cmd_run(args):
 
 
 def cmd_eval(args):
-    ev = evaluate(args.extractor, args.repeat)
+    ev = evaluate(args.extractor, args.repeat, args.set)
     text = report(ev)
-    out = ROOT / "reports" / f"eval-{args.extractor}.md"
+    name = f"eval-{args.extractor}" if args.set == "testset" else f"eval-{args.set}-{args.extractor}"
+    out = ROOT / "reports" / f"{name}.md"
     out.parent.mkdir(exist_ok=True)
     out.write_text(text, encoding="utf-8")
     print(text)
     print(f"보고서: {out.relative_to(ROOT).as_posix()}")
     return 0 if ev["passed"] else 1
+
+
+def cmd_compare(args):
+    a, b = (evaluate(x, args.repeat, args.set) for x in ("cues", "skill"))
+    text = compare(a, b)
+    out = ROOT / "reports" / f"compare-{args.set}.md"
+    out.parent.mkdir(exist_ok=True)
+    out.write_text(text, encoding="utf-8")
+    print(text)
+    print(f"보고서: {out.relative_to(ROOT).as_posix()}")
 
 
 def cmd_export(args):
@@ -58,6 +71,15 @@ def cmd_export(args):
         result, steps = run_case(raw, "skill" if has_skill else "cues", ledger=False)
         alt = run_case(raw, "cues", ledger=False)[0] if has_skill else None
         cases.append({"case": raw, "expect": None, "result": result, "steps": steps,
+                      "extractor": "skill" if has_skill else "cues", "alt": alt})
+    # 자연어 비교 사례: 스킬 결과를 본 화면에, 단서 추출기 결과를 비교 카드에 둔다
+    for case in load_natural():
+        raw = {k: v for k, v in case.items() if k != "expect"}
+        has_skill = (ROOT / "data" / "extracted" / f"{case['id']}.json").exists()
+        result, steps = run_case(raw, "skill" if has_skill else "cues", ledger=False)
+        alt = run_case(raw, "cues", ledger=False)[0] if has_skill else None
+        cases.append({"case": raw, "expect": {k: v for k, v in case["expect"].items() if k != "elements"},
+                      "result": result, "steps": steps,
                       "extractor": "skill" if has_skill else "cues", "alt": alt})
     data = {
         "generated": date.today().isoformat(),
@@ -80,12 +102,16 @@ def main(argv=None):
     r.add_argument("case", help="사고 JSON 경로 또는 테스트셋 ID(C001)")
     e = sub.add_parser("eval", help="테스트셋 평가")
     e.add_argument("--repeat", type=int, default=3)
+    c = sub.add_parser("compare", help="단서 추출기와 스킬 추출기 비교")
+    c.add_argument("--repeat", type=int, default=3)
     x = sub.add_parser("export", help="웹 화면용 web/data.js 만들기")
     for q in (r, e, x):
         q.add_argument("--extractor", choices=["cues", "skill", "fixture"], default="cues")
+    for q in (e, c):
+        q.add_argument("--set", choices=["testset", "natural"], default="testset" if q is e else "natural")
     args = p.parse_args(argv)
     sys.stdout.reconfigure(encoding="utf-8")
-    return {"run": cmd_run, "eval": cmd_eval, "export": cmd_export}[args.cmd](args) or 0
+    return {"run": cmd_run, "eval": cmd_eval, "compare": cmd_compare, "export": cmd_export}[args.cmd](args) or 0
 
 
 if __name__ == "__main__":

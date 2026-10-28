@@ -95,6 +95,15 @@ class EvalTest(unittest.TestCase):
         ev = evaluate("cues", repeat=3)
         self.assertTrue(ev["passed"], ev["metrics"])
 
+    def test_natural_expectations_match_rules(self):
+        # 손으로 정한 자연어 기대값이 정답 요소를 넣었을 때 규칙 결과와 맞는지
+        ev = evaluate("fixture", repeat=1, dataset="natural")
+        self.assertTrue(ev["passed"], ev["metrics"])
+
+    def test_natural_cues_never_unsafe(self):
+        ev = evaluate("cues", repeat=1, dataset="natural")
+        self.assertEqual(ev["metrics"]["unsafe_auto"], 0)
+
 
 if __name__ == "__main__":
     unittest.main()

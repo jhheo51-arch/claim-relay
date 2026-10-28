@@ -7,6 +7,8 @@ from .extract import FIELDS
 from .pipeline import run_case
 
 TESTSET = ROOT / "data" / "testset"
+NATURAL = ROOT / "data" / "natural"
+SETS = {"testset": "템플릿 테스트셋", "natural": "자연어 진술"}
 CHECKS = ("route", "rules", "chart", "base", "schedule")
 
 
@@ -16,6 +18,22 @@ def load_testset():
         with open(path, encoding="utf-8") as f:
             cases.append(json.load(f))
     return cases
+
+
+def load_natural():
+    """사례 파일과 기대값이 따로 있다(스킬 추출이 기대값을 못 보게). 여기서 합친다."""
+    with open(NATURAL / "expect.json", encoding="utf-8") as f:
+        expect = json.load(f)
+    cases = []
+    for path in sorted((NATURAL / "cases").glob("*.json")):
+        with open(path, encoding="utf-8") as f:
+            case = json.load(f)
+        cases.append({**case, "expect": expect[case["id"]]})
+    return cases
+
+
+def load_set(name):
+    return load_natural() if name == "natural" else load_testset()
 
 
 def actual(result):
@@ -54,9 +72,9 @@ def extraction_hits(result, gold):
     return hit, total
 
 
-def evaluate(extractor="cues", repeat=3):
+def evaluate(extractor="cues", repeat=3, dataset="testset"):
     rows, ext_hit, ext_total = [], 0, 0
-    for case in load_testset():
+    for case in load_set(dataset):
         gold = case["expect"].get("elements")
         runs = [run_case(case, extractor, gold=gold, ledger=False)[0] for _ in range(repeat)]
         first = runs[0]
@@ -69,7 +87,7 @@ def evaluate(extractor="cues", repeat=3):
             "id": case["id"], "tag": case["expect"]["tag"],
             "want": want, "got": got,
             "diff": [k for k in CHECKS if got[k] != want[k]],
-            "drift": drift,
+            "drift": drift, "extraction": [h, t], "result": first,
         })
     n = len(rows)
 
@@ -91,7 +109,7 @@ def evaluate(extractor="cues", repeat=3):
     }
     passed = (metrics["route"] == n and metrics["unsafe_auto"] == 0 and metrics["chart"] == n
               and (metrics["extraction"] or 0) >= 95 and metrics["drift"] == 0)
-    return {"extractor": extractor, "repeat": repeat, "metrics": metrics, "rows": rows,
+    return {"extractor": extractor, "repeat": repeat, "dataset": dataset, "metrics": metrics, "rows": rows,
             "unsafe": unsafe, "passed": passed}
 
 
@@ -101,7 +119,7 @@ def report(ev, today=None):
     lines = [
         f"# 평가 결과 ({today or date.today().isoformat()})",
         "",
-        f"추출기 `{ev['extractor']}`, 사례 {n}건, 사례마다 {ev['repeat']}회 실행. "
+        f"{SETS[ev['dataset']]}, 추출기 `{ev['extractor']}`, 사례 {n}건, 사례마다 {ev['repeat']}회 실행. "
         f"도표 값 {charts['version']} 옮김, 사용자 대조 {'완료' if charts['confirmed'] else '전'}.",
         "",
         "| 지표 | 목표 | 결과 |",
@@ -123,4 +141,44 @@ def report(ev, today=None):
         diff = ", ".join(r["diff"]) + (" 반복 차이" if r["drift"] else "")
         lines.append(f"| {r['id']} | {r['tag']} | {r['want']['route']} | {r['got']['route']} "
                      f"| {r['got']['chart'] or '없음'} | {diff or '없음'} |")
+    return "\n".join(lines) + "\n"
+
+
+def compare(a, b, today=None):
+    """같은 세트를 두 추출기로 돌린 결과를 나란히 놓는다."""
+    ma, mb, n = a["metrics"], b["metrics"], a["metrics"]["cases"]
+    auto = sum(r["want"]["route"] == "자동 처리 후보" for r in a["rows"])
+
+    def auto_kept(ev):
+        return sum(r["want"]["route"] == r["got"]["route"] == "자동 처리 후보" for r in ev["rows"])
+
+    na, nb = f"`{a['extractor']}`", f"`{b['extractor']}`"
+    lines = [
+        f"# 추출기 비교: {SETS[a['dataset']]} ({today or date.today().isoformat()})",
+        "",
+        f"사례 {n}건(기대 자동 처리 후보 {auto}건, 사람 심사 {n - auto}건), 추출기마다 사례당 {a['repeat']}회 실행.",
+        "",
+        f"| 지표 | {na} | {nb} |",
+        "|---|---|---|",
+        f"| 경로 일치 | {ma['route']}/{n} | {mb['route']}/{n} |",
+        f"| 사람 심사 대상을 자동 처리 후보로 낸 건 | {ma['unsafe_auto']} | {mb['unsafe_auto']} |",
+        f"| 자동 처리 후보로 남긴 건(기대 {auto}건 중) | {auto_kept(a)} | {auto_kept(b)} |",
+        f"| 도표 일치 | {ma['chart']}/{n} | {mb['chart']}/{n} |",
+        f"| 걸린 규칙 일치 | {ma['rules']}/{n} | {mb['rules']}/{n} |",
+        f"| 추출 일치 | {ma['extraction']}% | {mb['extraction']}% |",
+        f"| 반복 실행 차이 | {ma['drift']} | {mb['drift']} |",
+        "",
+        f"| 사례 | 함정 | 기대 경로, 도표 | {na} 경로, 도표, 규칙 | {nb} 경로, 도표, 규칙 | 추출 일치 {na} / {nb} |",
+        "|---|---|---|---|---|---|",
+    ]
+
+    def cell(r):
+        g = r["got"]
+        mark = "" if g["route"] == r["want"]["route"] else " ✗"
+        return f"{g['route']}{mark}, {g['chart'] or '없음'}, {', '.join(g['rules']) or '없음'}"
+
+    for ra, rb in zip(a["rows"], b["rows"]):
+        w = ra["want"]
+        lines.append(f"| {ra['id']} | {ra['tag']} | {w['route']}, {w['chart'] or '없음'} | {cell(ra)} | {cell(rb)} "
+                     f"| {ra['extraction'][0]}/{ra['extraction'][1]} / {rb['extraction'][0]}/{rb['extraction'][1]} |")
     return "\n".join(lines) + "\n"

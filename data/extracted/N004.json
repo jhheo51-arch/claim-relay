@@ -1,0 +1,68 @@
+{
+  "고객": {
+    "place": {
+      "value": "합류지점",
+      "line": 0,
+      "quote": "차로가 줄어드는"
+    },
+    "me_move": {
+      "value": "합류",
+      "line": 1,
+      "quote": "합류하려다"
+    },
+    "me_order": {
+      "value": "선행",
+      "line": 1,
+      "quote": "뒤에서 오는 차를 못 봤습니다"
+    },
+    "other_move": {
+      "value": "직진",
+      "line": 2,
+      "quote": "그대로 오던 차"
+    },
+    "other_order": {
+      "value": "후행",
+      "line": 1,
+      "quote": "뒤에서 오는 차"
+    },
+    "other_from": {
+      "value": "같은방향",
+      "line": 2,
+      "quote": "옆 차로로 그대로 오던 차"
+    },
+    "modifiers": []
+  },
+  "상대": {
+    "place": {
+      "value": "합류지점",
+      "line": 0,
+      "quote": "합류 구간"
+    },
+    "me_move": {
+      "value": "직진",
+      "line": 0,
+      "quote": "제 차로를 그대로 달리고"
+    },
+    "me_order": {
+      "value": "후행",
+      "line": 1,
+      "quote": "제 앞으로 밀고 들어와"
+    },
+    "other_move": {
+      "value": "합류",
+      "line": 1,
+      "quote": "제 앞으로 밀고 들어와"
+    },
+    "other_order": {
+      "value": "선행",
+      "line": 1,
+      "quote": "제 앞으로"
+    },
+    "other_from": {
+      "value": "같은방향",
+      "line": 1,
+      "quote": "오른쪽 끝 차로 차가"
+    },
+    "modifiers": []
+  }
+}

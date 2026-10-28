@@ -1,0 +1,60 @@
+{
+  "고객": {
+    "place": {
+      "value": "단일로",
+      "line": 0,
+      "quote": "직선 도로"
+    },
+    "me_move": {
+      "value": "직진",
+      "line": 0,
+      "quote": "2차로를 그대로 달리고"
+    },
+    "me_order": {
+      "value": "후행",
+      "line": 1,
+      "quote": "제 앞으로 확 들어왔습니다"
+    },
+    "other_move": {
+      "value": "진로변경",
+      "line": 1,
+      "quote": "제 앞으로 확 들어왔습니다"
+    },
+    "other_order": {
+      "value": "선행",
+      "line": 1,
+      "quote": "제 앞으로"
+    },
+    "other_from": {
+      "value": "같은방향",
+      "line": 0,
+      "quote": "같은 방향"
+    },
+    "modifiers": []
+  },
+  "상대": {
+    "place": {
+      "value": "단일로",
+      "line": 0,
+      "quote": "직선 도로"
+    },
+    "me_move": {
+      "value": "직진",
+      "line": 0,
+      "quote": "1차로를 쭉 달리고"
+    },
+    "me_order": null,
+    "other_move": {
+      "value": "진로변경",
+      "line": 1,
+      "quote": "제 차로로 넘어오면서"
+    },
+    "other_order": null,
+    "other_from": {
+      "value": "같은방향",
+      "line": 1,
+      "quote": "옆 2차로 차가"
+    },
+    "modifiers": []
+  }
+}

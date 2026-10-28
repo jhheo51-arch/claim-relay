@@ -1,0 +1,68 @@
+{
+  "고객": {
+    "place": {
+      "value": "단일로",
+      "line": 0,
+      "quote": "직선 도로"
+    },
+    "me_move": {
+      "value": "정지",
+      "line": 1,
+      "quote": "완전히 멈춰 있었는데"
+    },
+    "me_order": {
+      "value": "선행",
+      "line": 2,
+      "quote": "제 차 뒤를 받았습니다"
+    },
+    "other_move": {
+      "value": "직진",
+      "line": 2,
+      "quote": "그대로 와서"
+    },
+    "other_order": {
+      "value": "후행",
+      "line": 2,
+      "quote": "뒤에 오던 차가"
+    },
+    "other_from": {
+      "value": "같은방향",
+      "line": 2,
+      "quote": "뒤에 오던 차가"
+    },
+    "modifiers": []
+  },
+  "상대": {
+    "place": {
+      "value": "단일로",
+      "line": 0,
+      "quote": "직선도로"
+    },
+    "me_move": {
+      "value": "직진",
+      "line": 0,
+      "quote": "같은 차로로 가고 있었습니다"
+    },
+    "me_order": {
+      "value": "후행",
+      "line": 2,
+      "quote": "앞차 뒤범퍼를 들이받았습니다"
+    },
+    "other_move": {
+      "value": "정지",
+      "line": 1,
+      "quote": "앞차가 선 걸"
+    },
+    "other_order": {
+      "value": "선행",
+      "line": 1,
+      "quote": "앞차가"
+    },
+    "other_from": {
+      "value": "같은방향",
+      "line": 0,
+      "quote": "앞차와 같은 차로로"
+    },
+    "modifiers": []
+  }
+}

@@ -1,0 +1,74 @@
+{
+  "고객": {
+    "place": {
+      "value": "단일로",
+      "line": 0,
+      "quote": "직선 도로"
+    },
+    "me_move": {
+      "value": "직진",
+      "line": 0,
+      "quote": "제 차로를 따라 쭉 가고"
+    },
+    "me_order": {
+      "value": "후행",
+      "line": 1,
+      "quote": "제 앞으로 차선을 바꿨습니다"
+    },
+    "other_move": {
+      "value": "진로변경",
+      "line": 1,
+      "quote": "차선을 바꿨습니다"
+    },
+    "other_order": {
+      "value": "선행",
+      "line": 1,
+      "quote": "제 앞으로"
+    },
+    "other_from": {
+      "value": "같은방향",
+      "line": 1,
+      "quote": "같은 방향"
+    },
+    "modifiers": [
+      {
+        "value": "방향지시등 미작동",
+        "line": 1,
+        "quote": "깜빡이도 안 켜고"
+      }
+    ]
+  },
+  "상대": {
+    "place": {
+      "value": "단일로",
+      "line": 0,
+      "quote": "직선 도로"
+    },
+    "me_move": {
+      "value": "진로변경",
+      "line": 0,
+      "quote": "오른쪽 차로로 옮기던"
+    },
+    "me_order": {
+      "value": "선행",
+      "line": 1,
+      "quote": "앞서 들어갔는데"
+    },
+    "other_move": {
+      "value": "직진",
+      "line": 1,
+      "quote": "뒤에서 오던 차가"
+    },
+    "other_order": {
+      "value": "후행",
+      "line": 1,
+      "quote": "뒤에서 오던"
+    },
+    "other_from": {
+      "value": "같은방향",
+      "line": 1,
+      "quote": "뒤에서 오던 차가"
+    },
+    "modifiers": []
+  }
+}
