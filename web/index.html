@@ -17,17 +17,8 @@
   --path-done: #60584c; --path-done-text: #ffffff; --path-todo: #efe9dd; --path-todo-text: #60584c;
   --shadow: 0 2px 2px rgba(96, 88, 76, .12);
 }
-@media (prefers-color-scheme: dark) {
-  :root {
-    --bg: #1a1814; --panel: #24211c; --line: #3b362e; --line-2: #2e2a24; --text: #f2eee6; --muted: #b9af9f;
-    --brand-soft: #3a3112; --head: #2e2a24; --head-text: #f2eee6;
-    --auto: #ffd966; --auto-bg: #3a3112; --docs: #2e2a24; --docs-bg: #ffe38a;
-    --human: #1a1814; --human-bg: #ffbc00; --stop: #ffffff; --stop-bg: #60584c;
-    --mark: #5c4a0a; --warn: #ffcc00; --ok: #ffd966; --link: #ffcc00;
-    --path-done: #b9af9f; --path-done-text: #1a1814; --path-todo: #3b362e; --path-todo-text: #b9af9f;
-    --shadow: 0 2px 2px rgba(0, 0, 0, .3);
-  }
-}
+/* 시스템이 어두운 모드여도 밝은 색 한 가지로 보여 준다 */
+:root { color-scheme: light; }
 * { box-sizing: border-box; }
 body { margin: 0; background: var(--bg); color: var(--text);
   font: 13px/1.5 "Pretendard", "Apple SD Gothic Neo", "Malgun Gothic", system-ui, sans-serif; }
