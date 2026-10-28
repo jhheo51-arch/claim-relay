@@ -222,7 +222,8 @@ function show(id) {
   document.getElementById("detail").innerHTML = h;
 }
 
-header(); list(); show(D.cases[0].case.id);
+const start = D.cases.find(c => c.case.id === decodeURIComponent(location.hash.slice(1)));
+header(); list(); show((start || D.cases[0]).case.id);
 </script>
 </body>
 </html>

@@ -1,0 +1,38 @@
+# 에이전트 성적표 기준. 이 저장소가 정한 가상 기준이다.
+version: 2026-10-28
+
+# 단계마다 정답과 맞춰 볼 핵심 지표와, 사람에게 넘기는 규칙 중 그 단계 결과로 걸리는 규칙
+agents:
+  intake:
+    core: 멈춤 판단 일치(멈춰야 할 건만 멈춤)
+    rules: [R02, R09]
+  documents:
+    core: 서류 규칙(R01, R03, R08) 일치
+    rules: [R01, R03, R08]
+  fault:
+    core: 과실 규칙(R04~R07)과 도표가 함께 일치
+    rules: [R04, R05, R06, R07]
+  route:
+    core: 심사 경로 일치
+    rules: []
+  schedule:
+    core: 경상 8주 일정 일치
+    rules: []
+  notice:
+    core: 안내문을 낼 건에 금지 표현 없이 냄
+    rules: []
+
+# 위에서부터 처음 맞는 등급을 준다. 놓친 규칙 때문에 자동 처리 후보로 샌 건이 1건이라도 있으면 초급.
+grades:
+  - name: 고급
+    min_core: 95
+    max_leak: 0
+    use: 결과를 담당자 일괄 승인 묶음에 넣을 수 있음
+  - name: 중급
+    min_core: 80
+    max_leak: 0
+    use: 결과를 내되 담당자가 한 건씩 확인
+  - name: 초급
+    min_core: 0
+    max_leak: null
+    use: 참고용. 이 단계 결과는 쓰지 않고 사람 심사로 넘김

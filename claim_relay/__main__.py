@@ -1,4 +1,4 @@
-"""명령: run, eval, compare, export. bin/claim-relay가 부른다."""
+"""명령: run, eval, compare, scorecard, export. bin/claim-relay가 부른다."""
 import argparse
 import json
 import sys
@@ -7,6 +7,7 @@ from datetime import date
 from .config import ROOT, load
 from .evaluate import compare, evaluate, load_natural, load_testset, report
 from .pipeline import run_case
+from .scorecard import report as scorecard_report, scorecard
 
 
 def find_case(arg):
@@ -50,6 +51,16 @@ def cmd_compare(args):
     a, b = (evaluate(x, args.repeat, args.set) for x in ("cues", "skill"))
     text = compare(a, b)
     out = ROOT / "reports" / f"compare-{args.set}.md"
+    out.parent.mkdir(exist_ok=True)
+    out.write_text(text, encoding="utf-8")
+    print(text)
+    print(f"보고서: {out.relative_to(ROOT).as_posix()}")
+
+
+def cmd_scorecard(args):
+    runs = [("testset", "cues"), ("natural", "cues"), ("natural", "skill")]
+    text = scorecard_report([scorecard(evaluate(x, args.repeat, d)) for d, x in runs])
+    out = ROOT / "reports" / "scorecard.md"
     out.parent.mkdir(exist_ok=True)
     out.write_text(text, encoding="utf-8")
     print(text)
@@ -104,6 +115,8 @@ def main(argv=None):
     e.add_argument("--repeat", type=int, default=3)
     c = sub.add_parser("compare", help="단서 추출기와 스킬 추출기 비교")
     c.add_argument("--repeat", type=int, default=3)
+    s = sub.add_parser("scorecard", help="단계 에이전트별 성적표와 등급")
+    s.add_argument("--repeat", type=int, default=3)
     x = sub.add_parser("export", help="웹 화면용 web/data.js 만들기")
     for q in (r, e, x):
         q.add_argument("--extractor", choices=["cues", "skill", "fixture"], default="cues")
@@ -111,7 +124,7 @@ def main(argv=None):
         q.add_argument("--set", choices=["testset", "natural"], default="testset" if q is e else "natural")
     args = p.parse_args(argv)
     sys.stdout.reconfigure(encoding="utf-8")
-    return {"run": cmd_run, "eval": cmd_eval, "compare": cmd_compare, "export": cmd_export}[args.cmd](args) or 0
+    return {"run": cmd_run, "eval": cmd_eval, "compare": cmd_compare, "scorecard": cmd_scorecard, "export": cmd_export}[args.cmd](args) or 0
 
 
 if __name__ == "__main__":

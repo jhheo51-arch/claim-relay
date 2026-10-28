@@ -6,6 +6,7 @@ from claim_relay.badge import BadgeError, Desk
 from claim_relay.config import ROOT, StopError
 from claim_relay.evaluate import evaluate
 from claim_relay.pipeline import run_case
+from claim_relay.scorecard import grade, leaked, scorecard
 
 
 def case(cid):
@@ -103,6 +104,26 @@ class EvalTest(unittest.TestCase):
     def test_natural_cues_never_unsafe(self):
         ev = evaluate("cues", repeat=1, dataset="natural")
         self.assertEqual(ev["metrics"]["unsafe_auto"], 0)
+
+
+class ScorecardTest(unittest.TestCase):
+    def test_grade_needs_zero_leak(self):
+        self.assertEqual(grade(100, 0)["name"], "고급")
+        self.assertEqual(grade(90, 0)["name"], "중급")
+        self.assertEqual(grade(100, 1)["name"], "초급")
+
+    def test_leak_blamed_on_stage_that_missed_rule(self):
+        row = {"want": {"route": "사람 심사", "rules": ["R07"]},
+               "got": {"route": "자동 처리 후보", "rules": []}}
+        self.assertTrue(leaked("fault", row, ["R04", "R05", "R06", "R07"]))
+        self.assertFalse(leaked("documents", row, ["R01", "R03", "R08"]))
+
+    def test_fault_grade_follows_extractor(self):
+        def fault_grade(extractor):
+            sc = scorecard(evaluate(extractor, repeat=1, dataset="natural"))
+            return next(c["grade"] for c in sc["cards"] if c["agent"] == "fault")
+        self.assertEqual(fault_grade("cues"), "초급")
+        self.assertEqual(fault_grade("skill"), "고급")
 
 
 if __name__ == "__main__":
