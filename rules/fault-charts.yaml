@@ -5,7 +5,8 @@
 version: 2026-10-28
 source: https://accident.knia.or.kr/ranking
 moved_by: Claude, 도표 상세 페이지의 '기본 과실' 칸을 옮김
-confirmed: false
+confirmed: true
+confirmed_by: 사용자, 2026-10-28 대조표 검토 후 진행 승인
 
 # 조건 키: move(내 진행), order(선행/후행), from(상대가 온 쪽). 적지 않은 키는 따지지 않는다
 charts:

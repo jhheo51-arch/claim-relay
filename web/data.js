@@ -5,7 +5,8 @@ window.DATA = {
   "version": "2026-10-28",
   "source": "https://accident.knia.or.kr/ranking",
   "moved_by": "Claude, 도표 상세 페이지의 '기본 과실' 칸을 옮김",
-  "confirmed": false,
+  "confirmed": true,
+  "confirmed_by": "사용자, 2026-10-28 대조표 검토 후 진행 승인",
   "charts": [
    {
     "id": "차41-1",
@@ -475,7 +476,7 @@ window.DATA = {
       "estimate": 1200000,
       "estimate_limit": 2000000,
       "injury_grade": null,
-      "charts_confirmed": false
+      "charts_confirmed": true
      },
      "checked": true
     }
@@ -719,7 +720,7 @@ window.DATA = {
       "estimate": 1200000,
       "estimate_limit": 2000000,
       "injury_grade": null,
-      "charts_confirmed": false
+      "charts_confirmed": true
      },
      "checked": true
     }
@@ -963,7 +964,7 @@ window.DATA = {
       "estimate": 1200000,
       "estimate_limit": 2000000,
       "injury_grade": null,
-      "charts_confirmed": false
+      "charts_confirmed": true
      },
      "checked": true
     }
@@ -1207,7 +1208,7 @@ window.DATA = {
       "estimate": 1200000,
       "estimate_limit": 2000000,
       "injury_grade": null,
-      "charts_confirmed": false
+      "charts_confirmed": true
      },
      "checked": true
     }
@@ -1435,7 +1436,7 @@ window.DATA = {
       "estimate": 1200000,
       "estimate_limit": 2000000,
       "injury_grade": null,
-      "charts_confirmed": false
+      "charts_confirmed": true
      },
      "checked": true
     }
@@ -1663,7 +1664,7 @@ window.DATA = {
       "estimate": 1200000,
       "estimate_limit": 2000000,
       "injury_grade": null,
-      "charts_confirmed": false
+      "charts_confirmed": true
      },
      "checked": true
     }
@@ -1891,7 +1892,7 @@ window.DATA = {
       "estimate": 1200000,
       "estimate_limit": 2000000,
       "injury_grade": null,
-      "charts_confirmed": false
+      "charts_confirmed": true
      },
      "checked": true
     }
@@ -2119,7 +2120,7 @@ window.DATA = {
       "estimate": 1200000,
       "estimate_limit": 2000000,
       "injury_grade": null,
-      "charts_confirmed": false
+      "charts_confirmed": true
      },
      "checked": true
     }
@@ -2363,7 +2364,7 @@ window.DATA = {
       "estimate": 1200000,
       "estimate_limit": 2000000,
       "injury_grade": null,
-      "charts_confirmed": false
+      "charts_confirmed": true
      },
      "checked": true
     }
@@ -2607,7 +2608,7 @@ window.DATA = {
       "estimate": 1200000,
       "estimate_limit": 2000000,
       "injury_grade": null,
-      "charts_confirmed": false
+      "charts_confirmed": true
      },
      "checked": true
     }
@@ -2835,7 +2836,7 @@ window.DATA = {
       "estimate": 1200000,
       "estimate_limit": 2000000,
       "injury_grade": null,
-      "charts_confirmed": false
+      "charts_confirmed": true
      },
      "checked": true
     }
@@ -3063,7 +3064,7 @@ window.DATA = {
       "estimate": 1200000,
       "estimate_limit": 2000000,
       "injury_grade": null,
-      "charts_confirmed": false
+      "charts_confirmed": true
      },
      "checked": true
     }
@@ -3291,7 +3292,7 @@ window.DATA = {
       "estimate": 1200000,
       "estimate_limit": 2000000,
       "injury_grade": null,
-      "charts_confirmed": false
+      "charts_confirmed": true
      },
      "checked": true
     }
@@ -3519,7 +3520,7 @@ window.DATA = {
       "estimate": 1200000,
       "estimate_limit": 2000000,
       "injury_grade": null,
-      "charts_confirmed": false
+      "charts_confirmed": true
      },
      "checked": true
     }
@@ -3747,7 +3748,7 @@ window.DATA = {
       "estimate": 1200000,
       "estimate_limit": 2000000,
       "injury_grade": null,
-      "charts_confirmed": false
+      "charts_confirmed": true
      },
      "checked": true
     }
@@ -3975,7 +3976,7 @@ window.DATA = {
       "estimate": 2000000,
       "estimate_limit": 2000000,
       "injury_grade": null,
-      "charts_confirmed": false
+      "charts_confirmed": true
      },
      "checked": true
     }
@@ -4236,7 +4237,7 @@ window.DATA = {
       "estimate": 1200000,
       "estimate_limit": 2000000,
       "injury_grade": 12,
-      "charts_confirmed": false
+      "charts_confirmed": true
      },
      "checked": true
     }
@@ -4497,7 +4498,7 @@ window.DATA = {
       "estimate": 1200000,
       "estimate_limit": 2000000,
       "injury_grade": 14,
-      "charts_confirmed": false
+      "charts_confirmed": true
      },
      "checked": true
     }
@@ -4758,7 +4759,7 @@ window.DATA = {
       "estimate": 1200000,
       "estimate_limit": 2000000,
       "injury_grade": 13,
-      "charts_confirmed": false
+      "charts_confirmed": true
      },
      "checked": true
     }
@@ -5005,7 +5006,7 @@ window.DATA = {
       "estimate": null,
       "estimate_limit": 2000000,
       "injury_grade": null,
-      "charts_confirmed": false
+      "charts_confirmed": true
      },
      "checked": true
     }
@@ -5270,7 +5271,7 @@ window.DATA = {
       "estimate": 900000,
       "estimate_limit": 2000000,
       "injury_grade": 13,
-      "charts_confirmed": false
+      "charts_confirmed": true
      },
      "checked": true
     }
@@ -5506,7 +5507,7 @@ window.DATA = {
       "estimate": null,
       "estimate_limit": 2000000,
       "injury_grade": null,
-      "charts_confirmed": false
+      "charts_confirmed": true
      },
      "checked": true
     }
@@ -5786,7 +5787,7 @@ window.DATA = {
       "estimate": null,
       "estimate_limit": 2000000,
       "injury_grade": null,
-      "charts_confirmed": false
+      "charts_confirmed": true
      },
      "checked": true
     }
@@ -6066,7 +6067,7 @@ window.DATA = {
       "estimate": 1200000,
       "estimate_limit": 2000000,
       "injury_grade": null,
-      "charts_confirmed": false
+      "charts_confirmed": true
      },
      "checked": true
     }
@@ -6336,7 +6337,7 @@ window.DATA = {
       "estimate": 1200000,
       "estimate_limit": 2000000,
       "injury_grade": null,
-      "charts_confirmed": false
+      "charts_confirmed": true
      },
      "checked": true
     }
@@ -6568,7 +6569,7 @@ window.DATA = {
       "estimate": 1200000,
       "estimate_limit": 2000000,
       "injury_grade": null,
-      "charts_confirmed": false
+      "charts_confirmed": true
      },
      "checked": true
     }
@@ -6812,7 +6813,7 @@ window.DATA = {
       "estimate": 1200000,
       "estimate_limit": 2000000,
       "injury_grade": null,
-      "charts_confirmed": false
+      "charts_confirmed": true
      },
      "checked": true
     }
@@ -7027,7 +7028,7 @@ window.DATA = {
       "estimate": 1200000,
       "estimate_limit": 2000000,
       "injury_grade": null,
-      "charts_confirmed": false
+      "charts_confirmed": true
      },
      "checked": true
     }
@@ -7234,7 +7235,7 @@ window.DATA = {
       "estimate": 1200000,
       "estimate_limit": 2000000,
       "injury_grade": null,
-      "charts_confirmed": false
+      "charts_confirmed": true
      },
      "checked": true
     }
@@ -7451,7 +7452,7 @@ window.DATA = {
       "estimate": null,
       "estimate_limit": 2000000,
       "injury_grade": 9,
-      "charts_confirmed": false
+      "charts_confirmed": true
      },
      "checked": true
     }
@@ -7713,7 +7714,7 @@ window.DATA = {
       "estimate": 1200000,
       "estimate_limit": 2000000,
       "injury_grade": null,
-      "charts_confirmed": false
+      "charts_confirmed": true
      },
      "checked": true
     }
@@ -7975,7 +7976,7 @@ window.DATA = {
       "estimate": 1200000,
       "estimate_limit": 2000000,
       "injury_grade": null,
-      "charts_confirmed": false
+      "charts_confirmed": true
      },
      "checked": true
     }
@@ -8237,7 +8238,7 @@ window.DATA = {
       "estimate": 1200000,
       "estimate_limit": 2000000,
       "injury_grade": null,
-      "charts_confirmed": false
+      "charts_confirmed": true
      },
      "checked": true
     }
@@ -8487,7 +8488,7 @@ window.DATA = {
       "estimate": 2500000,
       "estimate_limit": 2000000,
       "injury_grade": null,
-      "charts_confirmed": false
+      "charts_confirmed": true
      },
      "checked": true
     }
@@ -8721,7 +8722,7 @@ window.DATA = {
       "estimate": 9000000,
       "estimate_limit": 8000000,
       "injury_grade": null,
-      "charts_confirmed": false
+      "charts_confirmed": true
      },
      "checked": true
     }
@@ -8964,7 +8965,7 @@ window.DATA = {
       "estimate": 1200000,
       "estimate_limit": 2000000,
       "injury_grade": 5,
-      "charts_confirmed": false
+      "charts_confirmed": true
      },
      "checked": true
     }
@@ -9207,7 +9208,7 @@ window.DATA = {
       "estimate": 1200000,
       "estimate_limit": 2000000,
       "injury_grade": 11,
-      "charts_confirmed": false
+      "charts_confirmed": true
      },
      "checked": true
     }
@@ -9441,7 +9442,7 @@ window.DATA = {
       "estimate": 1200000,
       "estimate_limit": 2000000,
       "injury_grade": null,
-      "charts_confirmed": false
+      "charts_confirmed": true
      },
      "checked": true
     }
@@ -9806,7 +9807,7 @@ window.DATA = {
       "estimate": 1350000,
       "estimate_limit": 2000000,
       "injury_grade": null,
-      "charts_confirmed": false
+      "charts_confirmed": true
      },
      "checked": true
     }
@@ -9963,7 +9964,7 @@ window.DATA = {
       "estimate": 1350000,
       "estimate_limit": 2000000,
       "injury_grade": null,
-      "charts_confirmed": false
+      "charts_confirmed": true
      },
      "checked": true
     }
