@@ -160,13 +160,31 @@ table.t th { color: var(--muted); font-weight: 600; font-size: 12px; }
 pre { white-space: pre-wrap; margin: 0; font: inherit; }
 .notice { background: var(--bg); border-radius: 4px; padding: 10px; }
 
+/* 운영 현황 */
+.ops { grid-column: 1 / -1; display: grid; grid-template-columns: 1fr 1fr; gap: 12px; align-items: start; }
+.ops > * { min-width: 0; }
+.ops .wide { grid-column: 1 / -1; }
+.scroll th { white-space: nowrap; }
+.ops .card { margin: 0; }
+.bar { display: flex; height: 14px; border-radius: 3px; overflow: hidden; min-width: 120px; background: var(--line-2); }
+.bar i { display: block; height: 100%; }
+.bar .r-auto { border: 0; }
+.legend { display: flex; flex-wrap: wrap; gap: 4px 12px; margin-top: 8px; font-size: 12px; }
+.num { text-align: right !important; white-space: nowrap; }
+.scroll { overflow-x: auto; }
+
+/* 다시 온 말 점검 */
+.fu input { width: 100%; box-sizing: border-box; border: 1px solid var(--line); border-radius: 4px; padding: 6px 8px; background: var(--panel); color: var(--text); font: inherit; }
+.chips { display: flex; flex-wrap: wrap; gap: 4px; margin: 6px 0 8px; }
+.chip { border: 1px solid var(--line); background: var(--panel); color: var(--link); border-radius: 12px; padding: 1px 8px; font-size: 12px; cursor: pointer; }
+
 @media (max-width: 1100px) {
   .rec { grid-template-columns: 1fr; }
 }
 @media (max-width: 820px) {
   main { grid-template-columns: 1fr; padding: 8px; }
   .lv-body { max-height: 260px; }
-  .two, .kv { grid-template-columns: 1fr; }
+  .two, .kv, .ops { grid-template-columns: 1fr; }
   .meta, .avatar { display: none; }
   .path li span { font-size: 11px; }
   .hl-actions { display: none; }
@@ -184,6 +202,7 @@ pre { white-space: pre-wrap; margin: 0; font: inherit; }
   <div class="app-name"><span class="dots"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span>청구 처리</div>
   <button class="tab on" data-t="cases">사고</button>
   <button class="tab" data-t="agents">단계 에이전트</button>
+  <button class="tab" data-t="ops">운영 현황</button>
   <div class="meta" id="meta"></div>
 </div>
 <main id="app">
@@ -354,6 +373,36 @@ function noticeCard(r) {
     <p class="muted" style="margin-top:8px">금지 표현과 출처 없는 숫자 검사를 통과했습니다.</p>` : `<p class="muted">멈춰서 안내문을 만들지 않았습니다.</p>`);
 }
 
+// rules/followup.yaml을 claim_relay/followup.py의 signal()과 같은 순서로 읽는다. 화면에서 시험만 하고 저장하지 않는다
+function signalOf(text) {
+  for (const s of D.followup.signals) {
+    const word = s.words.find(w => text.includes(w));
+    if (word) return { id: s.id, word, action: s.action };
+  }
+  return null;
+}
+
+function followupCard(r) {
+  if (!r.notice) return "";
+  const examples = ["언제 처리되나요?", "뭘 내라는 건지 모르겠어요", "과실이 이렇게 나온 건 납득이 안 됩니다", "금감원에 민원 넣겠습니다"];
+  return card("재", "다시 온 말 점검", `<div class="fu">
+    <input id="fu-in" type="text" placeholder="안내 뒤 고객이 다시 보낸 말을 넣어 보세요" aria-label="고객이 다시 보낸 말">
+    <div class="chips">${examples.map(e => `<button class="chip" data-ex="${esc(e)}">${esc(e)}</button>`).join("")}</div>
+    <div id="fu-out" class="muted">신호 낱말은 운영 현황 탭에 있습니다.</div>
+    <p class="muted" style="margin:8px 0 0">예시 문장은 가상입니다. 화면에서는 저장하지 않고, <code>claim-relay followup</code> 명령이 followups/에 쌓습니다.</p></div>`);
+}
+
+function followupResult(text, route) {
+  if (!text.trim()) return `<span class="muted">신호 낱말은 운영 현황 탭에 있습니다.</span>`;
+  const sig = signalOf(text);
+  if (!sig) return `신호 없음. <span class="muted">같은 사고로 ${D.followup.repeat_limit}번째로 물으면 신호가 없어도 담당자에게 올립니다.</span>`;
+  const reopen = sig.id === "민원" || sig.id === "과실 이의";
+  let h = `<b>${esc(sig.id)}</b> <span class="muted">("${esc(sig.word)}")</span><br>조치: ${esc(sig.action)}`;
+  if (reopen && route === "자동 처리 후보") h += `<br><span class="warn">자동 처리 후보로 나간 건이 다시 열립니다. 과실, 경로 단계 등급을 다시 봅니다.</span>`;
+  else h += `<br>담당자 대기열에 다시 올립니다.`;
+  return h;
+}
+
 function show(id) {
   const c = D.cases.find(x => x.case.id === id);
   if (!c) return;
@@ -377,9 +426,15 @@ function show(id) {
   else pane = staffCard(c, r) + faultCard(r);
   h += `<div class="rec"><div class="box"><div class="rtabs">${tabs.map(([k, v]) =>
     `<button class="rtab ${recTab === k ? "on" : ""}" data-k="${k}">${v}</button>`).join("")}</div><div class="pane">${pane}</div></div>
-    <div class="box"><div class="pane">${compareCard(c, r)}${noticeCard(r)}</div></div></div>`;
+    <div class="box"><div class="pane">${compareCard(c, r)}${noticeCard(r)}${followupCard(r)}</div></div></div>`;
   const el = document.getElementById("detail");
   el.innerHTML = h;
+  const fin = el.querySelector("#fu-in");
+  if (fin) {
+    const out = el.querySelector("#fu-out");
+    fin.oninput = () => { out.innerHTML = followupResult(fin.value, r.route); };
+    el.querySelectorAll("[data-ex]").forEach(b => b.onclick = () => { fin.value = b.dataset.ex; fin.oninput(); });
+  }
   el.querySelectorAll(".rtab").forEach(b => b.onclick = () => { recTab = b.dataset.k; show(id); });
   el.querySelectorAll("[data-go]").forEach(b => b.onclick = () => { location.hash = b.dataset.go; });
 }
@@ -395,6 +450,87 @@ function agentsView() {
       <td>${esc(g.read.join(", "))}</td><td>${esc(g.write.join(", "))}</td><td>${used[a] || 0}건</td></tr>`; }).join("")}</table></section>`;
 }
 
+// 사고 ID 첫 글자로 데이터 세트를 나눈다. N과 B는 본 결과가 스킬 추출기, alt가 단서 추출기 결과다
+const SETS = [["C", "가상 사고(틀에 맞춘 문장)"], ["N", "자연어 진술"], ["B", "블라인드 진술"], ["S", "자연어 예시"]];
+const ROUTE_COLOR = { "자동 처리 후보": "#ffe38a", "사람 심사": "#ffbc00", "서류 보완": "#b9af9f", "멈춤": "#60584c" };
+
+function opsRow(name, cs, pick) {
+  const n = cs.length, cnt = {};
+  let match = 0, judged = 0, unsafe = 0;
+  cs.forEach(c => {
+    const got = pick(c).route;
+    cnt[got] = (cnt[got] || 0) + 1;
+    if (!c.expect) return;
+    judged++;
+    if (got === c.expect.route) match++;
+    if (got === "자동 처리 후보" && c.expect.route !== "자동 처리 후보") unsafe++;
+  });
+  const bar = `<div class="bar" title="${ROUTES.map(r => `${r} ${cnt[r] || 0}`).join(", ")}">${ROUTES.map(r =>
+    cnt[r] ? `<i style="width:${cnt[r] / n * 100}%;background:${ROUTE_COLOR[r]}"></i>` : "").join("")}</div>`;
+  return `<tr><th>${name}</th><td class="num">${n}</td>${ROUTES.map(r => `<td class="num">${cnt[r] || 0}</td>`).join("")}
+    <td>${bar}</td><td class="num">${judged ? `${match}/${judged}` : "-"}</td>
+    <td class="num ${unsafe ? "warn" : ""}">${judged ? unsafe : "-"}</td></tr>`;
+}
+
+function opsView() {
+  const by = Object.fromEntries(SETS.map(([k]) => [k, D.cases.filter(c => c.case.id[0] === k)]));
+  let rows = "";
+  for (const [k, name] of SETS) {
+    const cs = by[k];
+    if (!cs.length) continue;
+    if (cs.some(c => c.alt)) {
+      rows += opsRow(`${name}, 단서`, cs, c => c.alt || c.result) + opsRow(`${name}, 스킬`, cs, c => c.result);
+    } else {
+      rows += opsRow(name, cs, c => c.result);
+    }
+  }
+  const routeCard = card("경", "데이터 세트별 처리 경로", `<div class="scroll"><table class="t">
+    <tr><th>세트, 추출기</th><th class="num">건수</th>${ROUTES.map(r => `<th class="num">${r}</th>`).join("")}<th>비율</th>
+      <th class="num">기대 경로 일치</th><th class="num">사람이 볼 건을 자동으로 넘긴 건</th></tr>${rows}</table></div>
+    <div class="legend">${ROUTES.map(r => `<span><span class="pill" style="background:${ROUTE_COLOR[r]};color:${r === "멈춤" ? "#fff" : "var(--gray)"}">&nbsp;</span> ${r}</span>`).join("")}</div>
+    <p class="muted" style="margin:8px 0 0">대표 숫자는 블라인드 진술입니다. 가상 사고는 틀에 맞춘 문장이라 일치율이 높게 나옵니다. 모든 진술은 사람이 아닌 AI가 썼습니다.</p>`);
+
+  const hit = (k, id) => by[k].filter(c => c.result.rules.includes(id)).length;
+  const ruleRows = D.rules.map(r => `<tr><th>${esc(r.id)}</th><td>${esc(r.staff)}</td><td>${pill(r.route)}</td>
+    ${SETS.filter(([k]) => by[k].length).map(([k]) => `<td class="num">${hit(k, r.id)}</td>`).join("")}</tr>`).join("");
+  const ruleCard = card("규", "사람에게 넘긴 이유(걸린 규칙)", `<div class="scroll"><table class="t">
+    <tr><th>규칙</th><th>담당자 설명</th><th>경로</th>${SETS.filter(([k]) => by[k].length).map(([, n]) => `<th class="num">${esc(n.split("(")[0])}</th>`).join("")}</tr>
+    ${ruleRows}</table></div>
+    <p class="muted" style="margin:8px 0 0">한 사고에 규칙이 여러 개 걸릴 수 있습니다. 자연어와 블라인드는 스킬 추출기 기준입니다.</p>`);
+
+  const stops = {};
+  D.cases.filter(c => c.result.status === "멈춤").forEach(c => {
+    const key = `${c.result.stop.badge} ${D.agents[c.result.stop.agent].name}`;
+    (stops[key] = stops[key] || []).push(c.case.id);
+  });
+  const stopCard = card("멈", "멈춘 사고", Object.keys(stops).length ? `<table class="t">${Object.entries(stops).map(([k, ids]) =>
+    `<tr><th>${esc(k)}</th><td>${ids.map(i => `<a href="#${esc(i)}" data-go="${esc(i)}">${esc(i)}</a>`).join(", ")}</td></tr>`).join("")}</table>
+    <p class="muted" style="margin:8px 0 0">접수 단계에서 진술에 개인정보가 보이면 AI에 넘기기 전에 멈춥니다.</p>` : `<p class="muted">없음</p>`);
+
+  const fuCard = card("재", "안내 뒤 다시 온 말: 신호 기준", `<table class="t"><tr><th>신호</th><th>낱말</th><th>조치</th></tr>
+    ${D.followup.signals.map(s => `<tr><th>${esc(s.id)}</th><td>${esc(s.words.join(", "))}</td><td>${esc(s.action)}</td></tr>`).join("")}</table>
+    <p class="muted" style="margin:8px 0 0">위에서부터 먼저 걸린 신호를 따릅니다. 같은 사고로 ${D.followup.repeat_limit}번째로 물으면 신호가 없어도 담당자에게 올립니다.
+    자동 처리 후보로 나간 건에 민원이나 과실 이의가 오면 앞 단계 등급을 다시 봅니다. 실제 재문의 기록은 없고, 사고 화면에서 문장을 넣어 시험해 볼 수 있습니다.</p>`);
+
+  const kpiCard = card("지", "실제 업무에 붙이면 잴 지표", `<table class="t">
+    <tr><th>지표</th><th>이 저장소에서 대신 본 값</th></tr>
+    <tr><th>사람이 볼 건을 자동으로 넘긴 건</th><td>위 표의 마지막 열. 모든 세트에서 0이어야 등급을 올립니다</td></tr>
+    <tr><th>자동 처리 후보 비율</th><td>위 표의 자동 처리 후보 건수. 가상 사고라 실제 비율을 뜻하지 않습니다</td></tr>
+    <tr><th>자동 처리 뒤 다시 열린 비율</th><td><code>followup</code> 기록의 자동 처리 후 이의. 지금은 기록 없음</td></tr>
+    <tr><th>담당자 판정과 다른 비율</th><td><code>review</code> 기록과 파이프라인 비교. 지금은 기록 없음</td></tr>
+    <tr><th>접수부터 안내까지 걸린 시간</th><td>재지 않았습니다. 이력(runs/)에는 실행 시각 하나만 남깁니다</td></tr></table>`);
+
+  document.getElementById("app").innerHTML = `<div class="ops">
+    <section class="box lv wide"><div class="lv-head"><div class="lv-title"><span class="icon gray">운</span><div><div class="eyebrow">운영 현황</div><h2>사고 ${D.cases.length}건 처리 결과</h2></div></div>
+    <p class="lv-sub">web/data.js에 든 결과를 이 화면에서 바로 셉니다. 숫자는 모두 가상 사고 기준이고, 만든 날은 ${esc(D.generated)}입니다.</p></div></section>
+    <div class="wide">${routeCard}</div><div class="wide">${ruleCard}</div>${fuCard}<div>${stopCard}<div style="height:12px"></div>${kpiCard}</div></div>`;
+  document.querySelectorAll(".ops [data-go]").forEach(a => a.onclick = e => {
+    e.preventDefault();
+    document.querySelector('.tab[data-t="cases"]').click();
+    location.hash = a.dataset.go;
+  });
+}
+
 function route() {
   const id = decodeURIComponent(location.hash.slice(1));
   if (appTab !== "cases") return;
@@ -405,6 +541,7 @@ document.querySelectorAll(".tab").forEach(b => b.onclick = () => {
   appTab = b.dataset.t;
   document.querySelectorAll(".tab").forEach(x => x.classList.toggle("on", x === b));
   if (appTab === "agents") return agentsView();
+  if (appTab === "ops") return opsView();
   document.getElementById("app").innerHTML = `<section class="box lv" id="listbox"></section><section id="detail"></section>`;
   route();
 });

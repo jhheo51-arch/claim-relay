@@ -124,6 +124,7 @@ def cmd_export(args):
         "charts": load("rules/fault-charts.yaml"),
         "rules": load("rules/claim-rules.yaml")["rules"],
         "agents": load("agents.yaml")["agents"],
+        "followup": load("rules/followup.yaml"),
         "cases": cases,
     }
     out = ROOT / "web" / "data.js"
