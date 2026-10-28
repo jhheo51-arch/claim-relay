@@ -115,23 +115,19 @@ main { display: grid; grid-template-columns: 340px 1fr; gap: 12px; padding: 12px
 
 /* 단계 표시(6단계) */
 .path { display: flex; margin: 12px 0 0; padding: 0; list-style: none; }
-.path li { flex: 1; position: relative; height: 32px; display: grid; place-items: center; margin-right: 14px;
-  background: var(--path-todo); color: var(--path-todo-text); font-size: 13px; font-weight: 600; white-space: nowrap; min-width: 0; }
-.path li span { overflow: hidden; text-overflow: ellipsis; padding: 0 4px 0 14px; max-width: 100%; }
-.path li::before, .path li::after { content: ""; position: absolute; top: 0; border-style: solid; }
-.path li::before { left: -14px; border-width: 16px 0 16px 14px; border-color: var(--path-todo) var(--path-todo) var(--path-todo) transparent; }
-.path li::after { right: -14px; border-width: 16px 0 16px 14px; border-color: transparent transparent transparent var(--path-todo); }
-.path li:first-child { border-radius: 16px 0 0 16px; }
-.path li:first-child::before { display: none; }
-.path li:first-child span { padding-left: 4px; }
-.path li:last-child { margin-right: 0; border-radius: 0 16px 16px 0; }
-.path li:last-child::after { display: none; }
+/* 화살표 꼴은 clip-path로 자른다. 옆 칸과 12px 겹치고 3px 틈을 남겨 단계 경계를 보인다 */
+.path li { flex: 1; height: 34px; display: grid; place-items: center; min-width: 0; margin-left: -9px;
+  clip-path: polygon(0 0, calc(100% - 12px) 0, 100% 50%, calc(100% - 12px) 100%, 0 100%, 12px 50%);
+  background: var(--path-todo); color: var(--path-todo-text); font-size: 13px; font-weight: 600; white-space: nowrap; }
+.path li span { overflow: hidden; text-overflow: ellipsis; padding: 0 14px 0 18px; max-width: 100%; }
+.path li:first-child { margin-left: 0; border-radius: 17px 0 0 17px;
+  clip-path: polygon(0 0, calc(100% - 12px) 0, 100% 50%, calc(100% - 12px) 100%, 0 100%); }
+.path li:first-child span { padding-left: 8px; }
+.path li:last-child { border-radius: 0 17px 17px 0;
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%, 12px 50%); }
+.path li:last-child span { padding-right: 8px; }
 .path li.done { background: var(--path-done); color: var(--path-done-text); }
-.path li.done::before { border-color: var(--path-done) var(--path-done) var(--path-done) transparent; }
-.path li.done::after { border-left-color: var(--path-done); }
 .path li.halt { background: var(--brand); color: var(--gray); }
-.path li.halt::before { border-color: var(--brand) var(--brand) var(--brand) transparent; }
-.path li.halt::after { border-left-color: var(--brand); }
 .path-note { margin: 8px 0 0; font-size: 13px; color: var(--muted); }
 
 /* 레코드 본문 */
