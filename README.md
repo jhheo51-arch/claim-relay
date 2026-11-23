@@ -6,6 +6,8 @@
 
 ### ▶ [담당자 화면 바로 보기](https://jhheo51-arch.github.io/claim-relay/web/#N009) (설치 없이 브라우저에서 열림)
 
+시연은 가상 사례 **N009**를 엽니다. 차선 변경 진술을 읽고, 심사 경로가 **사람 심사**로 남은 이유인 `R07`을 확인해 보세요. [사례 입력](data/natural/cases/N009.json), [기대 경로](data/natural/expect.json)
+
 [![담당자 화면](docs/img/screen-natural.png)](https://jhheo51-arch.github.io/claim-relay/web/#N009)
 
 ## 먼저 확인할 범위
